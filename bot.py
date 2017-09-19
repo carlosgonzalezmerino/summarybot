@@ -2,12 +2,12 @@ import os
 import re
 import time
 
-import messages
-
 import requests
 from langdetect import detect
 from bs4 import BeautifulSoup
 from slackclient import SlackClient
+
+import messages
 
 API_ENDPOINT="http://api-atomo-news.herokuapp.com/summary"
 
@@ -44,43 +44,55 @@ class SummaryBot(object):
 			raise Exception("Connection Failed")
 
 	def __messagehandler(self, msg):
+		if self.__itsforme(msg):
+			response = self.__parserequest(msg)
+			self.__sendmessage(response)
+
+		return
+
+	def __itsforme(self, msg):
 		text = msg.get("text")
+		if text:
+			mentionregex = re.compile(r"<@(?P<id>[A-Z0-9]+)>.+")
+			catched = mentionregex.search(text)
+			if catched:
+				return bool(catched.group("id"))
+		return False
+
+	def __parserequest(self, msg):
 		response = {
 			"channel": msg.get("channel"),
 			"thread_ts": msg.get("ts")
 		}
 
-		if text and self.__itsforme(text):
-			url = self.__detecturl(text)
-			if url:
-				content = self.__geturlcontent(url)
-				if content:
-					summary = self.__getsummary(content)
-					if summary:
-						response["text"] = "*{}*\n\n".format(content.get("title")) + "\n".join(summary)
-						response.pop("thread_ts", None)
-					else:
-						response["text"] = messages.NO_SUMMARY
+		url = self.__parseurl(msg)
+		if url:
+			content = self.__geturlcontent(url)
+			title = content.get("title")
+			if content:
+				summary = self.__getsummary(content)
+				if summary:
+					response["text"] = messages.CONTENT_MSG
+					response["attachments"] = self.__parsecontent(title, summary, url)
+					response.pop("thread_ts", None)
 				else:
-					response["text"] = messages.EXTERNAL_ERROR
+					response["text"] = messages.NO_SUMMARY
 			else:
-				response["text"] = messages.NO_URL
+				response["text"] = messages.EXTERNAL_ERROR
+		else:
+			response["text"] = messages.NO_URL
 
-			self.__sendmessage(response)
-		return
+		return response
 
-	def __itsforme(self, text):
-		mentionregex = re.compile(r"<@(?P<id>[A-Z0-9]+)>.+")
-		catched = mentionregex.search(text)
-		if catched:
-			return bool(catched.group("id"))
+	def __parseurl(self, msg):
+		text = msg.get("text")
+		if text:
+			urlmatcher = re.compile(r"<(?P<url>http[s]?\:\/\/[^\s]+)>")
 
-	def __detecturl(self, text):
-		urlmatcher = re.compile(r"<(?P<url>http[s]?\:\/\/[^\s]+)>")
-
-		match = urlmatcher.search(text)
-		if match:
-			return match.group("url")
+			match = urlmatcher.search(text)
+			if match:
+				return match.group("url")
+		return False
 
 	def __geturlcontent(self, url):
 		try:
@@ -123,9 +135,34 @@ class SummaryBot(object):
 
 		return None
 
+	def __parsetitle(self, raw):
+		title = raw
+		patterns = [" - ", " | "]
+
+		for pattern in patterns:
+			if pattern in raw:
+				title = raw.split(pattern)[0]
+				break
+
+		return "{}".format(title)
+
+	def __parsecontent(self, raw_title, summary, url):
+		data = {
+			"color": "good",
+			"title": self.__parsetitle(raw_title),
+			"title_link": url,
+			"text": "\n\n".join(summary)
+		}
+
+		return [data]
+
+
 	def __sendmessage(self, msg):
-		time.sleep(1)
-		self.client.api_call("chat.postMessage", **msg)
+		try:
+			time.sleep(1)
+			self.client.api_call("chat.postMessage", **msg)
+		except Exception as e:
+			print(e)
 		return
 
 if __name__ == "__main__":
