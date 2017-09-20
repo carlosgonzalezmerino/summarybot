@@ -8,17 +8,27 @@ from bs4 import BeautifulSoup
 from slackclient import SlackClient
 
 import messages
+from database import DB
 
 API_ENDPOINT="http://api-atomo-news.herokuapp.com/summary"
+
 
 
 class SummaryBot(object):
 	def __init__(self):
 		self.name = os.environ.get("SLACK_BOT_NAME")
-		self.token = os.environ.get("SLACK_API_TOKEN")
+		self.verification = os.environ.get("SLACK_VERIFICATION_TOKEN")
+		self.oauth = {
+			"client_id": os.environ.get("SLACK_CLIENT_ID"),
+			"client_secret": os.environ.get("SLACK_CLIENT_SECRET"),
+			"scope": "bot"
+		}
 
-		if self.token and self.name:
-			self.client = SlackClient(self.token)
+		self.authorized = []
+		self.db = DB()
+
+		if self.name and self.verification and self.oauth.get("client_id") and self.oauth.get("client_secret"):
+			self.client = SlackClient("")
 
 			response = self.client.api_call('users.list')
 			if response.get("ok"):
@@ -31,11 +41,35 @@ class SummaryBot(object):
 		else:
 			raise Exception("Token and name required")
 
-	def listen(self):
-		self.__messagelistener()
+	def auth(self, code):
+		auth_response = self.client.api_call(
+			"oauth.access",
+			client_id=self.oauth["client_id"],
+			client_secret=self.oauth["client_secret"],
+			code=code
+		)
 
-	def __messagelistener(self):
-		if self.client.rtm_connect(with_team_state=False):
+		team_id = auth_response.get("team_id")
+		if team_id:
+			bot = auth_response.get("bot")
+			if bot:
+				try:
+					data = {"team_id": team_id,"bot_token": bot.get("bot_access_token")}
+					self.db.add("auths", data)
+					return True
+				except Exception as e:
+					print(e)
+		return False
+
+	def listen(self, team_id):
+		try:
+			authorized = self.db.get("auths", {"team_id": team_id})
+		except Exception as e:
+			print(e)
+			return
+
+		self.client = SlackClient(authorized.get("bot_token"))
+		if self.client.rtm_connect():
 			while True:
 				msgs = self.client.rtm_read()
 				if len(msgs):
@@ -164,7 +198,3 @@ class SummaryBot(object):
 		except Exception as e:
 			print(e)
 		return
-
-if __name__ == "__main__":
-	bot = SummaryBot()
-	bot.listen()
