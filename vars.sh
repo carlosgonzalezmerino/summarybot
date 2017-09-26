@@ -1,0 +1,8 @@
+export DATABASE="summarybot.db"
+export SLACK_BOT_NAME="reverte"
+export SLACK_CLIENT_ID="73314827649.243504314342"
+export SLACK_CLIENT_SECRET="f6a00ebab0d708643dec0328fb5ae112"
+export SLACK_VERIFICATION_TOKEN="EpMyFd45hPDhPe3Gj8QNTS9u"
+export PRIVATE_KEY="/etc/letsencrypt/archive/bot.myshortreport.com/privkey1.pem"
+export FULL_CHAIN="/etc/letsencrypt/archive/bot.myshortreport.com/fullchain1.pem"
+export CERT="/etc/letsencrypt/archive/bot.myshortreport.com/cert1.pem"
