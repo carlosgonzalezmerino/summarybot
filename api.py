@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 
 from flask import Flask
@@ -49,7 +50,7 @@ def thanks():
 
 
 if __name__ == "__main__":
-	print("Trying serve over HTTPS...")
+	sys.stdout.write("Trying serve over HTTPS...\n")
 	try:
 		context = SSL.Context(SSL.TLSv1_2_METHOD)
 		context.use_privatekey_file(os.getenv("PRIVATE_KEY"))
@@ -58,5 +59,5 @@ if __name__ == "__main__":
 
 		app.run(host="0.0.0.0", port=80, threaded=True, ssl_context=context, debug=True)
 	except:
-		print("Failed!")
-		api.run(debug=True)
+		sys.stdout.write("Failed!\n")
+		api.run(debug=True, port=80)
