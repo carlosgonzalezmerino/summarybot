@@ -1,3 +1,4 @@
+import os
 import json
 
 from flask import Flask
@@ -47,4 +48,5 @@ def thanks():
 
 
 if __name__ == "__main__":
-	api.run(debug=True, host="0.0.0.0")
+	port = int(os.getenv("PORT")) or 5000
+	api.run(debug=True, host="0.0.0.0", port=port)
