@@ -49,8 +49,8 @@ def thanks():
 
 
 if __name__ == "__main__":
+	print("Trying serve over HTTPS...")
 	try:
-		print("Trying serve over HTTPS...")
 		context = SSL.Context(SSL.TLSv1_2_METHOD)
 		context.use_privatekey_file(os.getenv("PRIVATE_KEY"))
 		context.use_certificate_chain_file(os.getenv("FULL_CHAIN"))
