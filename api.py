@@ -12,7 +12,7 @@ api = Flask(__name__)
 
 @api.route("/listen", methods=["GET","POST"])
 def listen():
-	slack_event = json.loads(request.data)
+	slack_event = json.loads(str(request.data))
 
 	if "challenge" in slack_event:
 		return make_response(slack_event.get("challenge"), 200, {"content_type": "application/json"})
