@@ -60,4 +60,4 @@ if __name__ == "__main__":
 		app.run(host="0.0.0.0", port=80, threaded=True, ssl_context=context, debug=True)
 	except:
 		sys.stdout.write("Failed!\n")
-		api.run(debug=True, port=80)
+		api.run(host="0.0.0.0", port=80, debug=True)
