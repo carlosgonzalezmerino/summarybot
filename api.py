@@ -28,8 +28,8 @@ def listen():
 	else:
 		return make_response("Invalid Slack verification code", 403)
 
-@api.route("/install")
-def install():
+@api.route("/")
+def index():
 	bot = SlackBot()
 	client_id = bot.oauth.get("client_id")
 	scope = bot.oauth.get("scope")
