@@ -33,7 +33,6 @@ class SlackBot(object):
 
 	def __getmyinfo(self):
 		response = self.client.api_call('users.list')
-		print(response)
 		if response.get("ok"):
 			self.users = response.get("members")
 			candidate = self.__findmember(name=self.name)
