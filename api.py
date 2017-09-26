@@ -1,12 +1,9 @@
-import os
-import sys
 import json
 
 from flask import Flask
 from flask import make_response
 from flask import render_template
 from flask import request
-from OpenSSL import SSL
 
 from libs.slackbot import SlackBot
 
@@ -50,15 +47,4 @@ def thanks():
 
 
 if __name__ == "__main__":
-	sys.stdout.write("Trying serve over HTTPS...\n")
-	try:
-		context = SSL.Context(SSL.TLSv1_2_METHOD)
-		context.use_privatekey_file(os.getenv("PRIVATE_KEY"))
-		context.use_certificate_chain_file(os.getenv("FULL_CHAIN"))
-		context.use_certificate_file(os.getenv("CERT"))
-
-		api.run(host="0.0.0.0", port=80, threaded=True, ssl_context=context, debug=True)
-	except Exception as e:
-		print(e)
-		sys.stdout.write("Failed!\n")
-		api.run(host="0.0.0.0", port=80, debug=True)
+	api.run(host="0.0.0.0", port=80, debug=True)
