@@ -1,14 +1,13 @@
 import os
 import re
 
-import messages
-from database import DB
-
 import requests
-from langdetect import detect
 from bs4 import BeautifulSoup
+from langdetect import detect
 from slackclient import SlackClient
 
+from libs import messages
+from libs.database import DB
 
 API_ENDPOINT="http://api-atomo-news.herokuapp.com/summary"
 
