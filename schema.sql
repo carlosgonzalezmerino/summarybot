@@ -1,0 +1,1 @@
+create table auths (team_id VARCHAR,bot_token VARCHAR);

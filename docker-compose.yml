@@ -1,0 +1,8 @@
+version: '2'
+services:
+  flask:
+    build: ./
+    ports:
+    - "80:80"
+    volumes:
+    - ./:/workdir

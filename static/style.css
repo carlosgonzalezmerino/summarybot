@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script|Raleway');
 
 * {
 	margin: 0;
@@ -26,7 +26,7 @@ body {
 
 .face {
 	display: inline-block;
-	width: auto;
+	width: 40%;
 	height: auto;
 	padding: 20px 30px;
 	max-width: 450px;
@@ -48,9 +48,15 @@ body {
 	color: #ddd;
 }
 
-.info p, .info a {
-	margin: 20px 0;
+.info p {
+	margin: 30px 0 40px;
+    font-size: 26px;
+    font-family: 'Dancing Script', cursive;
+    letter-spacing: 3px;
+    line-height: 28px;
 }
+
+.info a {margin: 20px 0;}
 
 .credits {
 	display: inline-block;
