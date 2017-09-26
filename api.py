@@ -58,6 +58,7 @@ if __name__ == "__main__":
 		context.use_certificate_file(os.getenv("CERT"))
 
 		app.run(host="0.0.0.0", port=80, threaded=True, ssl_context=context, debug=True)
-	except:
+	except Exception as e:
+		print(e)
 		sys.stdout.write("Failed!\n")
 		api.run(host="0.0.0.0", port=80, debug=True)
