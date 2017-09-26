@@ -2,7 +2,7 @@ import os
 import sys
 import site
 
-base_path       = '~/summarybot'
+base_path       = '/home/ec2-user/summarybot'
 packages        = '%s/venv/lib/python3.5/dist-packages' % base_path
 packages64      = '%s/venv/lib64/python3.5/dist-packages' % base_path
 execution       = '%s/app' % base_path
