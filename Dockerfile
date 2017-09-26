@@ -8,7 +8,6 @@ RUN apt-get install -y python3 python3-dev python3-pip python3-lxml python-setup
 
 COPY requirements.txt ./
 
-
 ENV PRODUCTION "1"
 ENV DATABASE "summarybot.db"
 ENV SLACK_BOT_NAME "reverte"

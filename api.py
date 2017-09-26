@@ -51,6 +51,7 @@ def thanks():
 if __name__ == "__main__":
 	print(os.getenv("PRODUCTION"))
 	if os.getenv("PRODUCTION"):
+		print(os.getenv("PRIVATE_KEY"), os.getenv("FULL_CHAIN"), os.getenv("CERT"))
 		context = SSL.Context(SSL.TLSv1_2_METHOD)
 		context.use_privatekey_file(os.getenv("PRIVATE_KEY"))
 		context.use_certificate_chain_file(os.getenv("FULL_CHAIN"))
