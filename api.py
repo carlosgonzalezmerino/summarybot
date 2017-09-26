@@ -49,14 +49,14 @@ def thanks():
 
 
 if __name__ == "__main__":
-	print(os.getenv("PRODUCTION"))
-	if os.getenv("PRODUCTION"):
-		print(os.getenv("PRIVATE_KEY"), os.getenv("FULL_CHAIN"), os.getenv("CERT"))
+	try:
+		print("Trying serve over HTTPS...")
 		context = SSL.Context(SSL.TLSv1_2_METHOD)
 		context.use_privatekey_file(os.getenv("PRIVATE_KEY"))
 		context.use_certificate_chain_file(os.getenv("FULL_CHAIN"))
 		context.use_certificate_file(os.getenv("CERT"))
 
 		app.run(host="0.0.0.0", port=80, threaded=True, ssl_context=context, debug=True)
-	else:
+	except:
+		print("Failed!")
 		api.run(debug=True)
