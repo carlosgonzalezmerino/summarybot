@@ -164,8 +164,8 @@ class DB(object):
 		
 		try:
 			self.cursor.execute(query)
-			row_result	= self.cursor.fetchone()
-			result		= row_result.itervalues().next()
+			row_result = self.cursor.fetchone()
+			result = list(row_result.values())[0]
 		except sqlite3.Error as err:
 			raise Exception("SQLite Error: {}".format(err))
 

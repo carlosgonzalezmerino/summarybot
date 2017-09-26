@@ -1,6 +1,8 @@
 import os
 import re
+import sys
 import time
+import logging
 
 import requests
 from langdetect import detect
@@ -8,68 +10,41 @@ from bs4 import BeautifulSoup
 from slackclient import SlackClient
 
 import messages
-from database import DB
 
 API_ENDPOINT="http://api-atomo-news.herokuapp.com/summary"
-
 
 
 class SummaryBot(object):
 	def __init__(self):
 		self.name = os.environ.get("SLACK_BOT_NAME")
-		self.verification = os.environ.get("SLACK_VERIFICATION_TOKEN")
-		self.oauth = {
-			"client_id": os.environ.get("SLACK_CLIENT_ID"),
-			"client_secret": os.environ.get("SLACK_CLIENT_SECRET"),
-			"scope": "bot"
-		}
+		self.token = os.environ.get("SLACK_API_TOKEN")
+		self.logger = logging.getLogger(__name__)
+		self.users = []
 
-		self.authorized = []
-		self.db = DB()
-
-		if self.name and self.verification and self.oauth.get("client_id") and self.oauth.get("client_secret"):
-			self.client = SlackClient("")
+		if self.token and self.name:
+			self.client = SlackClient(self.token)
 
 			response = self.client.api_call('users.list')
 			if response.get("ok"):
-				candidates = list(filter(lambda user: user.get("name") == self.name, response.get("members")))
+				self.users = response.get("members")
+				candidate = self.__findmember(name=self.name)
 
-				if len(candidates) != 1:
+				if not candidate:
+					raise Exception("Bot name not found ;(")
+				elif isinstance(candidate, list):
 					raise Exception("Ambiguous bot name ;(")
 
-				self.id = candidates[0].get("id")
+				self.id = candidate.get("id")
+
+				print("Bot ID:" + self.id)
+			else:
+				raise Exception("Error getting user list info")
 		else:
 			raise Exception("Token and name required")
 
-	def auth(self, code):
-		auth_response = self.client.api_call(
-			"oauth.access",
-			client_id=self.oauth["client_id"],
-			client_secret=self.oauth["client_secret"],
-			code=code
-		)
-
-		team_id = auth_response.get("team_id")
-		if team_id:
-			bot = auth_response.get("bot")
-			if bot:
-				try:
-					data = {"team_id": team_id,"bot_token": bot.get("bot_access_token")}
-					self.db.add("auths", data)
-					return True
-				except Exception as e:
-					print(e)
-		return False
-
-	def listen(self, team_id):
-		try:
-			authorized = self.db.get("auths", {"team_id": team_id})
-		except Exception as e:
-			print(e)
-			return
-
-		self.client = SlackClient(authorized.get("bot_token"))
-		if self.client.rtm_connect():
+	def listen(self):
+		if self.client.rtm_connect(with_team_state=False):
+			print("Listening...")
 			while True:
 				msgs = self.client.rtm_read()
 				if len(msgs):
@@ -78,11 +53,12 @@ class SummaryBot(object):
 			raise Exception("Connection Failed")
 
 	def __messagehandler(self, msg):
-		if self.__itsforme(msg):
-			response = self.__parserequest(msg)
-			self.__sendmessage(response)
-
-		return
+		if msg.get("type") == "message" and msg.get("subtype") != "channel_join":
+			thread = not self.__itsforme(msg)
+			response = self.__parserequest(msg, thread)
+			if response:
+				self.__sendmessage(response)
+			return
 
 	def __itsforme(self, msg):
 		text = msg.get("text")
@@ -93,7 +69,27 @@ class SummaryBot(object):
 				return bool(catched.group("id"))
 		return False
 
-	def __parserequest(self, msg):
+	def __findmember(self, id=None, name=None):
+		results = []
+		if id:
+			results = list(filter(lambda user: user.get("id") == id, self.users))
+		elif name:
+			results = list(filter(lambda user: user.get("name") == name, self.users))
+
+		if results:
+			if len(results) == 1:
+				return results[0]
+			else:
+				return results
+		return None
+
+	def __parserequest(self, msg, thread=None):
+		author = None
+		if msg.get("user"):
+			author = self.__findmember(id=msg.get("user"))
+			if author.get("id") == self.id:
+				author = None
+
 		response = {
 			"channel": msg.get("channel"),
 			"thread_ts": msg.get("ts")
@@ -106,15 +102,23 @@ class SummaryBot(object):
 			if content:
 				summary = self.__getsummary(content)
 				if summary:
-					response["text"] = messages.CONTENT_MSG
+					if author:
+						sys.stdout.write("[Summary generated] Link: {url} User: {user}\n".format(url=url, user=author.get("name")))
+
 					response["attachments"] = self.__parsecontent(title, summary, url)
-					response.pop("thread_ts", None)
+					if thread:
+						response["text"] = messages.CONTENT_NOMENTION_MSG
+					else:
+						response["text"] = messages.CONTENT_MSG
+						response.pop("thread_ts", None)
 				else:
 					response["text"] = messages.NO_SUMMARY
 			else:
 				response["text"] = messages.EXTERNAL_ERROR
-		else:
+		elif not thread:
 			response["text"] = messages.NO_URL
+		else:
+			return None
 
 		return response
 
@@ -128,6 +132,14 @@ class SummaryBot(object):
 				return match.group("url")
 		return False
 
+	def __getarticle(self, soup):
+		prop = re.compile("articleBody")
+		tag = re.compile("article|article-.+")
+		id = re.compile("(content|post).*")
+		_class = re.compile("(post|article).*")
+
+		return soup.find(itemprop=prop) or soup.find(tag) or soup.find(id=id) or soup.find(_class=_class)
+
 	def __geturlcontent(self, url):
 		try:
 			response = requests.get(url)
@@ -135,17 +147,18 @@ class SummaryBot(object):
 
 			body = response.text
 			soup = BeautifulSoup(body, 'lxml')
-			article = soup.find('article')
+			article = self.__getarticle(soup)
+			if article:
+				title = soup.title.getText()
+				paragraphs = []
+				for p in article.find_all('p', recursive=True):
+					paragraphs.append(p.getText())
 
-			title = soup.title.getText()
-			paragraphs = []
-			for p in article.find_all('p', recursive=True):
-				paragraphs.append(p.getText())
-
-			return {
-				"title": title,
-				"text": "\n".join(paragraphs),
-			}
+				return {
+					"title": title,
+					"text": "\n".join(paragraphs),
+				}
+			return None
 		except Exception as e:
 			print(e)
 
@@ -198,3 +211,7 @@ class SummaryBot(object):
 		except Exception as e:
 			print(e)
 		return
+
+if __name__ == "__main__":
+	bot = SummaryBot()
+	bot.listen()
