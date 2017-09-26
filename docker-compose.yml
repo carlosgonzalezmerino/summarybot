@@ -7,4 +7,3 @@ services:
     - "443:443"
     volumes:
     - ./:/workdir
-    - /etc/letsencrypt/live/bot.myshortreport.com/:/etc/letsencrypt/live/bot.myshortreport.com/
