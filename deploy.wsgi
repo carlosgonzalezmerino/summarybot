@@ -2,7 +2,7 @@ import os
 import sys
 import site
 
-base_path       = '/srv/login'
+base_path       = '/root/summarybot'
 packages        = '%s/venv/lib/python3.5/dist-packages' % base_path
 packages64      = '%s/venv/lib64/python3.5/dist-packages' % base_path
 execution       = '%s/app' % base_path
@@ -19,4 +19,4 @@ sys.path.append(execution)
 exec(open(venv_start).read(), dict(__file__=venv_start))
 
 # import app as application
-from app import api as application
+import api
