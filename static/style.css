@@ -1,65 +1,69 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-  background: #34495e;
-  color: white;
-  font-size: 16px;
-  font-family: 'Raleway', sans-serif;
+	background: #34495e;
+	color: white;
+	font-size: 16px;
+	font-family: 'Raleway', sans-serif;
 }
 
 .main {
-  display: block;
-  margin: 0 auto;
-  width: 90%;
-  height: 100vh;
-  max-width: 1000px;
+	display: block;
+	margin: 0 auto;
+	width: 90%;
+	height: 100vh;
+	max-width: 1000px;
 
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .face {
-  display: inline-block;
-  width: auto;
-  height: auto;
-  padding: 20px 30px;
+	display: inline-block;
+	width: auto;
+	height: auto;
+	padding: 20px 30px;
+	max-width: 450px;
 }
 
 .info {
-  display: inline-block;
-  width: auto;
-  height: auto;
-  padding: 20px 30px;
+	display: inline-block;
+	width: auto;
+	height: auto;
+	padding: 20px 30px;
 }
 
-.info h1 {margin: 10px 0 0;}
+.info h1 {
+	margin: 10px 0 0;
+}
+
 .info h3 {
-  margin: 5px 0 25px;
-  color: #ddd;
+	margin: 5px 0 25px;
+	color: #ddd;
 }
 
 .info p, .info a {
-  margin: 20px 0;
+	margin: 20px 0;
 }
 
 .credits {
-  display: inline-block;
-  vertical-align: top;
-  width: 100%;
-  height: auto;
-  padding: 80px 0 0;
-  text-align: center;
-  font-size: 14px;
-  color: #ccc;
+	display: inline-block;
+	vertical-align: top;
+	width: 100%;
+	height: auto;
+	padding: 80px 0 0;
+	text-align: center;
+	font-size: 14px;
+	color: #ccc;
 }
 
 .credits .hearth {
-  color: red;
-  font-size: 16px;
+	color: red;
+	font-size: 16px;
 }
