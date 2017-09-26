@@ -9,7 +9,7 @@ RUN apt-get install -y python3 python3-dev python3-pip python3-lxml python-setup
 COPY requirements.txt ./
 
 ENV PORT "80"
-ENV DATABASE "auths.db"
+ENV DATABASE "summarybot.db"
 ENV SLACK_BOT_NAME "reverte"
 ENV SLACK_CLIENT_ID "73314827649.243504314342"
 ENV SLACK_CLIENT_SECRET "f6a00ebab0d708643dec0328fb5ae112"
