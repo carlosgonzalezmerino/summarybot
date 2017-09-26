@@ -229,7 +229,7 @@ class SlackBot(object):
 					if summary:
 						response["text"] = messages.CONTENT_MSG
 						response["thread_ts"] = ts
-						response["attachments"] = self.__parsecontent(title, summary, url)
+						response["attachments"] = self.__parseattachments(title, summary, url)
 			else:
 				response = None
 			self.__sendresponse(response)
