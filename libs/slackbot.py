@@ -215,11 +215,7 @@ class SlackBot(object):
 						response["text"] = messages.NO_SUMMARY
 				else:
 					response["text"] = messages.EXTERNAL_ERROR
-			elif itsforme and not url:
-				response["text"] = messages.NO_URL
-				response["thread_ts"] = ts
 			elif not itsforme and url:
-
 				content = self.__geturlcontent(url)
 				title = content.get("title")
 				if content:
