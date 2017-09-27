@@ -1,4 +1,3 @@
-export PYTHONPATH="/srv/summarybot/venv/lib64/python3.5/dist-packages/"
 export DATABASE="docs/summarybot.db"
 export SLACK_BOT_NAME="reverte"
 export SLACK_CLIENT_ID="73314827649.243504314342"
