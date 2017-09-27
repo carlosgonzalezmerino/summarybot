@@ -211,6 +211,7 @@ class SlackBot(object):
 						response["attachments"] = self.__parseattachments(title, summary, url)
 					else:
 						response["text"] = messages.NO_SUMMARY
+						response["thread_ts"] = ts
 				else:
 					response["text"] = messages.EXTERNAL_ERROR
 			elif url and not itsforme:
