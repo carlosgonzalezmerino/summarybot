@@ -197,11 +197,10 @@ class SlackBot(object):
 
 		itsforme = self.__itsforme(event)
 		nosubtype = event.get("subtype") == None
-		itsbot = event.get("subtype") == "bot_message"
+		print(nosubtype)
 		url = self.__parseurl(text)
-		welcome = event.get("subtype") == "channel_join"
 
-		if not itsbot and nosubtype and url:
+		if nosubtype and url:
 			if itsforme:
 				content = self.__geturlcontent(url)
 				title = content.get("title")
