@@ -51,7 +51,7 @@ class SlackBot(object):
 			mentionregex = re.compile(r"<@(?P<id>[A-Z0-9]+)>.+")
 			catched = mentionregex.search(text)
 			if catched:
-				return bool(catched.group("id"))
+				return bool(catched.group("id") == self.id)
 		return False
 
 	def __findmember(self, id=None, name=None):
