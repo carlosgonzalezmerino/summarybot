@@ -18,4 +18,4 @@ sys.path.append(base_path)
 exec(open(venv_start).read(), dict(__file__=venv_start))
 
 # import app as application
-from api import api
+from api import api as application
