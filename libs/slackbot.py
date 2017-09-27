@@ -203,8 +203,8 @@ class SlackBot(object):
 		if nosubtype:
 			if url and itsforme:
 				content = self.__geturlcontent(url)
-				title = content.get("title")
 				if content:
+					title = content.get("title")
 					summary = self.__getsummary(content)
 					if summary:
 						response["text"] = messages.CONTENT_MSG
@@ -215,8 +215,8 @@ class SlackBot(object):
 					response["text"] = messages.EXTERNAL_ERROR
 			elif url and not itsforme:
 				content = self.__geturlcontent(url)
-				title = content.get("title")
 				if content:
+					title = content.get("title")
 					summary = self.__getsummary(content)
 					if summary:
 						response["text"] = messages.CONTENT_MSG
