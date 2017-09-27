@@ -8,8 +8,8 @@ packages64      = '%s/venv/lib64/python3.5/dist-packages' % base_path
 venv_start      = '%s/venv/bin/activate_this.py' % base_path
 
 # Add virtualenv site packages
-site.addsitedir(packages64)
 site.addsitedir(packages)
+site.addsitedir(packages64)
 
 # Fired up virtualenv before include application
 exec(open(venv_start).read(), dict(__file__=venv_start))
