@@ -200,8 +200,8 @@ class SlackBot(object):
 		print(nosubtype)
 		url = self.__parseurl(text)
 
-		if nosubtype and url:
-			if itsforme:
+		if nosubtype:
+			if url and itsforme:
 				content = self.__geturlcontent(url)
 				title = content.get("title")
 				if content:
@@ -213,7 +213,7 @@ class SlackBot(object):
 						response["text"] = messages.NO_SUMMARY
 				else:
 					response["text"] = messages.EXTERNAL_ERROR
-			elif not itsforme:
+			elif url and not itsforme:
 				content = self.__geturlcontent(url)
 				title = content.get("title")
 				if content:
@@ -222,6 +222,9 @@ class SlackBot(object):
 						response["text"] = messages.CONTENT_MSG
 						response["thread_ts"] = ts
 						response["attachments"] = self.__parseattachments(title, summary, url)
+			elif itsforme and not url:
+				response["text"] = messages.NO_URL
+				response["thread_ts"] = ts
 			else:
 				response = None
 			self.__sendresponse(response)
