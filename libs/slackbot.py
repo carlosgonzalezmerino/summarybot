@@ -198,6 +198,7 @@ class SlackBot(object):
 		itsforme = self.__itsforme(event)
 		nosubtype = event.get("subtype") is None
 		url = self.__parseurl(text)
+		print(event)
 
 		if nosubtype:
 			if url and itsforme:
