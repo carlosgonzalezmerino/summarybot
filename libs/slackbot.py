@@ -201,10 +201,8 @@ class SlackBot(object):
 		url = self.__parseurl(text)
 		welcome = event.get("subtype") == "channel_join"
 
-		if not itsbot:
-			if itsforme and welcome:
-				response["text"] = messages.INTRO
-			elif itsforme and url and nosubtype:
+		if not itsbot and nosubtype and url:
+			if itsforme:
 				content = self.__geturlcontent(url)
 				title = content.get("title")
 				if content:
@@ -216,7 +214,7 @@ class SlackBot(object):
 						response["text"] = messages.NO_SUMMARY
 				else:
 					response["text"] = messages.EXTERNAL_ERROR
-			elif not itsforme and url and nosubtype:
+			elif not itsforme:
 				content = self.__geturlcontent(url)
 				title = content.get("title")
 				if content:
