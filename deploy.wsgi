@@ -5,7 +5,7 @@ import site
 base_path       = '/home/ec2-user/summarybot'
 packages        = '%s/venv/lib/python3.5/dist-packages' % base_path
 packages64      = '%s/venv/lib64/python3.5/dist-packages' % base_path
-execution       = '%s/app' % base_path
+execution       = base_path
 venv_start      = '%s/venv/bin/activate_this.py' % base_path
 
 # Add virtualenv site packages
