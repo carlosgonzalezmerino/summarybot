@@ -11,11 +11,11 @@ venv_start      = '%s/venv/bin/activate_this.py' % base_path
 site.addsitedir(packages)
 site.addsitedir(packages64)
 
-# Path of execution
-sys.path.append(base_path)
-
 # Fired up virtualenv before include application
 exec(open(venv_start).read(), dict(__file__=venv_start))
+
+# Path of execution
+sys.path.append(base_path)
 
 # import app as application
 from api import api as application
