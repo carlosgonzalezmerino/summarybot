@@ -5,7 +5,7 @@ from flask import make_response
 from flask import render_template
 from flask import request
 
-from slackbot import SlackBot
+from libs.slackbot import SlackBot
 
 api = Flask(__name__)
 

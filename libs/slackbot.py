@@ -6,8 +6,8 @@ from bs4 import BeautifulSoup
 from langdetect import detect
 from slackclient import SlackClient
 
-from database import DB
 from libs import messages
+from libs.database import DB
 
 API_ENDPOINT="http://api-atomo-news.herokuapp.com/summary"
 
