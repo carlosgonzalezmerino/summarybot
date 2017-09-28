@@ -43,16 +43,13 @@ class DB(object):
 				del data[k]
 
 		_keys, values = list(data.keys()), list(data.values())
-		keys, params = ", ".join(_keys), ('?,'*len(values))[:-1]
-
-		cols = ', '.join('"{}"'.format(col) for col in data.keys())
-		vals = ', '.join(':{}'.format(col) for col in data.keys())
+		keys, params = ", ".join(_keys), ('%s,'*len(values))[:-1]
 
 		try:
-			query = "INSERT INTO {} ({}) VALUES ('{}')".format(table, cols, vals)
+			query = "INSERT INTO {} ({}) VALUES ('{}')".format(table, keys, params)
 			print(query)
 			print(len(values))
-			self.cursor.execute(query, data)
+			self.cursor.execute(query, values)
 			self.connection.commit()
 			self.lastid = self.cursor.lastrowid
 		except sqlite3.Error as err:
