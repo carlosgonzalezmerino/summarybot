@@ -42,12 +42,12 @@ class DB(object):
 			if not bool(data[k]):
 				del data[k]
 
-		_keys, _values	= data.keys(), data.values()
-		keys, values	= ", ".join(_keys), "\', \'".join([str(val) for val in _values])
+		_keys, values = data.keys(), data.values()
+		keys, params = ", ".join(_keys), ("?,"*len(values))[:-1]
 
 		try:
-			query = "INSERT INTO {} ({}) VALUES (\'{}\')".format(table, keys, values)
-			self.cursor.execute(query)
+			query = "INSERT INTO {} ({}) VALUES (\'{}\')".format(table, keys, params)
+			self.cursor.execute(query, values)
 			self.connection.commit()
 			self.lastid = self.cursor.lastrowid
 		except sqlite3.Error as err:
