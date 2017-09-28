@@ -241,6 +241,21 @@ class SlackBot(object):
 						response["text"] = messages.CONTENT_MSG
 						response["thread_ts"] = ts
 						response["attachments"] = self.__parseattachments(title, summary, url)
+
+						try:
+							article = {
+								"title": title,
+								"summary": summary,
+								"keywords": keywords,
+								"url": url,
+								"user_id": user,
+								"channel_id": channel,
+								"workspace": workspace
+							}
+
+							self.db.add("news", article)
+						except Exception as e:
+							print(e)
 			elif nosubtype and itsforme and not url:
 				response["text"] = messages.NO_URL
 				response["thread_ts"] = ts
