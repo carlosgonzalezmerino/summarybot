@@ -42,11 +42,13 @@ class DB(object):
 			if not bool(data[k]):
 				del data[k]
 
-		_keys, values = data.keys(), data.values()
+		_keys, values = list(data.keys()), (data.values())
 		keys, params = ", ".join(_keys), ("?,"*len(values))[:-1]
 
 		try:
 			query = "INSERT INTO {} ({}) VALUES (\'{}\')".format(table, keys, params)
+			print(query)
+			print(values)
 			self.cursor.execute(query, values)
 			self.connection.commit()
 			self.lastid = self.cursor.lastrowid
