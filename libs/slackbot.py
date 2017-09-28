@@ -217,7 +217,8 @@ class SlackBot(object):
 								"title": title,
 								"summary": summary,
 								"keywords": keywords,
-								"url": url
+								"url": url,
+								"channel_id": channel
 							}
 							print(article)
 						except Exception as e:
