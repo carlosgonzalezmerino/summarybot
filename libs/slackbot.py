@@ -150,6 +150,16 @@ class SlackBot(object):
 
 		return [data]
 
+	def __escapecontent(self, raw_summary, raw_keywords):
+		replacement = "\'"
+		summary, keywords = raw_summary, raw_keywords
+		special_chars = ["`", "'", '"', "´"]
+		for special_char in special_chars:
+			summary = summary.replace(special_char, replacement)
+			keywords = keywords.replace(special_char, replacement)
+
+		return summary, keywords
+
 	def __sendresponse(self, response):
 		if response:
 			try:
@@ -218,10 +228,11 @@ class SlackBot(object):
 						try:
 							raw_summary = "\n\n".join(summary)
 							raw_keywords = ",".join(keywords)
+							sumy, keys = self.__escapecontent(raw_summary, raw_keywords)
 							article = {
 								"title": title,
-								"summary": re.escape(raw_summary),
-								"keywords": re.escape(raw_keywords),
+								"summary": sumy,
+								"keywords": keys,
 								"url": url,
 								"user_id": user,
 								"channel_id": channel,
@@ -250,10 +261,11 @@ class SlackBot(object):
 						try:
 							raw_summary = "\n\n".join(summary)
 							raw_keywords = ",".join(keywords)
+							sumy, keys = self.__escapecontent(raw_summary, raw_keywords)
 							article = {
 								"title": title,
-								"summary": re.escape(raw_summary),
-								"keywords": re.escape(raw_keywords),
+								"summary": sumy,
+								"keywords": keys,
 								"url": url,
 								"user_id": user,
 								"channel_id": channel,
