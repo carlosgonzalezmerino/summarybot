@@ -42,7 +42,7 @@ class DB(object):
 			if not bool(data[k]):
 				del data[k]
 
-		_keys, values = list(data.keys()), (data.values())
+		_keys, values = list(data.keys()), tuple(data.values())
 		keys, params = ", ".join(_keys), ("?,"*len(values))[:-1]
 
 		try:
