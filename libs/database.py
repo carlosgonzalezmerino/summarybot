@@ -50,7 +50,6 @@ class DB(object):
 			print(query)
 			print(len(values))
 			self.cursor.execute(query, *values)
-			self.cursor.execute
 			self.connection.commit()
 			self.lastid = self.cursor.lastrowid
 		except sqlite3.Error as err:
