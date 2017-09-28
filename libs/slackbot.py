@@ -226,13 +226,10 @@ class SlackBot(object):
 						response["text"] = messages.CONTENT_MSG
 						response["attachments"] = self.__parseattachments(title, summary, url)
 						try:
-							raw_summary = "\n\n".join(summary)
-							raw_keywords = ",".join(keywords)
-							sumy, keys = self.__escapecontent(raw_summary, raw_keywords)
 							article = {
 								"title": title,
-								"summary": sumy,
-								"keywords": keys,
+								"summary": "\n\n".join(summary),
+								"keywords": ",".join(keywords),
 								"url": url,
 								"user_id": user,
 								"channel_id": channel,
@@ -259,13 +256,10 @@ class SlackBot(object):
 						response["attachments"] = self.__parseattachments(title, summary, url)
 
 						try:
-							raw_summary = "\n\n".join(summary)
-							raw_keywords = ",".join(keywords)
-							sumy, keys = self.__escapecontent(raw_summary, raw_keywords)
 							article = {
 								"title": title,
-								"summary": sumy,
-								"keywords": keys,
+								"summary": "\n\n".join(summary),
+								"keywords": ",".join(keywords),
 								"url": url,
 								"user_id": user,
 								"channel_id": channel,
