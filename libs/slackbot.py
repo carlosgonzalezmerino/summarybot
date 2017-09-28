@@ -224,7 +224,7 @@ class SlackBot(object):
 								"user_id": user,
 								"channel_id": channel,
 								"workspace": workspace,
-								"date": datetime
+								"date": datetime.now()
 							}
 							self.db.add("news", article)
 						except Exception as e:
@@ -253,7 +253,7 @@ class SlackBot(object):
 								"user_id": user,
 								"channel_id": channel,
 								"workspace": workspace,
-								"date": datetime
+								"date": datetime.now()
 							}
 							self.db.add("news", article)
 						except Exception as e:
