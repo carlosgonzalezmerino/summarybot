@@ -220,7 +220,6 @@ class SlackBot(object):
 								"url": url,
 								"channel_id": channel
 							}
-							print(article)
 						except Exception as e:
 							print(e)
 					else:

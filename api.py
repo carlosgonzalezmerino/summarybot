@@ -22,6 +22,7 @@ def listen():
 		if event and event.get("type") == "message":
 			team_id = slack_event.get("team_id")
 			bot.connect(team_id)
+			print(event)
 			bot.event_handler(event)
 		return "Ok", 200
 	else:
