@@ -2,7 +2,7 @@ import os
 import sys
 import site
 
-os.environ["DATABASE"] = "assets/summarybot.db"
+os.environ["DATABASE"] = "assets/database.db"
 os.environ["SLACK_BOT_NAME"] = "reverte"
 os.environ["SLACK_CLIENT_ID"] = "73314827649.243504314342"
 os.environ["SLACK_CLIENT_SECRET"] = "f6a00ebab0d708643dec0328fb5ae112"
