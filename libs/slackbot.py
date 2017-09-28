@@ -189,8 +189,9 @@ class SlackBot(object):
 			print(e)
 		return
 
-	def event_handler(self, event):
+	def event_handler(self, event, workspace):
 		channel = event.get("channel")
+		user = event.get("user")
 		text = event.get("text")
 		ts = event.get("ts")
 		response = {"channel": channel}
@@ -218,8 +219,12 @@ class SlackBot(object):
 								"summary": summary,
 								"keywords": keywords,
 								"url": url,
-								"channel_id": channel
+								"user_id": user,
+								"channel_id": channel,
+								"workspace": workspace
 							}
+
+							self.db.add("news", article)
 						except Exception as e:
 							print(e)
 					else:

@@ -23,7 +23,7 @@ def listen():
 			team_id = slack_event.get("team_id")
 			bot.connect(team_id)
 			print(event)
-			bot.event_handler(event)
+			bot.event_handler(event, team_id)
 		return "Ok", 200
 	else:
 		return make_response("Invalid Slack verification code", 403)
