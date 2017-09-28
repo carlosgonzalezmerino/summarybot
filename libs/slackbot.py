@@ -223,7 +223,7 @@ class SlackBot(object):
 								"channel_id": channel,
 								"workspace": workspace
 							}
-
+							print(article)
 							self.db.add("news", article)
 						except Exception as e:
 							print(e)
@@ -252,7 +252,7 @@ class SlackBot(object):
 								"channel_id": channel,
 								"workspace": workspace
 							}
-
+							print(article)
 							self.db.add("news", article)
 						except Exception as e:
 							print(e)
