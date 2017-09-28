@@ -217,7 +217,7 @@ class SlackBot(object):
 							article = {
 								"title": title,
 								"summary": summary,
-								"keywords": keywords,
+								"keywords": ",".join(keywords),
 								"url": url,
 								"user_id": user,
 								"channel_id": channel,
@@ -246,7 +246,7 @@ class SlackBot(object):
 							article = {
 								"title": title,
 								"summary": summary,
-								"keywords": keywords,
+								"keywords": ",".join(keywords),
 								"url": url,
 								"user_id": user,
 								"channel_id": channel,
