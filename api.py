@@ -53,14 +53,15 @@ def listen():
 
 @api.route("/login", methods=["GET", "POST"])
 def login():
+	bot = SlackBot()
 	code = request.args.get("code")
 	if not code:
-		bot = SlackBot()
 		client_id = bot.oauth.get("client_id")
 		scope = "identity.basic, identity.team, identity.email"
 		return render_template("login.html", client_id=client_id, scope=scope, redirect=url_for("login"))
 	else:
-		print(code)
+		auth_response = bot.auth_call(code)
+		print(auth_response)
 	return "Ok", 200
 
 
