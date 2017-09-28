@@ -45,11 +45,14 @@ class DB(object):
 		_keys, values = list(data.keys()), list(data.values())
 		keys, params = ", ".join(_keys), ('?,'*len(values))[:-1]
 
+		cols = ', '.join('"{}"'.format(col) for col in data.keys())
+		vals = ', '.join(':{}'.format(col) for col in data.keys())
+
 		try:
-			query = "INSERT INTO {} ({}) VALUES ('{}')".format(table, keys, params)
+			query = "INSERT INTO {} ({}) VALUES ('{}')".format(table, cols, vals)
 			print(query)
 			print(len(values))
-			self.cursor.execute(query, values)
+			self.cursor.execute(query, data)
 			self.connection.commit()
 			self.lastid = self.cursor.lastrowid
 		except sqlite3.Error as err:
