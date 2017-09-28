@@ -48,7 +48,7 @@ class SlackBot(object):
 	def __itsforme(self, event):
 		text = event.get("text")
 		if text:
-			mentionregex = re.compile(r"<@(?P<id>[A-Z0-9]+)>.+")
+			mentionregex = re.compile(r".*<@(?P<id>[A-Z0-9]+)>.+")
 			catched = mentionregex.search(text)
 			if catched:
 				return bool(catched.group("id") == self.id)
