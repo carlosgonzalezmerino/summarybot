@@ -43,10 +43,10 @@ class DB(object):
 				del data[k]
 
 		_keys, values = list(data.keys()), list(data.values())
-		keys, params = ", ".join(_keys), ('%s,'*len(values))[:-1]
+		keys, params = ", ".join(_keys), ('?,'*len(values))[:-1]
 
 		try:
-			query = "INSERT INTO {} ({}) VALUES ('{}')".format(table, keys, params)
+			query = "INSERT INTO {} ({}) VALUES ({})".format(table, keys, params)
 			print(query)
 			print(len(values))
 			self.cursor.execute(query, values)
