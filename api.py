@@ -1,13 +1,36 @@
 import json
 
 from flask import Flask
+from flask import url_for
+from flask import request
+from flask import session
+from flask import redirect
 from flask import make_response
 from flask import render_template
-from flask import request
 
 from libs.slackbot import SlackBot
 
 api = Flask(__name__)
+
+
+@api.route("/")
+def index():
+	bot = SlackBot()
+	client_id = bot.oauth.get("client_id")
+	scope = bot.oauth.get("scope")
+	return render_template("index.html", client_id=client_id, scope=scope)
+
+
+@api.route("/thanks")
+def thanks():
+	bot = SlackBot()
+	code = request.args.get("code")
+	if code:
+		bot.auth(code)
+		return render_template("thanks.html")
+	else:
+		return render_template("error.html")
+
 
 @api.route("/listen", methods=["GET","POST"])
 def listen():
@@ -27,23 +50,28 @@ def listen():
 	else:
 		return make_response("Invalid Slack verification code", 403)
 
-@api.route("/")
-def index():
-	bot = SlackBot()
-	client_id = bot.oauth.get("client_id")
-	scope = bot.oauth.get("scope")
-	return render_template("index.html", client_id=client_id, scope=scope)
 
-
-@api.route("/thanks")
-def thanks():
-	bot = SlackBot()
-	code = request.args.get("code")
-	if code:
-		bot.auth(code)
-		return render_template("thanks.html")
+@api.route("/login", methods=["GET", "POST"])
+def login():
+	if request.method == "GET":
+		bot = SlackBot()
+		client_id = bot.oauth.get("client_id")
+		scope = "identity.basic, identity.team, identity.email"
+		return render_template("login.html", client_id=client_id, scope=scope, redirect=url_for("login"))
 	else:
-		return render_template("error.html")
+		print(request.args.__dict__)
+		print(request.data.decode("utf-8"))
+		print(request.form.__dict__)
+	return "Ok", 200
+
+
+@api.route("/newsletter")
+def newsletter():
+	token = session.get("token")
+	if token:
+		return render_template("newsletter.html")
+
+	return redirect(url_for('login'))
 
 
 if __name__ == "__main__":

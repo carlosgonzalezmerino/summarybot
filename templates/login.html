@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Reverte Bot - El bot resumidor que te habla de usted.</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="/static/style.css"/>
+	</head>
+	<body>
+		<div class="main">
+			<img class="face" src="/static/error.png"/>
+			<div class="info">
+				<h1>No estas autenticado!</h1>
+				<h3>Accede con tu cuenta y podrás ver un resumen de todo lo que han mandado en tu Slack.</h3>
+				<a href="https://slack.com/oauth/authorize?scope={{ scope }}&client_id={{ client_id }}&redirect_uri={{ redirect }}"><img src="https://api.slack.com/img/sign_in_with_slack.png" /></a>
+				<span class="credits">Crafted with <span class="hearth">♥</span> for Labs | BEEVA.</span>
+			</div>
+		</div>
+	</body>
+</html>
