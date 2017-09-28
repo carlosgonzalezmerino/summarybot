@@ -153,7 +153,7 @@ class SlackBot(object):
 	def __escapecontent(self, raw_summary, raw_keywords):
 		replacement = "\'"
 		summary, keywords = raw_summary, raw_keywords
-		special_chars = ["`", "'", '"', "´"]
+		special_chars = ["'", "`", "'", '"', "´"]
 		for special_char in special_chars:
 			summary = summary.replace(special_char, replacement)
 			keywords = keywords.replace(special_char, replacement)
