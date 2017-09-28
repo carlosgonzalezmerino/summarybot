@@ -169,27 +169,37 @@ class SlackBot(object):
 		return
 
 	def auth(self, code):
-		auth_response = self.client.api_call(
-			"oauth.access",
-			client_id=self.oauth["client_id"],
-			client_secret=self.oauth["client_secret"],
-			code=code
-		)
+		auth_response = self.auth_call(code)
 
-		team_id = auth_response.get("team_id")
-		if team_id:
-			bot = auth_response.get("bot")
-			if bot:
-				try:
-					count = self.db.count("auths", "team_id", team_id)
-					if count:
-						self.db.update("auths", {"bot_token": bot.get("bot_access_token")}, "team_id", team_id)
-					else:
-						self.db.add("auths", {"team_id": team_id, "bot_token": bot.get("bot_access_token")})
-					return True
-				except Exception as e:
-					print(e)
+		if auth_response:
+			team_id = auth_response.get("team_id")
+			if team_id:
+				bot = auth_response.get("bot")
+				if bot:
+					try:
+						count = self.db.count("auths", "team_id", team_id)
+						if count:
+							self.db.update("auths", {"bot_token": bot.get("bot_access_token")}, "team_id", team_id)
+						else:
+							self.db.add("auths", {"team_id": team_id, "bot_token": bot.get("bot_access_token")})
+						return True
+					except Exception as e:
+						print(e)
 		return False
+
+	def auth_call(self, code):
+		try:
+			auth_response = self.client.api_call(
+				"oauth.access",
+				client_id=self.oauth["client_id"],
+				client_secret=self.oauth["client_secret"],
+				code=code
+			)
+			return auth_response
+		except:
+			print("Error getting authorization with code: %s" % code)
+			pass
+		return None
 
 	def connect(self, team_id):
 		try:

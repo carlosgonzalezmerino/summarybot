@@ -53,20 +53,20 @@ def listen():
 
 @api.route("/login", methods=["GET", "POST"])
 def login():
-	if request.method == "GET":
+	code = request.args.get("code")
+	if not code:
 		bot = SlackBot()
 		client_id = bot.oauth.get("client_id")
 		scope = "identity.basic, identity.team, identity.email"
 		return render_template("login.html", client_id=client_id, scope=scope, redirect=url_for("login"))
 	else:
-		print(request.args.__dict__)
-		print(request.data.decode("utf-8"))
-		print(request.form.__dict__)
+		print(code)
 	return "Ok", 200
 
 
 @api.route("/newsletter")
 def newsletter():
+	code = request.args.get("code")
 	token = session.get("token")
 	if token:
 		return render_template("newsletter.html")
