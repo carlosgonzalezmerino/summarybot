@@ -25,7 +25,7 @@ class DB(object):
 
 	def connect(self):
 		try:
-			self.connection = sqlite3.connect(self.database)
+			self.connection = sqlite3.connect(self.database, detect_types=sqlite3.PARSE_DECLTYPES)
 			self.connection.row_factory = self.__dictfactory
 			self.cursor = self.connection.cursor()
 		except sqlite3.Error as err:

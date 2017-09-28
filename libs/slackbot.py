@@ -1,6 +1,8 @@
 import os
 import re
 
+from datetime import datetime
+
 import requests
 from bs4 import BeautifulSoup
 from langdetect import detect
@@ -221,7 +223,8 @@ class SlackBot(object):
 								"url": url,
 								"user_id": user,
 								"channel_id": channel,
-								"workspace": workspace
+								"workspace": workspace,
+								"date": datetime
 							}
 							self.db.add("news", article)
 						except Exception as e:
@@ -249,7 +252,8 @@ class SlackBot(object):
 								"url": url,
 								"user_id": user,
 								"channel_id": channel,
-								"workspace": workspace
+								"workspace": workspace,
+								"date": datetime
 							}
 							self.db.add("news", article)
 						except Exception as e:
