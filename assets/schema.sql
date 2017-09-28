@@ -1,1 +1,1 @@
-create table auths (team_id VARCHAR,bot_token VARCHAR);
+CREATE TABLE `auths` (`team_id`	VARCHAR,`bot_token`	VARCHAR, PRIMARY KEY(`team_id`,`bot_token`));

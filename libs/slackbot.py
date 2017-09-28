@@ -112,7 +112,7 @@ class SlackBot(object):
 			response.raise_for_status()
 
 			data = response.json()
-			return data.get("highlights")
+			return data.get("highlights"), data.get("keywords")
 		except Exception as e:
 			print(e)
 
@@ -195,7 +195,6 @@ class SlackBot(object):
 		ts = event.get("ts")
 		response = {"channel": channel}
 
-
 		itsforme = self.__itsforme(event)
 		iamnew = itsforme and event.get("subtype") == "channel_join"
 		itsbot = event.get("subtype") == "bot_message"
@@ -209,10 +208,20 @@ class SlackBot(object):
 				content = self.__geturlcontent(url)
 				if content:
 					title = content.get("title")
-					summary = self.__getsummary(content)
-					if summary:
+					summary, keywords = self.__getsummary(content)
+					if summary and keywords:
 						response["text"] = messages.CONTENT_MSG
 						response["attachments"] = self.__parseattachments(title, summary, url)
+						try:
+							article = {
+								"title": title,
+								"summary": summary,
+								"keywords": keywords,
+								"url": url
+							}
+							print(article)
+						except Exception as e:
+							print(e)
 					else:
 						response["text"] = messages.NO_SUMMARY
 						response["thread_ts"] = ts
@@ -222,8 +231,8 @@ class SlackBot(object):
 				content = self.__geturlcontent(url)
 				if content:
 					title = content.get("title")
-					summary = self.__getsummary(content)
-					if summary:
+					summary, keywords = self.__getsummary(content)
+					if summary and keywords:
 						response["text"] = messages.CONTENT_MSG
 						response["thread_ts"] = ts
 						response["attachments"] = self.__parseattachments(title, summary, url)
