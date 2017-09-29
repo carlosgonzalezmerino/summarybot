@@ -92,5 +92,7 @@ def newsletter():
 if __name__ == "__main__":
 	if os.getenv("SERVER_SECRET"):
 		api.secret_key = os.getenv("SERVER_SECRET")
+	else:
+		print("No secret provided")
 
 	api.run(host="0.0.0.0", debug=True)
