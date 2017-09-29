@@ -19,7 +19,8 @@ def index():
 	bot = SlackBot()
 	client_id = bot.oauth.get("client_id")
 	scope = bot.oauth.get("scope")
-	return render_template("index.html", client_id=client_id, scope=scope)
+	url = quote_plus("https://bot.myshortreport.com/auth/bot")
+	return render_template("index.html", client_id=client_id, scope=scope, redirect=url)
 
 
 @api.route("/listen", methods=["GET","POST"])
@@ -63,7 +64,7 @@ def login():
 		client_id = bot.oauth.get("client_id")
 		scope = "identity.basic, identity.team, identity.email"
 
-		url = quote_plus("https://bot.myshortreport.com/login")
+		url = quote_plus("https://bot.myshortreport.com/auth/login")
 		return render_template("login.html", client_id=client_id, scope=scope, redirect=url)
 	else:
 		auth_response = bot.auth_call(code)
