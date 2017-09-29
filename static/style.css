@@ -73,3 +73,49 @@ body {
 	color: red;
 	font-size: 16px;
 }
+
+#newsletter {
+	display: block;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1000px;
+
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#newsletter .header {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#newsletter .header .title {
+	display: inline-block;
+	vertical-align: top;
+	display: inline-block;
+    vertical-align: top;
+    width: auto;
+    height: auto;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+#newsletter .header .title img {
+    display: inline-block;
+    vertical-align: top;
+	height: 70px;
+    margin: 0 10px;
+}
+
+#newsletter .header .title h1 {
+	display: inline-block;
+	vertical-align: top;
+	line-height: 70px;
+}
