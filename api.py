@@ -1,5 +1,5 @@
 import json
-from urlencode import quote_plus
+from urllib.parse import quote_plus
 
 from flask import Flask
 from flask import url_for
