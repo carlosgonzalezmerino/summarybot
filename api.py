@@ -14,6 +14,10 @@ from flask import render_template
 from libs.slackbot import SlackBot
 
 api = Flask(__name__)
+if os.environ.get("SERVER_SECRET"):
+	api.secret_key = os.environ.get("SERVER_SECRET")
+else:
+	print("No secret provided")
 
 
 @api.route("/")
@@ -92,10 +96,4 @@ def newsletter():
 
 
 if __name__ == "__main__":
-	if os.environ.get("SERVER_SECRET"):
-		print(os.environ.get("SERVER_SECRET"))
-		api.secret_key = os.environ.get("SERVER_SECRET")
-	else:
-		print("No secret provided")
-
 	api.run(host="0.0.0.0", debug=True)
