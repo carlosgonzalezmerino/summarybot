@@ -47,8 +47,6 @@ class DB(object):
 
 		try:
 			query = "INSERT INTO {} ({}) VALUES ({})".format(table, keys, params)
-			print(query)
-			print(len(values))
 			self.cursor.execute(query, values)
 			self.connection.commit()
 			self.lastid = self.cursor.lastrowid
