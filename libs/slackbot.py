@@ -85,7 +85,7 @@ class SlackBot(object):
 			response.raise_for_status()
 
 			body = response.text
-			soup = BeautifulSoup(body, 'lxml', from_encoding='utf8')
+			soup = BeautifulSoup(body, 'lxml')
 			article = self.__parsecontent(soup)
 
 			title = soup.title.getText()
