@@ -132,10 +132,10 @@ class SlackBot(object):
 		return "{}".format(title)
 
 	def __parsecontent(self, soup):
-		prop = re.compile("articleBody")
-		tag = re.compile("article|article-.+")
-		id = re.compile("(content|post).*")
-		_class = re.compile("(post|article).*")
+		prop = re.compile("articleBody", re.IGNORECASE)
+		tag = re.compile("article|article-.+", re.IGNORECASE)
+		id = re.compile("(content|post).*", re.IGNORECASE)
+		_class = re.compile("(post|article|blog).*", re.IGNORECASE)
 
 		return soup.find(itemprop=prop) or soup.find(tag) or soup.find(id=id) or soup.find(_class=_class)
 
@@ -149,16 +149,6 @@ class SlackBot(object):
 		}
 
 		return [data]
-
-	def __escapecontent(self, raw_summary, raw_keywords):
-		replacement = "\'"
-		summary, keywords = raw_summary, raw_keywords
-		special_chars = ["'", "`", "'", '"', "´"]
-		for special_char in special_chars:
-			summary = summary.replace(special_char, replacement)
-			keywords = keywords.replace(special_char, replacement)
-
-		return summary, keywords
 
 	def __sendresponse(self, response):
 		if response:
@@ -230,7 +220,7 @@ class SlackBot(object):
 			elif nosubtype and url and itsforme:
 				content = self.__geturlcontent(url)
 				if content:
-					print(content.get("text").encode("utf-8"))
+					print(content.get("text").decode("latin-1"))
 					title = content.get("title")
 					summary, keywords = self.__getsummary(content)
 					if summary and keywords:
@@ -258,7 +248,7 @@ class SlackBot(object):
 			elif nosubtype and url and not itsforme:
 				content = self.__geturlcontent(url)
 				if content:
-					print(content.get("text").encode("utf-8"))
+					print(content.get("text").decode("latin-1"))
 					title = content.get("title")
 					summary, keywords = self.__getsummary(content)
 					if summary and keywords:
