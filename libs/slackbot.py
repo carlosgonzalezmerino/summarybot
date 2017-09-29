@@ -145,7 +145,7 @@ class SlackBot(object):
 			"color": "good",
 			"title": self.__parsetitle(raw_title),
 			"title_link": url,
-			"text": "\n\n".join(summary)
+			"text": "\n\n".join(summary).encode('utf-8')
 		}
 
 		return [data]
@@ -220,7 +220,7 @@ class SlackBot(object):
 			elif nosubtype and url and itsforme:
 				content = self.__geturlcontent(url)
 				if content:
-					print(content.get("text").encode("ascii"))
+					print(content.get("text").encode("utf-8"))
 					title = content.get("title")
 					summary, keywords = self.__getsummary(content)
 					if summary and keywords:
@@ -248,7 +248,7 @@ class SlackBot(object):
 			elif nosubtype and url and not itsforme:
 				content = self.__geturlcontent(url)
 				if content:
-					print(content.get("text").encode('ascii'))
+					print(content.get("text").encode('utf-8'))
 					title = content.get("title")
 					summary, keywords = self.__getsummary(content)
 					if summary and keywords:
