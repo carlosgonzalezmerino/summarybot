@@ -1,10 +1,9 @@
 import json
-from urllib.parse import quote_plus
 
 from flask import Flask
-from flask import url_for
 from flask import request
 from flask import session
+from flask import url_for
 from flask import redirect
 from flask import make_response
 from flask import render_template
@@ -45,6 +44,26 @@ def listen():
 		return make_response("Invalid Slack verification code", 403)
 
 
+@api.route("/auth")
+def login():
+	bot = SlackBot()
+	code = request.args.get("code")
+	auth_response = bot.auth_call(code)
+	if auth_response.get("ok"):
+		user = {
+			"user_id": auth_response.get("user").get("id"),
+			"email": auth_response.get("user").get("email"),
+			"name": auth_response.get("user").get("name"),
+			"team": auth_response.get("team").get("id"),
+			"access_token": auth_response.get("access_token")
+		}
+
+		session["user"] = json.dumps(user)
+		return redirect(url_for("newsletter"))
+
+	return json.dumps(auth_response), 200
+
+
 @api.route("/auth/bot")
 def thanks():
 	bot = SlackBot()
@@ -56,25 +75,16 @@ def thanks():
 		return render_template("error.html")
 
 
-@api.route("/auth")
-def login():
-	bot = SlackBot()
-	code = request.args.get("code")
-	auth_response = bot.auth_call(code)
-	return json.dumps(auth_response), 200
-
-
 @api.route("/newsletter")
 def newsletter():
-	code = request.args.get("code")
-	token = session.get("token")
-	if token:
-		return render_template("newsletter.html")
+	user_session = session.get("user")
+	if user_session:
+		user = json.loads(user_session)
+		return render_template("newsletter.html", user=user)
 
 	bot = SlackBot()
 	client_id = bot.oauth.get("client_id")
-	scope = "identity.basic, identity.team, identity.email"
-
+	scope = "identity.basic, identity.team, identity.email, identity.avatar"
 	return render_template("login.html", client_id=client_id, scope=scope)
 
 
