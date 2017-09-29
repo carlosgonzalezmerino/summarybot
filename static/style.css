@@ -132,12 +132,12 @@ body {
 	display: inline-block;
 	vertical-align: top;
 	width: auto;
-	height: 25px;
+	height: 30px;
 	padding: 0 10px;
 	color: white;
 	background: red;
 	border-radius: 4px;
-	margin: 22.5px 10px;
-	line-height: 25px;
+	margin: 20px 10px;
+	line-height: 30px;
 	text-decoration: none;
 }
