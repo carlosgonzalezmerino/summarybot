@@ -76,7 +76,7 @@ body {
 
 #newsletter {
 	display: block;
-    margin: 0 auto;
+    margin: 60px auto;
     width: 90%;
     max-width: 1000px;
 
@@ -98,8 +98,6 @@ body {
 #newsletter .header .title {
 	display: inline-block;
 	vertical-align: top;
-	display: inline-block;
-    vertical-align: top;
     width: auto;
     height: auto;
     color: white;

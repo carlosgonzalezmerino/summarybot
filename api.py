@@ -1,6 +1,7 @@
 import os
 import json
 
+from functools import wraps
 from urllib.parse import quote_plus
 
 from flask import Flask
@@ -18,6 +19,19 @@ if os.environ.get("SERVER_SECRET"):
 	api.secret_key = os.environ.get("SERVER_SECRET")
 else:
 	print("No secret provided")
+
+
+def loginrequired(func):
+	@wraps(func)
+	def core(*args, **kwargs):
+		if "user" in session:
+			user = json.loads(session.get("user"))
+			kwargs["user"] = user
+			return func(*args, **kwargs)
+		else:
+			return redirect(url_for("login"))
+
+	return core
 
 
 @api.route("/")
@@ -52,7 +66,7 @@ def listen():
 
 
 @api.route("/auth")
-def login():
+def auth():
 	bot = SlackBot()
 	code = request.args.get("code")
 	auth_response = bot.auth_call(code)
@@ -82,23 +96,26 @@ def thanks():
 		return render_template("error.html")
 
 
+@api.route("/auth/login")
+def login():
+	bot = SlackBot()
+	client_id = bot.oauth.get("client_id")
+	scope = "identity.basic, identity.team, identity.email, identity.avatar"
+	return render_template("login.html", client_id=client_id, scope=scope)
+
+
 @api.route("/auth/logout")
-def logout():
+@loginrequired
+def logout(user):
 	if "user" in session:
 		session.pop("user", None)
 	return redirect(url_for("newsletter"))
 
 
 @api.route("/newsletter")
-def newsletter():
-	if "user" in session:
-		user = json.loads(session.get("user"))
-		return render_template("newsletter.html", user=user)
-
-	bot = SlackBot()
-	client_id = bot.oauth.get("client_id")
-	scope = "identity.basic, identity.team, identity.email, identity.avatar"
-	return render_template("login.html", client_id=client_id, scope=scope)
+@loginrequired
+def newsletter(user):
+	return render_template("newsletter/index.html", user=user)
 
 
 if __name__ == "__main__":
