@@ -47,9 +47,6 @@ class SlackBot(object):
 		else:
 			raise Exception("Error getting user list info")
 
-	def getuserinfo(self, user_id):
-
-
 	def __itsforme(self, event):
 		text = event.get("text")
 		if text:
