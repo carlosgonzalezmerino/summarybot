@@ -18,8 +18,8 @@
 					<h1>Reverte Bot</h1>
 				</a>
 				<div class="menu">
-					<span class="user">Welcome <b>{{ user.name }}</b>!</span>
-					<a href="{{ url_for("logout") }}">Logout <i class="fa fa-sign-out"></i></a>
+					<span class="user">Welcome {{ user.name }}!</span>
+					<a class="logout" href="{{ url_for("logout") }}">Logout <i class="fa fa-sign-out"></i></a>
 				</div>
 			</div>
 		</div>

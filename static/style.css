@@ -119,3 +119,25 @@ body {
 	vertical-align: top;
 	line-height: 70px;
 }
+
+#newsletter .menu {
+	display: inline-block;
+    vertical-align: top;
+    width: auto;
+    height: auto;
+    line-height: 70px;
+}
+
+#newsletter .menu .logout {
+	display: inline-block;
+	vertical-align: top;
+	width: auto;
+	height: 25px;
+	padding: 0 10px;
+	color: white;
+	background: red;
+	border-radius: 4px;
+	margin: 22.5px 10px;
+	line-height: 25px;
+	text-decoration: none;
+}
