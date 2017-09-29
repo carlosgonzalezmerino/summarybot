@@ -100,7 +100,10 @@ class SlackBot(object):
 		except Exception as e:
 			print(e)
 
-		return None
+		return {
+			"title": None,
+			"text": None
+		}
 
 	def __getsummary(self, content):
 		try:
@@ -118,7 +121,7 @@ class SlackBot(object):
 		except Exception as e:
 			print(e)
 
-		return None
+		return None, None
 
 	def __parsetitle(self, raw):
 		title = raw

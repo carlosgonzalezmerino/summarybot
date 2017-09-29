@@ -51,7 +51,7 @@ def listen():
 		return make_response("Invalid Slack verification code", 403)
 
 
-@api.route("/login", methods=["GET", "POST"])
+@api.route("/login")
 def login():
 	bot = SlackBot()
 	code = request.args.get("code")
