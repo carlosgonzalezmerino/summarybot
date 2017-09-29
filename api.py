@@ -56,7 +56,7 @@ def thanks():
 		return render_template("error.html")
 
 
-@api.route("/auth/login")
+@api.route("/auth")
 def login():
 	bot = SlackBot()
 	code = request.args.get("code")
@@ -75,9 +75,7 @@ def newsletter():
 	client_id = bot.oauth.get("client_id")
 	scope = "identity.basic, identity.team, identity.email"
 
-	url = quote_plus("https://bot.myshortreport.com/auth/login")
-	url = "https://bot.myshortreport.com/auth/login"
-	return render_template("login.html", client_id=client_id, scope=scope, redirect=url)
+	return render_template("login.html", client_id=client_id, scope=scope)
 
 
 if __name__ == "__main__":
