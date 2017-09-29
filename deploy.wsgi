@@ -7,6 +7,7 @@ os.environ["SLACK_BOT_NAME"] = "reverte"
 os.environ["SLACK_CLIENT_ID"] = "73314827649.243504314342"
 os.environ["SLACK_CLIENT_SECRET"] = "f6a00ebab0d708643dec0328fb5ae112"
 os.environ["SLACK_VERIFICATION_TOKEN"] = "EpMyFd45hPDhPe3Gj8QNTS9u"
+os.environ["SERVER_SECRET"] = "\x9f6\x95p\x87f\xf1\xce\xeb\xdbG\x84o\xa6#\xf0'(z\x9aF\xe4\x9c\x11"
 
 base_path       = '/srv/summarybot'
 packages        = '%s/venv/lib/python3.5/dist-packages' % base_path
