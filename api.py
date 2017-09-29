@@ -1,4 +1,5 @@
 import json
+import urllib
 
 from flask import Flask
 from flask import url_for
@@ -58,7 +59,9 @@ def login():
 	if not code:
 		client_id = bot.oauth.get("client_id")
 		scope = "identity.basic, identity.team, identity.email"
-		return render_template("login.html", client_id=client_id, scope=scope, redirect=url_for("login"))
+
+		url = urllib.quote("https://bot.myshortreport.com/login", safe="")
+		return render_template("login.html", client_id=client_id, scope=scope, redirect=url)
 	else:
 		auth_response = bot.auth_call(code)
 		print(auth_response)
