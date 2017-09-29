@@ -7,12 +7,14 @@
 		<title>Reverte Bot - El bot resumidor que te habla de usted.</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="/static/style.css"/>
 	</head>
 	<body>
-		<div class="main">
+		<div id="newsletter">
 			<div class="header">
 				<span class="user">Welcome <b>{{ user.name }}</b>!</span>
+				<a href="{% url_for("logout") %}">Logout <i class="fa fa-sign-out"></i></a>
 			</div>
 		</div>
 	</body>

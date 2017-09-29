@@ -82,11 +82,17 @@ def thanks():
 		return render_template("error.html")
 
 
+@api.route("/auth/logout")
+def logout():
+	if "user" in session:
+		session.pop("user", None)
+	return redirect(url_for("newsletter"))
+
+
 @api.route("/newsletter")
 def newsletter():
-	user_session = session.get("user")
-	if user_session:
-		user = json.loads(user_session)
+	if "user" in session:
+		user = json.loads(session.get("user"))
 		return render_template("newsletter.html", user=user)
 
 	bot = SlackBot()
