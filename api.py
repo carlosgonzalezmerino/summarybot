@@ -1,5 +1,5 @@
 import json
-import urllib
+from urlencode import quote_plus
 
 from flask import Flask
 from flask import url_for
@@ -60,7 +60,7 @@ def login():
 		client_id = bot.oauth.get("client_id")
 		scope = "identity.basic, identity.team, identity.email"
 
-		url = urllib.quote("https://bot.myshortreport.com/login", safe="")
+		url = quote_plus("https://bot.myshortreport.com/login")
 		return render_template("login.html", client_id=client_id, scope=scope, redirect=url)
 	else:
 		auth_response = bot.auth_call(code)
