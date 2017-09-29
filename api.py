@@ -22,17 +22,6 @@ def index():
 	return render_template("index.html", client_id=client_id, scope=scope)
 
 
-@api.route("/thanks")
-def thanks():
-	bot = SlackBot()
-	code = request.args.get("code")
-	if code:
-		bot.auth(code)
-		return render_template("thanks.html")
-	else:
-		return render_template("error.html")
-
-
 @api.route("/listen", methods=["GET","POST"])
 def listen():
 	slack_event = json.loads(request.data.decode("utf-8"))
@@ -55,7 +44,18 @@ def listen():
 		return make_response("Invalid Slack verification code", 403)
 
 
-@api.route("/login")
+@api.route("/auth/bot")
+def thanks():
+	bot = SlackBot()
+	code = request.args.get("code")
+	if code:
+		bot.auth(code)
+		return render_template("thanks.html")
+	else:
+		return render_template("error.html")
+
+
+@api.route("/auth/login")
 def login():
 	bot = SlackBot()
 	code = request.args.get("code")
