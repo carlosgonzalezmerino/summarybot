@@ -60,16 +60,8 @@ def thanks():
 def login():
 	bot = SlackBot()
 	code = request.args.get("code")
-	if not code:
-		client_id = bot.oauth.get("client_id")
-		scope = "identity.basic, identity.team, identity.email"
-
-		url = quote_plus("https://bot.myshortreport.com/auth/login")
-		return render_template("login.html", client_id=client_id, scope=scope, redirect=url)
-	else:
-		auth_response = bot.auth_call(code)
-		print(auth_response)
-	return "Ok", 200
+	auth_response = bot.auth_call(code)
+	return json.dumps(auth_response), 200
 
 
 @api.route("/newsletter")
@@ -79,7 +71,12 @@ def newsletter():
 	if token:
 		return render_template("newsletter.html")
 
-	return redirect(url_for('login'))
+	bot = SlackBot()
+	client_id = bot.oauth.get("client_id")
+	scope = "identity.basic, identity.team, identity.email"
+
+	url = quote_plus("https://bot.myshortreport.com/auth/login")
+	return render_template("login.html", client_id=client_id, scope=scope, redirect=url)
 
 
 if __name__ == "__main__":
