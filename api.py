@@ -76,6 +76,7 @@ def newsletter():
 	scope = "identity.basic, identity.team, identity.email"
 
 	url = quote_plus("https://bot.myshortreport.com/auth/login")
+	url = "https://bot.myshortreport.com/auth/login"
 	return render_template("login.html", client_id=client_id, scope=scope, redirect=url)
 
 
