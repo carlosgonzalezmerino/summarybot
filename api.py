@@ -101,13 +101,15 @@ def thanks():
 def login():
 	bot = SlackBot()
 	client_id = bot.oauth.get("client_id")
-	scope = "identity.basic, identity.team, identity.email, identity.avatar, channels:read, groups:read"
+	#scope = "identity.basic, identity.team, identity.email, identity.avatar, channels:read, groups:read"
+	scope = "users.profile:read, groups:read, channels:read"
 	return render_template("login.html", client_id=client_id, scope=scope)
 
 
 @api.route("/auth/logout")
 @loginrequired
 def logout(user):
+	nw.revokeToken(user)
 	if "user" in session:
 		session.pop("user", None)
 	return redirect(url_for("newsletter"))

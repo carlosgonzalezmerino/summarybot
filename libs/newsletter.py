@@ -9,28 +9,9 @@ def gettopics(user):
 	try:
 		channels = []
 		auth = db.get("auths", {"team_id": user.get("team")})
-		client = SlackClient(user.get("access_token"))
+		client = SlackClient(auth.get("bot_token"))
 
-		response = client.api_call("groups.list")
-		print(response)
-		if response.get("ok"):
-			for c in response.get("groups"):
-				channels.append({
-					"id": c.get("id"),
-					"name": c.get("name")
-				})
-
-		response = client.api_call("channels.list")
-		print(response)
-		if response.get("ok"):
-			channels = []
-			for c in response.get("channels"):
-				channels.append({
-					"id": c.get("id"),
-					"name": c.get("name")
-				})
-
-		print(channels)
+		all_channels = client.api_call("")
 
 		news = []
 		for channel in channels:
@@ -63,3 +44,12 @@ def getlinks(user, channel_id):
 		print(e)
 
 	return None
+
+def revoketoken(user):
+	try:
+		client = SlackClient(user.get("access_token"))
+		client.api_call("auth.revoke")
+	except Exception as e:
+		print(e)
+		return False
+	return True
