@@ -22,7 +22,6 @@ class Newsletter(object):
 					})
 
 			response = client.api_call("groups.list")
-			print(response)
 			if response and response.get("ok"):
 				for group in response.get("groups"):
 					channels.append({
@@ -30,12 +29,13 @@ class Newsletter(object):
 						"name": group.get("name")
 					})
 
-			print(channels)
-			links = []
+			keywords = []
 			for channel in channels:
-				links += db.getAll("news", "channel_id", channel.get("id"))
+				links = db.getAll("news", "channel_id", channel.get("id"))
+				for link in links:
+					keywords += link.get("keywords").split(",")
 
-			print(links)
+			print(keywords)
 
 			return channels
 		except Exception as e:
