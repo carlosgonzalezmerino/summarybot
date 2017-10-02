@@ -144,10 +144,10 @@ class DB(object):
 			if not value:
 				raise Exception("Bad input params.")
 
-			query = "%s WHERE %s=\'%s\'" % (query, key, value)
+			query = "%s WHERE %s=\'?\'" % (query, key)
 
 		try:
-			self.cursor.execute(query)
+			self.cursor.execute(query, value)
 			results = self.cursor.fetchall()
 		except sqlite3.Error as err:
 			raise Exception("SQLite Error: {}".format(err))
