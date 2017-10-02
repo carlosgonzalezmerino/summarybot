@@ -14,7 +14,7 @@ from flask import render_template
 
 from libs.auth import Auth
 from libs.slackbot import SlackBot
-from libs import newsletter as nw
+from libs.newsletter import Newsletter
 
 api = Flask(__name__)
 if os.environ.get("SERVER_SECRET"):
@@ -26,9 +26,9 @@ else:
 def loginrequired(func):
 	@wraps(func)
 	def core(*args, **kwargs):
-		if "user" in session:
-			user = json.loads(session.get("user"))
-			kwargs["user"] = user
+		if "data" in session:
+			data = json.loads(session.get("data"))
+			kwargs["data"] = data
 			return func(*args, **kwargs)
 		else:
 			return redirect(url_for("login"))
@@ -72,12 +72,10 @@ def auth():
 	auth = Auth()
 	code = request.args.get("code")
 	if code and auth.request(code):
-		print(auth.data)
-
-		session["user"] = json.dumps(auth.data)
+		session["data"] = json.dumps(auth.data)
 		return redirect(url_for("newsletter"))
 
-	return "Ok", 200
+	return "Forbidden", 403
 
 
 @api.route("/auth/bot")
@@ -101,25 +99,27 @@ def login():
 
 @api.route("/auth/logout")
 @loginrequired
-def logout(user=None):
+def logout(data=None):
 	auth = Auth()
 	auth.revoke()
 	if "user" in session:
-		session.pop("user", None)
+		session.pop("data", None)
 	return redirect(url_for("newsletter"))
 
 
 @api.route("/newsletter")
 @loginrequired
-def newsletter(user):
-	channels = nw.gettopics(user)
-	return render_template("newsletter/index.html", user=user, channels=channels)
+def newsletter(data):
+	nw = Newsletter(data.get("access_token"))
+	topics = nw.gettopics(data.get("access_token"))
+	return render_template("newsletter/index.html", data=data, topics=topics)
 
-@api.route("/newsletter/<string:channel>")
+@api.route("/newsletter/<string:topic>")
 @loginrequired
-def keyword(channel, user):
-	channels = nw.getnews(user, channel)
-	return render_template("newsletter/news.html", user=user, channels=channels)
+def keyword(data, topic):
+	nw = Newsletter(data.get("access_token"))
+	links = nw.getlinks(topic)
+	return render_template("newsletter/news.html", data=data, links=links)
 
 
 if __name__ == "__main__":
