@@ -4,43 +4,51 @@ from slackclient import SlackClient
 
 db = DB()
 
+class Newsletter(object):
+	def __init__(self, access_token):
+		self.access_token = access_token
 
-def gettopics(user):
-	try:
-		channels = []
-		auth = db.get("auths", {"team_id": user.get("team")})
-		client = SlackClient(auth.get("bot_token"))
+	def gettopics(self):
+		try:
+			channels = []
 
-		all_channels = client.api_call("")
+			client = SlackClient(self.access_token)
+			response = client.api_call("channels.list")
+			if response and response.get("ok"):
+				for channel in response.get("channels"):
+					channels.append({
+						"id": channel.get("id"),
+						"name": channel.get("name")
+					})
 
-		news = []
-		for channel in channels:
-			news += db.getAll("news", "channel_id", channel.get("id"))
+			news = []
+			for channel in channels:
+				news += db.getAll("news", "channel_id", channel.get("id"))
 
-		print(news)
+			print(news)
 
-		keywords = []
-		for new in news:
-			temps = new.get("keywords").split(",")
-			for k in temps:
-				if k not in keywords:
-					keywords.append(k)
+			keywords = []
+			for new in news:
+				temps = new.get("keywords").split(",")
+				for k in temps:
+					if k not in keywords:
+						keywords.append(k)
 
-		print(keywords)
-		return channels
-	except Exception as e:
-		print(e)
+			print(keywords)
+			return channels
+		except Exception as e:
+			print(e)
 
-	return None
+		return None
 
-def getlinks(user, channel_id):
-	try:
-		news = db.getAll("news", "channel_id", channel_id)
-		for new in news:
-			new["keywords"] = new.get("keywords").split(",")
+	def getlinks(user, channel_id):
+		try:
+			news = db.getAll("news", "channel_id", channel_id)
+			for new in news:
+				new["keywords"] = new.get("keywords").split(",")
 
-		return news
-	except Exception as e:
-		print(e)
+			return news
+		except Exception as e:
+			print(e)
 
-	return None
+		return None

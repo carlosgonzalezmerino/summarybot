@@ -101,7 +101,7 @@ def login():
 
 @api.route("/auth/logout")
 @loginrequired
-def logout(user):
+def logout(user=None):
 	auth = Auth()
 	auth.revoke()
 	if "user" in session:
