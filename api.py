@@ -101,7 +101,7 @@ def thanks():
 def login():
 	bot = SlackBot()
 	client_id = bot.oauth.get("client_id")
-	scope = "identity.basic, identity.team, identity.email, identity.avatar"
+	scope = "identity.basic, identity.team, identity.email, identity.avatar, channels:read, groups:read"
 	return render_template("login.html", client_id=client_id, scope=scope)
 
 
