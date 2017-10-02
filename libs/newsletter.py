@@ -24,7 +24,7 @@ class Newsletter(object):
 			print(channels)
 			links = []
 			for channel in channels:
-				links += db.getAll("news", "channel_id", channel.get("id"))
+				links += db.getAll("news", "channel_id", str(channel.get("id")))
 
 			print(links)
 
