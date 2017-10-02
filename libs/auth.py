@@ -19,11 +19,11 @@ class Auth(object):
 	def __getuser(self):
 		try:
 			res = self.client.api_call("users.profile.get")
-			import pprint
-			pprint.pprint(res)
 			if res and res.get("ok"):
 				self.data["user"] = {
-					"id": self.data.get("user").get("id")
+					"id": self.data.get("user").get("id"),
+					"name": res.get("profile").get("real_name") or res.get("profile").get("display_name"),
+					"email": res.get("profile").get("email")
 				}
 
 				return True
