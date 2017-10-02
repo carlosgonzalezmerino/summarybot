@@ -37,9 +37,10 @@ class Newsletter(object):
 			keywords = []
 			start = datetime.now() - timedelta(days=datetime.now().weekday())
 			for link in links:
-				if link.get("date") <= start:
+				if link.get("date") >= start:
 					keywords += link.get("keywords").split(",")
 
+			print(start)
 			print(keywords)
 			return channels
 		except Exception as e:
