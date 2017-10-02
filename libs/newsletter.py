@@ -43,6 +43,7 @@ class Newsletter(object):
 		keywords = {}
 		end = datetime.today() - timedelta(days=datetime.today().weekday())
 		start = end - timedelta(days=7)
+		print(start, end)
 		for link in links:
 			if end > link.get("date") >= start:
 				link_keywords = link.get("keywords").split(",")
