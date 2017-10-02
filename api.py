@@ -112,6 +112,7 @@ def logout(data=None):
 def newsletter(data):
 	nw = Newsletter(data.get("access_token"))
 	topics = nw.gettopics()
+	print(topics)
 	return render_template("newsletter/index.html", data=data, topics=topics)
 
 @api.route("/newsletter/<string:topic>")
