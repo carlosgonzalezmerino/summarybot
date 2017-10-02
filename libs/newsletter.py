@@ -6,6 +6,7 @@ db = DB()
 
 
 def gettopics(user):
+	print(user)
 	try:
 		channels = []
 		client = SlackClient("")
