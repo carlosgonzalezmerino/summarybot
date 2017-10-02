@@ -18,17 +18,16 @@
 					<h1>Reverte Bot</h1>
 				</a>
 				<div class="menu">
-					<span class="user">Welcome {{ user.name }}!</span>
-					<a class="logout" href="{{ url_for("logout") }}">Logout <i class="fa fa-sign-out"></i></a>
+					<span class="user">Bienvenido {{ user.name }}!</span>
+					<a class="logout" href="{{ url_for("logout") }}">Salir <i class="fa fa-sign-out"></i></a>
 				</div>
 			</div>
 
-			<div class="topics"></div>
-
-			<section class="links">
+			<section id="topic">
+				<h2><i class="fa fa-tag" aria-hidden="true"></i> {{ topic }}</h2>
 				{% for link in links %}
 					<article class="link">
-						<h2><a href="{{ link.url }}">{{ link.title }}</a></h2>
+						<h4><a href="{{ link.url }}">{{ link.title }}</a></h4>
 						<ul class="tags">
 							{% for tag in link.tags %}
 							<li>{{ tag }}</li>

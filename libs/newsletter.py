@@ -20,7 +20,6 @@ class Newsletter(object):
 					"id": channel.get("id"),
 					"name": channel.get("name")
 				})
-				print(channel.get("id"))
 
 		response = client.api_call("groups.list")
 		if response and response.get("ok"):
@@ -29,23 +28,17 @@ class Newsletter(object):
 					"id": group.get("id"),
 					"name": group.get("name")
 				})
-				print(group.get("id"))
 
 		return channels or None
 
 	def __getkeywords(self, channels):
 		links = []
 		for channel in channels:
-			l = db.getAll("news", "channel_id", channel.get("id"))
-			print(l)
-			links += l
-
-		print(links)
+			links += db.getAll("news", "channel_id", channel.get("id"))
 
 		keywords = {}
 		end = datetime.today() - timedelta(days=datetime.today().weekday())
 		start = end - timedelta(days=7)
-		print(start, end)
 		for link in links:
 			if end > link.get("date") >= start:
 				link_keywords = link.get("keywords").split(",")
@@ -68,13 +61,18 @@ class Newsletter(object):
 
 		return None
 
-	def getlinks(user, channel_id):
+	def getlinks(self, topic):
 		try:
-			news = db.getAll("news", "channel_id", channel_id)
-			for new in news:
-				new["keywords"] = new.get("keywords").split(",")
+			news = db.getAll("news")
 
-			return news
+			links = []
+			for new in news:
+				keywords = new.get("keywords")
+				if keywords and topic in keywords:
+					new["keywords"] = new.get("keywords").split(",")
+					links.append(new)
+
+			return links or None
 		except Exception as e:
 			print(e)
 

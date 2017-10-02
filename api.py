@@ -119,7 +119,7 @@ def newsletter(data):
 def topic(data, tag):
 	nw = Newsletter(data.get("access_token"))
 	links = nw.getlinks(tag)
-	return render_template("newsletter/news.html", data=data, links=links)
+	return render_template("newsletter/topic.html", data=data, topic=tag, links=links)
 
 
 if __name__ == "__main__":
