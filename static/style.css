@@ -241,6 +241,13 @@ body {
     font-size: 14px;
 }
 
+#newsletter #topic .link .tags li a {
+	color: black;
+	text-transform: none;
+	text-decoration: none;
+	cursor: pointer;
+}
+
 #newsletter #topic .link p {
 	margin: 10px 0;
 	font-size: 14px;

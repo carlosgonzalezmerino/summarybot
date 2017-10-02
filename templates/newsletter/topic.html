@@ -35,7 +35,7 @@
 
 							<ul class="tags">
 								{% for keyword in link.keywords %}
-								<li>{{ keyword }}</li>
+									<li><a href="{{ url_for("topic", tag=keyword) }}">{{ keyword }}</a></li>
 								{% endfor %}
 							</ul>
 						</article>
