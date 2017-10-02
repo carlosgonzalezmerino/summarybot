@@ -139,3 +139,37 @@ body {
 	line-height: 30px;
 	text-decoration: none;
 }
+
+#newsletter #topics {
+	display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#newsletter #topics .topic {
+	display: inline-block;
+    vertical-align: top;
+    width: 46%;
+    height: auto;
+    margin: 20px 2%;
+    padding: 10px 20px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+}
+
+#newsletter #topics .topic h3 {padding: 10px 0;}
+
+#newsletter #topics .topic p {
+
+}
+
+#newsletter #topics .topic .links {
+	display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    height: auto;
+    padding: 5px 0 5px 20px;
+}
