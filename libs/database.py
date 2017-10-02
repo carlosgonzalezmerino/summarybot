@@ -148,7 +148,7 @@ class DB(object):
 
 		try:
 			print(query, value)
-			self.cursor.execute(query, value)
+			self.cursor.execute(query, (value,))
 			results = self.cursor.fetchall()
 		except sqlite3.Error as err:
 			raise Exception("SQLite Error: {}".format(err))
