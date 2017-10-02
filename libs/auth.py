@@ -16,6 +16,17 @@ class Auth(object):
 			"client_secret": os.environ.get("SLACK_CLIENT_SECRET")
 		}
 
+	def __getuser(self):
+		try:
+			res = self.client.api_call("users.profile.get")
+			print(res)
+			if res and res.get("ok"):
+				return True
+		except Exception as e:
+			print(e)
+
+		return False
+
 	def request(self, code):
 		try:
 			res = self.client.api_call(
@@ -31,6 +42,7 @@ class Auth(object):
 					"team_id": res.get("team_id")
 				}
 				self.client = SlackClient(self.data.get("access_token"))
+				self.__getuser()
 				return True
 		except Exception as e:
 			print("Error getting authorization with code: %s" % code)
