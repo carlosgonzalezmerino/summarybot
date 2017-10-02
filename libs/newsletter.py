@@ -27,6 +27,8 @@ def gettopics(user):
 					"name": c.get("name")
 				})
 
+		print(channels)
+
 		news = []
 		for channel in channels:
 			news += db.getAll("news", "channel_id", channel.get("id"))
