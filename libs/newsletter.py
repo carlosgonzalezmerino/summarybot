@@ -1,5 +1,6 @@
+from datetime import datetime
+from datetime import timedelta
 from libs.database import DB
-
 from slackclient import SlackClient
 
 db = DB()
@@ -29,14 +30,17 @@ class Newsletter(object):
 						"name": group.get("name")
 					})
 
-			keywords = []
+			links = []
 			for channel in channels:
-				links = db.getAll("news", "channel_id", channel.get("id"))
-				for link in links:
+				links += db.getAll("news", "channel_id", channel.get("id"))
+
+			keywords = []
+			start = datetime.now() - timedelta(days=datetime.now().weekday())
+			for link in links:
+				if link.get("date") <= start:
 					keywords += link.get("keywords").split(",")
 
 			print(keywords)
-
 			return channels
 		except Exception as e:
 			print(e)
