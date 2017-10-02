@@ -12,6 +12,7 @@ from flask import redirect
 from flask import make_response
 from flask import render_template
 
+from libs.auth import Auth
 from libs.slackbot import SlackBot
 from libs import newsletter as nw
 
@@ -68,23 +69,15 @@ def listen():
 
 @api.route("/auth")
 def auth():
-	bot = SlackBot()
+	auth = Auth()
 	code = request.args.get("code")
-	auth_response = bot.auth_call(code)
-	print(auth_response)
-	if auth_response.get("ok"):
-		user = {
-			"user_id": auth_response.get("user").get("id"),
-			"email": auth_response.get("user").get("email"),
-			"name": auth_response.get("user").get("name"),
-			"team": auth_response.get("team").get("id"),
-			"access_token": auth_response.get("access_token")
-		}
+	if code and auth.request(code):
+		print(auth.data)
 
-		session["user"] = json.dumps(user)
+		session["user"] = json.dumps(auth.data)
 		return redirect(url_for("newsletter"))
 
-	return json.dumps(auth_response), 200
+	return "Ok", 200
 
 
 @api.route("/auth/bot")

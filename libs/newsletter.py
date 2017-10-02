@@ -44,12 +44,3 @@ def getlinks(user, channel_id):
 		print(e)
 
 	return None
-
-def revoketoken(user):
-	try:
-		client = SlackClient(user.get("access_token"))
-		client.api_call("auth.revoke")
-	except Exception as e:
-		print(e)
-		return False
-	return True
