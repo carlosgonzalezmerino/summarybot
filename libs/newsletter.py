@@ -63,7 +63,7 @@ class Newsletter(object):
 
 	def getlinks(self, topic):
 		try:
-			news = db.getAll("news")
+			news = self.db.getAll("news")
 
 			links = []
 			for new in news:
