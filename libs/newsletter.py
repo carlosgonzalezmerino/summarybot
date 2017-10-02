@@ -12,6 +12,7 @@ def gettopics(user):
 		client = SlackClient(authorized.get("bot_token"))
 
 		response = client.api_call("groups.list", token=user.get("access_token"))
+		print(response)
 		if response.get("ok"):
 			for c in response.get("channels"):
 				channels.append({
