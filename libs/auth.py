@@ -19,8 +19,13 @@ class Auth(object):
 	def __getuser(self):
 		try:
 			res = self.client.api_call("users.profile.get")
-			print(res)
+			import pprint
+			pprint.pprint(res)
 			if res and res.get("ok"):
+				self.data["user"] = {
+					"id": self.data.get("user").get("id")
+				}
+
 				return True
 		except Exception as e:
 			print(e)
@@ -38,9 +43,15 @@ class Auth(object):
 			if res and res.get("ok"):
 				self.data = {
 					"access_token": res.get("access_token"),
-					"user_id": res.get("user_id"),
-					"team_id": res.get("team_id")
+					"user": {
+						"id": res.get("user_id")
+					},
+					"team": {
+						"id": res.get("team_id"),
+						"name": res.get("team_name")
+					}
 				}
+
 				self.client = SlackClient(self.data.get("access_token"))
 				self.__getuser()
 				return True
