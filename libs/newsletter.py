@@ -35,9 +35,10 @@ class Newsletter(object):
 				links += db.getAll("news", "channel_id", channel.get("id"))
 
 			keywords = []
-			start = datetime.now() - timedelta(days=datetime.now().weekday())
+			end = datetime.today() - timedelta(days=datetime.today().weekday())
+			start = end - timedelta(days=7)
 			for link in links:
-				if link.get("date") >= start:
+				if end > link.get("date") >= start:
 					keywords += link.get("keywords").split(",")
 
 			print(start)
