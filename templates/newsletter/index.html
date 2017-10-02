@@ -29,7 +29,7 @@
 				{% if topics %}
 					{% for topic, links in topics.items() %}
 						<a class="topic">
-							<h2>{{ topic }}</h2>
+							<h3><i class="fa fa-tag" aria-hidden="true"></i> {{ topic }}</h3>
 							<ul class="links">
 								{% for link in links %}
 									<li>{{ link.title }}</li>
