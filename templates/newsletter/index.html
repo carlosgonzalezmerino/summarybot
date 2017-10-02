@@ -26,11 +26,13 @@
 			<div class="topics"></div>
 
 			<div class="channels">
-				{% for channel in channels %}
-					<a class="channel" href="{{ url_for() }}">
-						<h2>{{ channel.title }}</h2>
-					</a>
-				{% endfor %}
+				{% if channels %}
+					{% for channel in channels %}
+						<a class="channel">
+							<h2>{{ channel.name }}</h2>
+						</a>
+					{% endfor %}
+				{% endif %}
 			</div>
 		</div>
 	</body>
