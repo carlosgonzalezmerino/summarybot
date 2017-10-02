@@ -72,6 +72,7 @@ class Newsletter(object):
 					tags = keywords.split(",")
 					if topic in tags:
 						new["keywords"] = tags
+						new["summary"] = new.get("summary").split("\n\n")
 						links.append(new)
 
 			return links or None

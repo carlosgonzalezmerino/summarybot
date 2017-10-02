@@ -34,7 +34,9 @@
 								<li>{{ keyword }}</li>
 								{% endfor %}
 							</ul>
-							<p>{{ link.summary }}</p>
+							{% for sentence in link.summary %}
+							<p>{{ sentence }}</p>
+							{% endfor %}
 						</article>
 					{% endfor %}
 				{% endif %}
