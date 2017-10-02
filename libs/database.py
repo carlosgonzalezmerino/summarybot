@@ -147,7 +147,6 @@ class DB(object):
 			query = "%s WHERE %s=?" % (query, key)
 
 		try:
-			print(query, value)
 			self.cursor.execute(query, (value,))
 			results = self.cursor.fetchall()
 		except sqlite3.Error as err:
