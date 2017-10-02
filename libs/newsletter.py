@@ -17,14 +17,14 @@ class Newsletter(object):
 			if response and response.get("ok"):
 				for channel in response.get("channels"):
 					channels.append({
-						"id": channel.get("id"),
-						"name": channel.get("name")
+						"id": str(channel.get("id")),
+						"name": str(channel.get("name"))
 					})
 
 			print(channels)
 			links = []
 			for channel in channels:
-				links += db.getAll("news", "channel_id", str(channel.get("id")))
+				links += db.getAll("news", "channel_id", channel.get("id"))
 
 			print(links)
 
