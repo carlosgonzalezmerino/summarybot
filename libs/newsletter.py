@@ -8,19 +8,19 @@ db = DB()
 def gettopics(user):
 	try:
 		channels = []
-		authorized = db.get("auths", {"team_id": user.get("team")})
 		client = SlackClient("")
 
-		response = client.api_call("groups.list", token=authorized.get("bot_token"))
+		response = client.api_call("groups.list", token=user.get("access_token"))
 		print(response)
 		if response.get("ok"):
-			for c in response.get("channels"):
+			for c in response.get("groups"):
 				channels.append({
 					"id": c.get("id"),
 					"name": c.get("name")
 				})
 
 		response = client.api_call("channels.list", token=user.get("access_token"))
+		print(response)
 		if response.get("ok"):
 			channels = []
 			for c in response.get("channels"):
