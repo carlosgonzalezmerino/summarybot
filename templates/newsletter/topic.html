@@ -25,17 +25,19 @@
 
 			<section id="topic">
 				<h2><i class="fa fa-tag" aria-hidden="true"></i> {{ topic }}</h2>
-				{% for link in links %}
-					<article class="link">
-						<h4><a href="{{ link.url }}">{{ link.title }}</a></h4>
-						<ul class="tags">
-							{% for tag in link.tags %}
-							<li>{{ tag }}</li>
-							{% endfor %}
-						</ul>
-						<p>{{ link.summary }}</p>
-					</article>
-				{% endfor %}
+				{% if links %}
+					{% for link in links %}
+						<article class="link">
+							<h4><a href="{{ link.url }}">{{ link.title }}</a></h4>
+							<ul class="tags">
+								{% for tag in link.tags %}
+								<li>{{ tag }}</li>
+								{% endfor %}
+							</ul>
+							<p>{{ link.summary }}</p>
+						</article>
+					{% endfor %}
+				{% endif %}
 			</section>
 		</div>
 	</body>
