@@ -22,11 +22,12 @@ class Newsletter(object):
 					})
 
 			response = client.api_call("groups.list")
+			print(response)
 			if response and response.get("ok"):
-				for channel in response.get("groups"):
+				for group in response.get("groups"):
 					channels.append({
-						"id": channel.get("id"),
-						"name": channel.get("name")
+						"id": group.get("id"),
+						"name": group.get("name")
 					})
 
 			print(channels)
