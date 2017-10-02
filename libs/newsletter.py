@@ -41,7 +41,7 @@ class Newsletter(object):
 				if end > link.get("date") >= start:
 					keywords += link.get("keywords").split(",")
 
-			print(start)
+			print(start, end)
 			print(keywords)
 			return channels
 		except Exception as e:
