@@ -202,8 +202,6 @@ body {
 #topic .link h4 a {
 	font-size: 1.1em;
     color: #444;
-    text-decoration: none;
-    text-transform: none;
 	margin: 10px 0;
 }
 
@@ -216,18 +214,20 @@ body {
 }
 
 #topic .link .tags li {
-    display: inline-block;
+	display: inline-block;
     vertical-align: top;
     width: auto;
     height: auto;
-    padding: 5px 10px;
-    margin: 5px;
+    padding: 5px 5px;
+    margin: 0 2px;
     background: #ccc;
     border-radius: 5px;
+    font-size: 14px;
 }
 
 #topic .link p {
 	margin: 10px 0;
+	font-size: 14px;
 }
 
 @media screen and (max-width: 768px) {
