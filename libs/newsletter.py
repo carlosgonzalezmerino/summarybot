@@ -1,13 +1,13 @@
 from datetime import datetime
 from datetime import timedelta
-from libs.database import DB
 from slackclient import SlackClient
+from libs.database import DB
 
-db = DB()
 
 class Newsletter(object):
 	def __init__(self, access_token):
 		self.access_token = access_token
+		self.db = DB()
 
 	def __getchannels(self):
 		channels = []
@@ -34,7 +34,7 @@ class Newsletter(object):
 	def __getkeywords(self, channels):
 		links = []
 		for channel in channels:
-			links += db.getAll("news", "channel_id", channel.get("id"))
+			links += self.db.getAll("news", "channel_id", channel.get("id"))
 
 		keywords = {}
 		end = datetime.today() - timedelta(days=datetime.today().weekday())
@@ -68,9 +68,11 @@ class Newsletter(object):
 			links = []
 			for new in news:
 				keywords = new.get("keywords")
-				if keywords and topic in keywords:
-					new["keywords"] = new.get("keywords").split(",")
-					links.append(new)
+				if keywords:
+					tags = keywords.split(",")
+					if topic in tags:
+						new["keywords"] = tags
+						links.append(new)
 
 			return links or None
 		except Exception as e:
