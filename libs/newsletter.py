@@ -36,6 +36,8 @@ class Newsletter(object):
 		for channel in channels:
 			links += db.getAll("news", "channel_id", channel.get("id"))
 
+		print(links)
+
 		keywords = {}
 		end = datetime.today() - timedelta(days=datetime.today().weekday())
 		start = end - timedelta(days=7)
@@ -54,6 +56,7 @@ class Newsletter(object):
 	def gettopics(self):
 		try:
 			channels = self.__getchannels()
+			print(channels)
 			if channels:
 				return self.__getkeywords(channels)
 		except Exception as e:
