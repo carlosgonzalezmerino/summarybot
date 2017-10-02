@@ -13,6 +13,7 @@ from flask import make_response
 from flask import render_template
 
 from libs.slackbot import SlackBot
+from libs import newsletter as nw
 
 api = Flask(__name__)
 if os.environ.get("SERVER_SECRET"):
@@ -115,7 +116,14 @@ def logout(user):
 @api.route("/newsletter")
 @loginrequired
 def newsletter(user):
-	return render_template("newsletter/index.html", user=user)
+	channels = nw.gettopics(user)
+	return render_template("newsletter/index.html", user=user, channels=channels)
+
+@api.route("/newsletter/<string:channel>")
+@loginrequired
+def keyword(channel, user):
+	channels = nw.getnews(user, channel)
+	return render_template("newsletter/news.html", user=user, channels=channels)
 
 
 if __name__ == "__main__":

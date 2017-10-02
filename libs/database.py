@@ -133,7 +133,7 @@ class DB(object):
 		self.close()
 		return result
 
-	def getAll(self, table, key = None, value = None):
+	def getAll(self, table, key=None, value=None):
 		if not self.__verify(table):
 			raise Exception("Bad input.")
 
