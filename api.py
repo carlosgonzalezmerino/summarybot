@@ -116,11 +116,11 @@ def newsletter(data):
 	pprint.pprint(topics, indent=4)
 	return render_template("newsletter/index.html", data=data, topics=topics)
 
-@api.route("/newsletter/<string:topic>")
+@api.route("/newsletter/<string:tag>")
 @loginrequired
-def keyword(data, topic):
+def topic(data, tag):
 	nw = Newsletter(data.get("access_token"))
-	links = nw.getlinks(topic)
+	links = nw.getlinks(tag)
 	return render_template("newsletter/news.html", data=data, links=links)
 
 
