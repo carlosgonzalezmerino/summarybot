@@ -161,6 +161,9 @@ body {
 	cursor: pointer;
     border: 1px solid #999;
 	transition: all .2s ease-in-out;
+	color: white;
+	text-decoration: none;
+	text-transform: none;
 }
 
 #newsletter #topics .topic:hover,
