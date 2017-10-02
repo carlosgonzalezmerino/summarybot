@@ -34,7 +34,9 @@ class Newsletter(object):
 	def __getkeywords(self, channels):
 		links = []
 		for channel in channels:
-			links += db.getAll("news", "channel_id", channel.get("id"))
+			l = db.getAll("news", "channel_id", channel.get("id"))
+			print(l)
+			links += l
 
 		print(links)
 
