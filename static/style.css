@@ -187,7 +187,22 @@ body {
 	font-size: 12px;
 }
 
-#topic .link {
+#newsletter #topic {
+	display: inline-block;
+    vertical-align: top;
+    width: 100%;
+	padding: 50px 0;
+}
+
+#newsletter #topic h2 {
+	display: inline-block;
+	vertical-align: top;
+	width: 100%;
+	margin: 20px 0;
+	text-align: center;
+}
+
+#newsletter #topic .link {
 	display: inline-block;
     vertical-align: top;
     width: 100%;
@@ -199,13 +214,13 @@ body {
     border-radius: 10px;
 }
 
-#topic .link h4 a {
+#newsletter #topic .link h4 a {
 	font-size: 1.1em;
     color: #444;
 	margin: 10px 0;
 }
 
-#topic .link .tags {
+#newsletter #topic .link .tags {
     display: inline-block;
     vertical-align: top;
     width: 100%;
@@ -214,7 +229,7 @@ body {
 	text-align: right;
 }
 
-#topic .link .tags li {
+#newsletter #topic .link .tags li {
 	display: inline-block;
     vertical-align: top;
     width: auto;
@@ -226,7 +241,7 @@ body {
     font-size: 14px;
 }
 
-#topic .link p {
+#newsletter #topic .link p {
 	margin: 10px 0;
 	font-size: 14px;
 }
