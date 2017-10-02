@@ -68,10 +68,10 @@ def listen():
 
 @api.route("/auth")
 def auth():
-	bot = SlackBot()
 	print(request.data)
 	print(request.args.__dict__)
 	print(request.form.__dict__)
+	bot = SlackBot()
 	code = request.args.get("code")
 	auth_response = bot.auth_call(code)
 	if auth_response.get("ok"):
