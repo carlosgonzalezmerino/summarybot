@@ -103,7 +103,8 @@ def login():
 @api.route("/auth/logout")
 @loginrequired
 def logout(user):
-	nw.revokeToken(user)
+	auth = Auth()
+	auth.revoke()
 	if "user" in session:
 		session.pop("user", None)
 	return redirect(url_for("newsletter"))
