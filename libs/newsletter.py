@@ -20,6 +20,7 @@ class Newsletter(object):
 					"id": channel.get("id"),
 					"name": channel.get("name")
 				})
+				print(channel.get("id"))
 
 		response = client.api_call("groups.list")
 		if response and response.get("ok"):
@@ -28,6 +29,7 @@ class Newsletter(object):
 					"id": group.get("id"),
 					"name": group.get("name")
 				})
+				print(group.get("id"))
 
 		return channels or None
 
@@ -59,7 +61,6 @@ class Newsletter(object):
 	def gettopics(self):
 		try:
 			channels = self.__getchannels()
-			print(channels)
 			if channels:
 				return self.__getkeywords(channels)
 		except Exception as e:
