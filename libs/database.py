@@ -144,7 +144,7 @@ class DB(object):
 			if not value:
 				raise Exception("Bad input params.")
 
-			query = "%s WHERE %s=\'?\'" % (query, key)
+			query = "%s WHERE %s=?" % (query, key)
 
 		try:
 			print(query, value)
