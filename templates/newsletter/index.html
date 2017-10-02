@@ -18,7 +18,7 @@
 					<h1>Reverte Bot</h1>
 				</a>
 				<div class="menu">
-					<span class="user">Welcome {{ user.name }}!</span>
+					<span class="user">Welcome {{ data.user.name }}!</span>
 					<a class="logout" href="{{ url_for("logout") }}">Logout <i class="fa fa-sign-out"></i></a>
 				</div>
 			</div>
@@ -26,10 +26,10 @@
 			<div class="topics"></div>
 
 			<div class="channels">
-				{% if channels %}
-					{% for channel in channels %}
-						<a class="channel">
-							<h2>{{ channel.name }}</h2>
+				{% if topics %}
+					{% for topic in topics %}
+						<a class="topic">
+							<h2>{{ topic.name }}</h2>
 						</a>
 					{% endfor %}
 				{% endif %}
