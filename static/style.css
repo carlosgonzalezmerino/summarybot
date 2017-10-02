@@ -211,6 +211,7 @@ body {
     width: 100%;
     list-style: none;
 	margin: 10px 0;
+	text-align: right;
 }
 
 #topic .link .tags li {

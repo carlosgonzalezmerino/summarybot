@@ -29,14 +29,15 @@
 					{% for link in links %}
 						<article class="link">
 							<h4><a href="{{ link.url }}" target="_blank">{{ link.title }}</a></h4>
+							{% for sentence in link.summary %}
+							<p>{{ sentence }}</p>
+							{% endfor %}
+
 							<ul class="tags">
 								{% for keyword in link.keywords %}
 								<li>{{ keyword }}</li>
 								{% endfor %}
 							</ul>
-							{% for sentence in link.summary %}
-							<p>{{ sentence }}</p>
-							{% endfor %}
 						</article>
 					{% endfor %}
 				{% endif %}
