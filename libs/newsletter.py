@@ -21,20 +21,8 @@ class Newsletter(object):
 						"name": channel.get("name")
 					})
 
-			news = []
-			for channel in channels:
-				news += db.getAll("news", "channel_id", channel.get("id"))
+			print(channels)
 
-			print(news)
-
-			keywords = []
-			for new in news:
-				temps = new.get("keywords").split(",")
-				for k in temps:
-					if k not in keywords:
-						keywords.append(k)
-
-			print(keywords)
 			return channels
 		except Exception as e:
 			print(e)
