@@ -79,7 +79,7 @@ body {
         display: inline-block;
         vertical-align: top;
         height: 70px;
-        margin: 0 10px; }
+        margin: 0 10px 0 0; }
       .header .inner .title h1 {
         display: inline-block;
         vertical-align: top;
@@ -99,7 +99,7 @@ body {
         color: white;
         background: red;
         border-radius: 4px;
-        margin: 20px 10px;
+        margin: 20px 0 20px 30px;
         line-height: 30px;
         text-decoration: none; }
 
@@ -109,7 +109,27 @@ body {
   width: 90%;
   max-width: 1200px;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-between; }
+  .content .topics {
+    display: inline-block;
+    vertical-align: top;
+    width: 20%;
+    min-width: 120px;
+    max-width: 200px;
+    margin-right: 20px; }
+    .content .topics h3 {
+      margin: 20px 0; }
+    .content .topics .topic-list {
+      display: inline-block;
+      vertical-align: top;
+      width: 100%;
+      height: auto;
+      list-style: none; }
+      .content .topics .topic-list li a {
+        padding: 10px 20px;
+        text-decoration: none;
+        text-transform: none;
+        color: white; }
 
 /*# sourceMappingURL=style.css.map */
