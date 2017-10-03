@@ -94,19 +94,17 @@ class Newsletter(object):
 					tags = keywords.split(",")
 					if tags:
 						channel = self.__getchannel(new.get("channel_id"))
-						author = self.__getauthor(channel.get("user_id"))
+						author = self.__getauthor(new.get("user_id"))
 
 						if channel:
-							print(channel)
-							del channel["channel_id"]
+							del new["channel_id"]
 							new["channel"] = {
 								"id": channel.get("id"),
 								"name": channel.get("name")
 							}
 
 						if author:
-							print(author)
-							del channel["user_id"]
+							del new["user_id"]
 							new["author"] = {
 								"id": author.get("id"),
 								"name": author.get("profile").get("real_name") or author.get("name")
