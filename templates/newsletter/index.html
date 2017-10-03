@@ -1,25 +1,27 @@
 {% extends "templates/layout.html" %}
 {% block panel %}
-	<div class="topics">
-		{% if topics %}
-			<h3>Tags</h3>
-			<ul class="topic-list">
-			{% for topic in topics %}
-				<a class="topic" href="{{ url_for("topic", tag=topic) }}">{{ topic }}</a>
-			{% endfor %}
-			</ul>
-		{% endif %}
-	</div>
+	<div class="content">
+		<div class="topics">
+			{% if topics %}
+				<h3>Tags</h3>
+				<ul class="topic-list">
+				{% for topic in topics %}
+					<a class="topic" href="{{ url_for("topic", tag=topic) }}">{{ topic }}</a>
+				{% endfor %}
+				</ul>
+			{% endif %}
+		</div>
 
-	<div class="links">
-		{% if links %}
-			{% for link in links %}
-				<a class="link" href="{{ url_for("read", id=link.id) }}">
-					<h3>{{ link.title }}</h3>
-					<span>Published by <b>{{ link.author.name }}</b> in <b>{{ link.channel.name }}</b></span>
-					{% if link.summary %}<p>{{ link.summary[0] }}</p>{% endif %}
-				</a>
-			{% endfor %}
-		{% endif %}
+		<div class="links">
+			{% if links %}
+				{% for link in links %}
+					<a class="link" href="{{ url_for("read", id=link.id) }}">
+						<h3>{{ link.title }}</h3>
+						<span>Published by <b>{{ link.author.name }}</b> in <b>{{ link.channel.name }}</b></span>
+						{% if link.summary %}<p>{{ link.summary[0] }}</p>{% endif %}
+					</a>
+				{% endfor %}
+			{% endif %}
+		</div>
 	</div>
 {% endblock %}
