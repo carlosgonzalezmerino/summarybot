@@ -51,6 +51,43 @@ class Newsletter(object):
 
 		return channels or None
 
+	def __formatlink(self, new):
+		keywords = new.get("keywords")
+		if keywords:
+			tags = keywords.split(",")
+			if tags:
+				channel = self.__getchannel(new.get("channel_id"))
+				author = self.__getauthor(new.get("user_id"))
+				del new["channel_id"]
+				del new["user_id"]
+
+				if channel:
+					channel = {
+						"id": channel.get("id"),
+						"name": channel.get("name")
+					}
+
+				if author:
+					profile = author.get("profile")
+					if profile:
+						author = {
+							"id": author.get("id"),
+							"name": profile.get("real_name") or author.get("name"),
+							"avatar": profile.get("image_72")
+						}
+					else:
+						author = {
+							"id": author.get("id"),
+							"name": author.get("name"),
+							"avatar": None
+						}
+
+				new["channel"] = channel
+				new["author"] = author
+				new["keywords"] = tags
+				new["summary"] = new.get("summary").split("\n\n")
+		return new
+
 	def __getkeywords(self, channels):
 		links = []
 		for channel in channels:
@@ -85,34 +122,9 @@ class Newsletter(object):
 			links = []
 			news = self.db.getByDate("news", "date", start, end)
 			for new in news:
-				keywords = new.get("keywords")
-				if keywords:
-					tags = keywords.split(",")
-					if tags:
-						channel = self.__getchannel(new.get("channel_id"))
-						author = self.__getauthor(new.get("user_id"))
+				link = self.__formatlink(new)
+				links.append(link)
 
-						if channel:
-							del new["channel_id"]
-							new["channel"] = {
-								"id": channel.get("id"),
-								"name": channel.get("name")
-							}
-
-						if author:
-							del new["user_id"]
-							import pprint
-							pprint.pprint(author, indent=4)
-							new["author"] = {
-								"id": author.get("id"),
-								"name": author.get("name"),
-								"avatar": author.get("profile").get("image_72")
-							}
-
-						new["keywords"] = tags
-						new["summary"] = new.get("summary").split("\n\n")
-
-						links.append(new)
 			return links
 		except Exception as e:
 			print(e)
