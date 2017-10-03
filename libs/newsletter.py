@@ -105,7 +105,6 @@ class Newsletter(object):
 	def gettopics(self):
 		try:
 			channels = self.__getchannels()
-			print("channels", channels)
 			if bool(channels):
 				return self.__getkeywords(channels)
 		except Exception as e:
