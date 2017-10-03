@@ -194,7 +194,7 @@ body {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: flex-start;
-		align-items: stretch;
+		align-content: flex-start;
 
 		.link {
 			display: inline-block;
@@ -202,9 +202,10 @@ body {
 			position: relative;
 			width: 48%;
 			margin: 10px 1%;
-			background: $dark;
-			border: 1px solid $primary-color;
 			padding: 10px 20px 40px;
+			border: 1px solid $primary-color;
+			border-radius: 5px;
+			background: $dark;
 			box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 			color: white;
 			text-decoration: none;

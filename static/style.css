@@ -154,16 +154,17 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    align-items: stretch; }
+    align-content: flex-start; }
     .content .links .link {
       display: inline-block;
       vertical-align: top;
       position: relative;
       width: 48%;
       margin: 10px 1%;
-      background: #263238;
-      border: 1px solid #37474F;
       padding: 10px 20px 40px;
+      border: 1px solid #37474F;
+      border-radius: 5px;
+      background: #263238;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
       color: white;
       text-decoration: none;
