@@ -120,7 +120,7 @@ class Newsletter(object):
 
 		try:
 			channels = self.__getchannels()
-			channels_ids = map(lambda channel: channels.get("id"), channels)
+			channels_ids = [channel.get("id") for channel in channels]
 			print(channels_ids)
 
 			links = []
