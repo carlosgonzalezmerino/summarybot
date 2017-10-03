@@ -82,6 +82,7 @@ def auth():
 def thanks():
 	bot = SlackBot()
 	code = request.args.get("code")
+	print(code)
 	if code:
 		bot.auth(code)
 		return render_template("thanks.html")

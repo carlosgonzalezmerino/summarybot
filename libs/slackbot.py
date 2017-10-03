@@ -166,6 +166,7 @@ class SlackBot(object):
 	def auth(self, code):
 		auth_response = self.auth_call(code)
 
+		print(auth_response)
 		if auth_response:
 			team_id = auth_response.get("team_id")
 			if team_id:
