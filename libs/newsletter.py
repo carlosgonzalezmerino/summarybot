@@ -25,7 +25,7 @@ class Newsletter(object):
 		client = SlackClient(self.access_token)
 		try:
 			response = client.api_call("users.info", user=id)
-			print(response)
+			print(response.get("user"))
 			if response.get("ok"):
 				return response.get("user")
 		except Exception as e:
@@ -105,9 +105,12 @@ class Newsletter(object):
 
 						if author:
 							del new["user_id"]
+							import pprint
+							pprint.pprint(author, indent=4)
 							new["author"] = {
 								"id": author.get("id"),
-								"name": author.get("profile").get("real_name") or author.get("name")
+								"name": author.get("profile").get("real_name") or author.get("name"),
+								"avatar": author.get("profile").get("image_72")
 							}
 
 						new["keywords"] = tags
