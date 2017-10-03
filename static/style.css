@@ -1,258 +1,115 @@
-@import url('https://fonts.googleapis.com/css?family=Dancing+Script|Raleway');
-
+@import url("https://fonts.googleapis.com/css?family=Dancing+Script|Raleway");
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
 
 body {
-	background: #34495e;
-	color: white;
-	font-size: 16px;
-	font-family: 'Raleway', sans-serif;
-}
+  background: #34495e;
+  color: white;
+  font-size: 16px;
+  font-family: 'Raleway', sans-serif; }
 
 .main {
-	display: block;
-	margin: 0 auto;
-	width: 90%;
-	height: 100vh;
-	max-width: 1000px;
-
-	display: flex;
-	align-items: center;
-}
-
-.main .face {
-	display: inline-block;
-	width: 40%;
-	height: auto;
-	padding: 20px 30px;
-	max-width: 450px;
-}
-
-.main .info {
-	display: inline-block;
-	width: auto;
-	height: auto;
-	padding: 20px 30px;
-}
-
-.main .info h1 {
-	margin: 10px 0 0;
-}
-
-.main .info h3 {
-	margin: 5px 0 25px;
-	color: #ddd;
-}
-
-.main .info p {
-	margin: 30px 0 40px;
-    font-size: 26px;
-    font-family: 'Dancing Script', cursive;
-    letter-spacing: 3px;
-    line-height: 28px;
-}
-
-.main .info a {margin: 20px 0;}
-
-.main.credits {
-	display: inline-block;
-	vertical-align: top;
-	width: 100%;
-	height: auto;
-	padding: 80px 0 0;
-	text-align: center;
-	font-size: 14px;
-	color: #ccc;
-}
-
-.main .credits .hearth {
-	color: red;
-	font-size: 16px;
-}
-
-.header {
+  display: block;
+  margin: 0 auto;
+  width: 90%;
+  height: 100vh;
+  max-width: 1200px;
+  display: flex;
+  align-items: center; }
+  .main .face {
     display: inline-block;
-    vertical-align: top;
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.header .title {
-	display: inline-block;
-	vertical-align: top;
-    width: auto;
-    height: auto;
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-}
-
-.header .title img {
-    display: inline-block;
-    vertical-align: top;
-	height: 70px;
-    margin: 0 10px;
-}
-
-.header .title h1 {
-	display: inline-block;
-	vertical-align: top;
-	line-height: 70px;
-}
-
-.header .menu {
-	display: inline-block;
-    vertical-align: top;
-    width: auto;
-    height: auto;
-    line-height: 70px;
-}
-
-.header .menu .logout {
-	display: inline-block;
-	vertical-align: top;
-	width: auto;
-	height: 30px;
-	padding: 0 10px;
-	color: white;
-	background: red;
-	border-radius: 4px;
-	margin: 20px 10px;
-	line-height: 30px;
-	text-decoration: none;
-}
-
-.content {
-	display: block;
-    margin: 60px auto;
-    width: 90%;
-    max-width: 1200px;
-
-	display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.content #topics {
-	display: inline-block;
-    vertical-align: top;
-    width: 100%;
-    height: auto;
-	padding: 50px 0;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.content #topics .topic {
-	display: inline-block;
-    vertical-align: top;
-    width: 46%;
-    height: auto;
-    margin: 20px 2%;
-    padding: 10px 20px;
-    border-radius: 10px;
-	cursor: pointer;
-    border: 1px solid #999;
-	transition: all .2s ease-in-out;
-	color: white;
-	text-decoration: none;
-	text-transform: none;
-}
-
-.content #topics .topic:hover,
-.content #topics .topic:active {
-	border-color: #fff;
-}
-
-.content #topics .topic h3 {padding: 10px 0;}
-
-.content #topics .topic p {
-	font-size: 14px;
-	color: #ddd;
-}
-
-.content #topics .topic .links {
-	display: inline-block;
-    vertical-align: top;
-    width: 100%;
-    height: auto;
-    padding: 5px 0 5px 20px;
-	font-size: 12px;
-}
-
-.content #topic {
-	display: inline-block;
-    vertical-align: top;
-    width: 100%;
-	padding: 50px 0;
-}
-
-.content #topic h2 {
-	display: inline-block;
-	vertical-align: top;
-	width: 100%;
-	margin: 20px 0;
-	text-align: center;
-}
-
-.content #topic .link {
-	display: inline-block;
-    vertical-align: top;
-    width: 100%;
+    width: 40%;
     height: auto;
     padding: 20px 30px;
-    margin: 10px 0;
-    background: white;
-    color: black;
-    border-radius: 10px;
-}
-
-.content #topic .link h4 a {
-	font-size: 1.1em;
-    color: #444;
-	margin: 10px 0;
-}
-
-.content #topic .link .tags {
+    max-width: 450px; }
+  .main .info {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    padding: 20px 30px; }
+    .main .info h1 {
+      margin: 10px 0 0; }
+    .main .info h3 {
+      margin: 5px 0 25px;
+      color: #ddd; }
+    .main .info p {
+      margin: 30px 0 40px;
+      font-size: 26px;
+      font-family: 'Dancing Script', cursive;
+      letter-spacing: 3px;
+      line-height: 28px; }
+    .main .info a {
+      margin: 20px 0; }
+  .main .credits {
     display: inline-block;
     vertical-align: top;
     width: 100%;
-    list-style: none;
-	margin: 10px 0;
-	text-align: right;
-}
-
-.content #topic .link .tags li {
-	display: inline-block;
-    vertical-align: top;
-    width: auto;
     height: auto;
-    padding: 5px 5px;
-    margin: 0 2px;
-    background: #ccc;
-    border-radius: 5px;
+    padding: 80px 0 0;
+    text-align: center;
     font-size: 14px;
-}
+    color: #ccc; }
+    .main .credits .hearth {
+      color: red;
+      font-size: 16px; }
 
-.content #topic .link .tags li a {
-	color: black;
-	text-transform: none;
-	text-decoration: none;
-	cursor: pointer;
-}
+.header {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  height: auto; }
+  .header .inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1000px; }
+    .header .inner .title {
+      display: inline-block;
+      vertical-align: top;
+      width: auto;
+      height: auto;
+      color: white;
+      text-decoration: none;
+      font-size: 20px; }
+      .header .inner .title img {
+        display: inline-block;
+        vertical-align: top;
+        height: 70px;
+        margin: 0 10px; }
+      .header .inner .title h1 {
+        display: inline-block;
+        vertical-align: top;
+        line-height: 70px; }
+    .header .inner .menu {
+      display: inline-block;
+      vertical-align: top;
+      width: auto;
+      height: auto;
+      line-height: 70px; }
+      .header .inner .menu .logout {
+        display: inline-block;
+        vertical-align: top;
+        width: auto;
+        height: 30px;
+        padding: 0 10px;
+        color: white;
+        background: red;
+        border-radius: 4px;
+        margin: 20px 10px;
+        line-height: 30px;
+        text-decoration: none; }
 
-.content #topic .link p {
-	margin: 10px 0;
-	font-size: 14px;
-}
+.content {
+  display: block;
+  margin: 60px auto;
+  width: 90%;
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
 
-@media screen and (max-width: 768px) {
-	.content #topics .topic {width: 96%;}
-}
+/*# sourceMappingURL=style.css.map */

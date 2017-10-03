@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script|Raleway');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: #34495e;
+	color: white;
+	font-size: 16px;
+	font-family: 'Raleway', sans-serif;
+}
+
+.main {
+	display: block;
+	margin: 0 auto;
+	width: 90%;
+	height: 100vh;
+	max-width: 1200px;
+
+	display: flex;
+	align-items: center;
+
+	.face {
+		display: inline-block;
+		width: 40%;
+		height: auto;
+		padding: 20px 30px;
+		max-width: 450px;
+	}
+	.info {
+		display: inline-block;
+		width: auto;
+		height: auto;
+		padding: 20px 30px;
+		h1 {margin: 10px 0 0;}
+		h3 {
+			margin: 5px 0 25px;
+			color: #ddd;
+		}
+		p {
+			margin: 30px 0 40px;
+			font-size: 26px;
+			font-family: 'Dancing Script', cursive;
+			letter-spacing: 3px;
+			line-height: 28px;
+		}
+		a {margin: 20px 0;}
+	}
+
+	.credits {
+		display: inline-block;
+		vertical-align: top;
+		width: 100%;
+		height: auto;
+		padding: 80px 0 0;
+		text-align: center;
+		font-size: 14px;
+		color: #ccc;
+
+		.hearth {
+			color: red;
+			font-size: 16px;
+		}
+	}
+}
+
+.header {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    height: auto;
+	.inner {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+
+		margin: 0 auto;
+		width: 90%;
+		max-width: 1000px;
+		.title {
+			display: inline-block;
+			vertical-align: top;
+			width: auto;
+			height: auto;
+			color: white;
+			text-decoration: none;
+			font-size: 20px;
+			img {
+				display: inline-block;
+				vertical-align: top;
+				height: 70px;
+				margin: 0 10px;
+			}
+
+			h1 {
+				display: inline-block;
+				vertical-align: top;
+				line-height: 70px;
+			}
+		}
+
+		.menu {
+			display: inline-block;
+			vertical-align: top;
+			width: auto;
+			height: auto;
+			line-height: 70px;
+			.logout {
+				display: inline-block;
+				vertical-align: top;
+				width: auto;
+				height: 30px;
+				padding: 0 10px;
+				color: white;
+				background: red;
+				border-radius: 4px;
+				margin: 20px 10px;
+				line-height: 30px;
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+.content {
+	display: block;
+    margin: 60px auto;
+    width: 90%;
+    max-width: 1200px;
+
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
