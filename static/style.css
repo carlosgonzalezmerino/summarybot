@@ -175,7 +175,7 @@ body {
       flex-wrap: wrap;
       align-content: flex-start; }
       .content .links .link:hover {
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
       .content .links .link .title {
         font-size: 16px;
         color: #ef5350;
@@ -189,5 +189,9 @@ body {
       .content .links .link p {
         font-size: 14px;
         margin: 0 0 10px; }
+
+@media screen and (max-width: 1200px) {
+  .content .links .link {
+    width: 48%; } }
 
 /*# sourceMappingURL=style.css.map */

@@ -213,7 +213,7 @@ body {
 			color: white;
 			text-decoration: none;
 
-			&:hover {box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);}
+			&:hover {box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);}
 
 			display: flex;
 			flex-wrap: wrap;
@@ -239,4 +239,8 @@ body {
 
 		}
 	}
+}
+
+@media screen and (max-width: 1200px){
+	.content .links .link {width: 48%;}
 }
