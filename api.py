@@ -83,7 +83,7 @@ def thanks():
 	bot = SlackBot()
 	code = request.args.get("code")
 	if code:
-		uri = quote_plus("https://bot.myshortreport.com/auth/bot")
+		uri = "https://bot.myshortreport.com/auth/bot"
 		if bot.auth(code, uri):
 			return render_template("thanks.html")
 
