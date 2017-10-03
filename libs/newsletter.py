@@ -14,7 +14,6 @@ class Newsletter(object):
 			client = SlackClient(self.access_token)
 
 			response = client.api_call("channels.info", channel=id)
-
 			if response.get("ok"):
 				return response.get("channel")
 
@@ -23,8 +22,8 @@ class Newsletter(object):
 	def __getauthor(self, id):
 		if id:
 			client = SlackClient(self.access_token)
+
 			response = client.api_call("users.info", user=id)
-			print(response.get("user"))
 			if response.get("ok"):
 				return response.get("user")
 
@@ -106,7 +105,7 @@ class Newsletter(object):
 							pprint.pprint(author, indent=4)
 							new["author"] = {
 								"id": author.get("id"),
-								"name": author.get("profile").get("real_name") or author.get("name"),
+								"name": author.get("name"),
 								"avatar": author.get("profile").get("image_72")
 							}
 
