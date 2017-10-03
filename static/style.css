@@ -148,7 +148,8 @@ body {
           border-radius: 5px;
           transition: all .2s ease-in-out; }
           .content .topics .topic-list li a:hover, .content .topics .topic-list li a:active {
-            background: #424242; }
+            background: #ef9a9a;
+            color: #263238; }
   .content .links {
     display: flex;
     flex-wrap: wrap;
