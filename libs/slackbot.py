@@ -155,6 +155,19 @@ class SlackBot(object):
 
 		return [data]
 
+	def __save(self, article):
+		title = article.get("title")
+		if title:
+			try:
+				exists = self.db.count("news", "title", title)
+				if not exists:
+					self.db.add("news", article)
+					return True
+			except Exception as e:
+				print(e)
+
+		return False
+
 	def __sendresponse(self, response):
 		if response:
 			try:
@@ -254,7 +267,7 @@ class SlackBot(object):
 								"workspace": workspace,
 								"date": datetime.now()
 							}
-							self.db.add("news", article)
+							self.__save(article)
 						except Exception as e:
 							print(e)
 					else:
@@ -283,7 +296,7 @@ class SlackBot(object):
 								"workspace": workspace,
 								"date": datetime.now()
 							}
-							self.db.add("news", article)
+							self.__save(article)
 						except Exception as e:
 							print(e)
 			elif nosubtype and itsforme and not url:
