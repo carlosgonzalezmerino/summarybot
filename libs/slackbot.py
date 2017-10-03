@@ -18,8 +18,8 @@ class SlackBot(object):
 	def __init__(self):
 		self.db = DB()
 
+		self.id = None
 		self.name = os.environ.get("SLACK_BOT_NAME")
-		self.request = None
 		self.verification = os.environ.get("SLACK_VERIFICATION_TOKEN")
 		self.oauth = {
 			"client_id": os.environ.get("SLACK_CLIENT_ID"),
