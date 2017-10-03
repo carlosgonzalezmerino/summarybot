@@ -115,8 +115,7 @@ body {
     display: inline-block;
     vertical-align: top;
     width: 20%;
-    min-width: 120px;
-    max-width: 200px;
+    min-width: 200px;
     margin-right: 20px; }
     .content .topics h3 {
       margin: 20px 0; }
@@ -126,10 +125,18 @@ body {
       width: 100%;
       height: auto;
       list-style: none; }
-      .content .topics .topic-list li a {
-        padding: 10px 20px;
-        text-decoration: none;
-        text-transform: none;
-        color: white; }
+      .content .topics .topic-list li {
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+        height: auto; }
+        .content .topics .topic-list li a {
+          display: inline-block;
+          vertical-align: top;
+          width: 100%;
+          padding: 10px 20px;
+          text-decoration: none;
+          text-transform: none;
+          color: white; }
 
 /*# sourceMappingURL=style.css.map */
