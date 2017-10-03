@@ -38,7 +38,7 @@
 						<a class="link" href="{{ url_for("read", id=link.id) }}">
 							<h3>{{ link.title }}</h3>
 							<span>Published by <b>{{ link.author.name }}</b> in <b>{{ link.channel.name }}</b></span>
-							{% if link.summary.get(0) %}<p>{{ link.summary.get(0) }}</p>{% endif %}
+							{% if link.summary.get(0) %}<p>{{ link.summary[0] }}</p>{% endif %}
 						</a>
 					{% endfor %}
 				{% endif %}
