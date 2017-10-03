@@ -92,21 +92,19 @@ class Newsletter(object):
 		links = []
 		for channel in channels:
 			links += self.db.getAll("news", "channel_id", channel.get("id"))
+		print(links)
 
-		keywords = []
-
-		for link in links:
-			link_keywords = link.get("keywords").split(",")
-
-			for keyword in link_keywords:
-				if not keyword in keywords:
-					keywords.append(keyword)
-
+		all_keywords, keywords = [link.get("keywords").split(",") for link in links], []
+		for keyword in all_keywords:
+			if not keyword in keywords:
+				keywords.append(keyword)
+		print(keywords)
 		return keywords or None
 
 	def gettopics(self):
 		try:
 			channels = self.__getchannels()
+			print(channels)
 			if channels:
 				return self.__getkeywords(channels)
 		except Exception as e:
