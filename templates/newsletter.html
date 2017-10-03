@@ -19,8 +19,8 @@
 				{% for link in links %}
 					<a class="link" href="{{ url_for("read", id=link.id) }}">
 						<h3>{{ link.title }}</h3>
-						<span>Published by <b>{{ link.author.name }}</b> in <b>{{ link.channel.name }}</b></span>
 						{% if link.summary %}<p>{{ link.summary[0] }}</p>{% endif %}
+						<span class="author">Published by <b>{{ link.author.name }}</b> in <b>{{ link.channel.name }}</b></span>
 					</a>
 				{% endfor %}
 			{% endif %}
