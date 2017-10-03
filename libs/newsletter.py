@@ -25,7 +25,7 @@ class Newsletter(object):
 		client = SlackClient(self.access_token)
 		try:
 			response = client.api_call("users.info", user=id)
-
+			print(response)
 			if response.get("ok"):
 				return response.get("user")
 		except Exception as e:
