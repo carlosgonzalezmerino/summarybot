@@ -46,6 +46,7 @@ class SlackBot(object):
 				self.id = candidate.get("id")
 				print("BOT ID: %s" % self.id)
 		else:
+			print(response)
 			raise Exception("Error getting user list info")
 
 	def __itsforme(self, event):
