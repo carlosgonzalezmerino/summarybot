@@ -10,14 +10,14 @@ class Newsletter(object):
 		self.db = DB()
 
 	def __getchannel(self, id):
-		if id:
-			client = SlackClient(self.access_token)
+		channels = self.__getchannels()
 
-			response = client.api_call("channels.info", channel=id)
-			if response.get("ok"):
-				return response.get("channel")
+		if channels:
+			for channel in channels:
+				if channel.get("id") == id:
+					return channel
 
-			return None
+		return None
 
 	def __getauthor(self, id):
 		if id:
