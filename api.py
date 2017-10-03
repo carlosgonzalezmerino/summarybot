@@ -93,7 +93,7 @@ def thanks():
 def login():
 	bot = SlackBot()
 	client_id = bot.oauth.get("client_id")
-	scope = "users.profile:read, groups:read, channels:read"
+	scope = "users.profile:read, users:read, groups:read, channels:read"
 	return render_template("login.html", client_id=client_id, scope=scope)
 
 
@@ -112,7 +112,9 @@ def logout(data=None):
 def newsletter(data):
 	nw = Newsletter(data.get("access_token"))
 	topics = nw.gettopics()
-	return render_template("newsletter/index.html", data=data, topics=topics)
+	recent_links = nw.getrecents()
+	return render_template("newsletter/index.html", data=data, topics=topics, links=recent_links)
+
 
 @api.route("/newsletter/<string:tag>")
 @loginrequired

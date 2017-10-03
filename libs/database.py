@@ -157,7 +157,27 @@ class DB(object):
 
 		self.close()
 		return results
-	
+
+	def getByDate(self, table, key, start, end=None):
+		if not self.__verify(table, start):
+			raise Exception("Bad input.")
+
+		self.connect()
+		query, results = "SELECT * FROM %s WHERE %s > ?" % (table, key), []
+
+		try:
+			if not end:
+				query = "%s AND %s <= ?" % (query, key)
+				self.cursor.execute(query, (start, end))
+			else:
+				self.cursor.execute(query, (start,))
+			results = self.cursor.fetchall()
+		except sqlite3.Error as err:
+			raise Exception("SQLite Error: {}".format(err))
+
+		self.close()
+		return results
+
 	def count(self, table, key, value):
 		if not self.__verify(table, key, value):
 			raise Exception("Bad input.")

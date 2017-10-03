@@ -2,8 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title>Reverte Bot - El bot resumidor que te habla de usted.</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,17 +21,24 @@
 					<a class="logout" href="{{ url_for("logout") }}">Salir <i class="fa fa-sign-out"></i></a>
 				</div>
 			</div>
-			<div id="topics">
+			<div class="topics">
 				{% if topics %}
-					{% for topic, links in topics.items() %}
-						<a class="topic" href="{{ url_for("topic", tag=topic) }}">
-							<h3><i class="fa fa-tag" aria-hidden="true"></i> {{ topic }}</h3>
-							<p>Con enlaces como...</p>
-							<ul class="links">
-								{% for link in links %}
-									<li>{{ link.title }}</li>
-								{% endfor %}
-							</ul>
+					<h3>Tags</h3>
+					<ul class="topic-list">
+					{% for topic in topics %}
+						<a class="topic" href="{{ url_for("topic", tag=topic) }}">{{ topic }}</a>
+					{% endfor %}
+					</ul>
+				{% endif %}
+			</div>
+
+			<div class="links">
+				{% if links %}
+					{% for link in links %}
+						<a class="link" href="{{ url_for("read", id=link.id) }}">
+							<h3>{{ link.title }}</h3>
+							<span>Published by <b>{{ link.author.name }}</b> in <b>{{ link.channel.name }}</b></span>
+							{% if link.summary.get(0) %}<p>{{ link.summary.get(0) }}</p>{% endif %}
 						</a>
 					{% endfor %}
 				{% endif %}
