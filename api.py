@@ -111,7 +111,7 @@ def newsletter(data):
 	nw = Newsletter(data.get("access_token"))
 	topics = nw.gettopics()
 	recent_links = nw.getrecents()
-	return render_template("newsletter/index.html", data=data, topics=topics, links=recent_links)
+	return render_template("newsletter.html", data=data, topics=topics, links=recent_links)
 
 
 @api.route("/newsletter/<string:tag>")
