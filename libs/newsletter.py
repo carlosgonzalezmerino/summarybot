@@ -88,9 +88,7 @@ class Newsletter(object):
 		try:
 			links = []
 			news = self.db.getByDate("news", "date", start, end)
-			from pprint import pprint
 			for new in news:
-				pprint(new, indent=4)
 				keywords = new.get("keywords")
 				if keywords:
 					tags = keywords.split(",")
