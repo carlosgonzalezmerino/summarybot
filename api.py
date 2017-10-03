@@ -41,7 +41,7 @@ def index():
 	bot = SlackBot()
 	client_id = bot.oauth.get("client_id")
 	scope = bot.oauth.get("scope")
-	url = quote_plus("/bot")
+	url = quote_plus("https://bot.myshortreport.com/auth/bot")
 	return render_template("index.html", client_id=client_id, scope=scope, redirect=url)
 
 

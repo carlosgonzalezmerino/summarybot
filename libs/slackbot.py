@@ -166,8 +166,7 @@ class SlackBot(object):
 	def auth(self, code):
 		auth_response = self.auth_call(code)
 
-		print(auth_response)
-		if auth_response:
+		if auth_response and auth_response.get("ok"):
 			team_id = auth_response.get("team_id")
 			if team_id:
 				bot = auth_response.get("bot")
@@ -181,6 +180,9 @@ class SlackBot(object):
 						return True
 					except Exception as e:
 						print(e)
+		else:
+			print(auth_response.get("error"))
+
 		return False
 
 	def auth_call(self, code):
