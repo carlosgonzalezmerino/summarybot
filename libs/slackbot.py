@@ -163,10 +163,10 @@ class SlackBot(object):
 				print(e)
 		return
 
-	def auth(self, code):
-		auth_response = self.auth_call(code)
+	def auth(self, code, uri=None):
+		auth_response = self.auth_call(code, uri)
 
-		if auth_response and auth_response.get("ok"):
+		if auth_response:
 			team_id = auth_response.get("team_id")
 			if team_id:
 				bot = auth_response.get("bot")
@@ -180,23 +180,33 @@ class SlackBot(object):
 						return True
 					except Exception as e:
 						print(e)
-		else:
-			print(auth_response.get("error"))
 
 		return False
 
-	def auth_call(self, code):
+	def auth_call(self, code, uri=None):
 		try:
-			auth_response = self.client.api_call(
-				"oauth.access",
-				client_id=self.oauth["client_id"],
-				client_secret=self.oauth["client_secret"],
-				code=code
-			)
-			return auth_response
-		except:
-			print("Error getting authorization with code: %s" % code)
-			pass
+			if uri:
+				auth_response = self.client.api_call(
+					"oauth.access",
+					client_id=self.oauth["client_id"],
+					client_secret=self.oauth["client_secret"],
+					redirect_uri=uri,
+					code=code
+				)
+			else:
+				auth_response = self.client.api_call(
+					"oauth.access",
+					client_id=self.oauth["client_id"],
+					client_secret=self.oauth["client_secret"],
+					code=code
+				)
+			if auth_response.get("ok"):
+				return auth_response
+			else:
+				raise(auth_response.get("error"))
+		except Exception as e:
+			print(e)
+
 		return None
 
 	def connect(self, team_id):

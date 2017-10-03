@@ -82,12 +82,12 @@ def auth():
 def thanks():
 	bot = SlackBot()
 	code = request.args.get("code")
-	print(code)
 	if code:
-		bot.auth(code)
-		return render_template("thanks.html")
-	else:
-		return render_template("error.html")
+		uri = quote_plus("https://bot.myshortreport.com/auth/bot")
+		if bot.auth(code, uri):
+			return render_template("thanks.html")
+
+	return render_template("error.html")
 
 
 @api.route("/auth/login")
