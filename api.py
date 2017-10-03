@@ -36,6 +36,10 @@ def loginrequired(func):
 	return core
 
 
+@api.template_filter('strftime')
+def filter_datetime(date, fmt=None):
+	return date.strftime(fmt or "%b %d, %Y") or date
+
 @api.route("/")
 def index():
 	bot = SlackBot()
