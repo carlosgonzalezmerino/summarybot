@@ -42,8 +42,9 @@ class SlackBot(object):
 				raise Exception("Bot name not found ;(")
 			elif isinstance(candidate, list):
 				raise Exception("Ambiguous bot name ;(")
-
-			self.id = candidate.get("id")
+			else:
+				self.id = candidate.get("id")
+				print("BOT ID: %s" % self.id)
 		else:
 			raise Exception("Error getting user list info")
 
