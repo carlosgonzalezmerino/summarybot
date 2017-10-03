@@ -21,7 +21,7 @@ class Newsletter(object):
 
 		return None
 
-	def __getuser(self, id):
+	def __getauthor(self, id):
 		client = SlackClient(self.access_token)
 		try:
 			response = client.api_call("users.info", user=id)
