@@ -99,6 +99,7 @@ class Newsletter(object):
 						author = self.__getauthor(channel.get("user_id"))
 
 						if channel:
+							print(channel)
 							del channel["channel_id"]
 							new["channel"] = {
 								"id": channel.get("id"),
@@ -106,6 +107,7 @@ class Newsletter(object):
 							}
 
 						if author:
+							print(author)
 							del channel["user_id"]
 							new["author"] = {
 								"id": author.get("id"),
