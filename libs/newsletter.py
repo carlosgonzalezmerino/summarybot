@@ -93,6 +93,7 @@ class Newsletter(object):
 		for channel in channels:
 			links += self.db.getAll("news", "channel_id", channel.get("id"))
 
+		keywords = []
 		for link in links:
 			all_keywords = link.get("keywords").split(",")
 			for keyword in all_keywords:
