@@ -80,18 +80,19 @@ body {
       .header .inner .title img {
         display: inline-block;
         vertical-align: top;
-        height: 70px;
+        height: 50px;
         margin: 0 10px 0 0; }
       .header .inner .title h1 {
         display: inline-block;
         vertical-align: top;
-        line-height: 70px; }
+        line-height: 50px;
+        font-size: 30px; }
     .header .inner .menu {
       display: inline-block;
       vertical-align: top;
       width: auto;
       height: auto;
-      line-height: 70px; }
+      line-height: 50px; }
       .header .inner .menu .logout {
         display: inline-block;
         vertical-align: top;
@@ -101,7 +102,7 @@ body {
         color: white;
         background: red;
         border-radius: 4px;
-        margin: 20px 0 20px 30px;
+        margin: 10px 0 10px 30px;
         line-height: 30px;
         text-decoration: none; }
 
@@ -120,13 +121,16 @@ body {
     min-width: 200px;
     margin-right: 20px; }
     .content .topics h3 {
-      margin: 20px 0; }
+      margin: 20px 0;
+      color: #757575; }
     .content .topics .topic-list {
       display: inline-block;
       vertical-align: top;
       width: 100%;
       height: auto;
-      list-style: none; }
+      list-style: none;
+      padding-right: 20px;
+      border-right: 1px solid #212121; }
       .content .topics .topic-list li {
         display: inline-block;
         vertical-align: top;
@@ -136,7 +140,7 @@ body {
           display: inline-block;
           vertical-align: top;
           width: 100%;
-          padding: 10px 20px;
+          padding: 5px 20px;
           text-decoration: none;
           text-transform: none;
           color: white; }
