@@ -93,10 +93,11 @@ class Newsletter(object):
 		for channel in channels:
 			links += self.db.getAll("news", "channel_id", channel.get("id"))
 
-		all_keywords, keywords = [link.get("keywords").split(",") for link in links], []
-		for keyword in all_keywords:
-			if not keyword in keywords:
-				keywords.append(keyword)
+		for link in links:
+			all_keywords = link.get("keywords").split(",")
+			for keyword in all_keywords:
+				if not keyword in keywords:
+					keywords.append(keyword)
 
 		return keywords or None
 
