@@ -195,6 +195,7 @@ body {
 		flex-wrap: wrap;
 		justify-content: flex-start;
 		align-content: flex-start;
+		align-items: flex-start;
 
 		.link {
 			display: inline-block;
@@ -228,7 +229,10 @@ body {
 				padding: 5px 0;
 			}
 
-			p {font-size: 14px;}
+			p {
+				font-size: 14px;
+				margin: 0 0 10px;
+			}
 
 		}
 	}
