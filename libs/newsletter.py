@@ -119,11 +119,16 @@ class Newsletter(object):
 		start = end - timedelta(days=7)
 
 		try:
+			channels = self.__getchannels()
+			channels_ids = map(lambda channel: channels.get("id"), channels)
+			print(channels_ids)
+
 			links = []
 			news = self.db.getByDate("news", "date", start, end)
 			for new in news:
-				link = self.__formatlink(new)
-				links.append(link)
+				if new.get("id") in channels_ids:
+					link = self.__formatlink(new)
+					links.append(link)
 
 			return links
 		except Exception as e:
