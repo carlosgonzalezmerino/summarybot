@@ -167,12 +167,15 @@ body {
       border: 1px solid #37474F;
       border-radius: 5px;
       background: #263238;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       color: white;
       text-decoration: none;
       display: flex;
       flex-wrap: wrap;
       align-content: flex-start; }
+      .content .links .link:hover {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
       .content .links .link .title {
         font-size: 16px;
         color: #ef5350;
