@@ -88,13 +88,13 @@ class Newsletter(object):
 		try:
 			links = []
 			news = self.db.getByDate("news", "date", start, end)
+			from pprint import pprint
 			for new in news:
+				pprint(new, indent=4)
 				keywords = new.get("keywords")
 				if keywords:
 					tags = keywords.split(",")
 					if tags:
-						new["keywords"] = tags
-						new["summary"] = new.get("summary").split("\n\n")
 						channel = self.__getchannel(new.get("channel_id"))
 						author = self.__getauthor(channel.get("user_id"))
 
@@ -111,6 +111,9 @@ class Newsletter(object):
 								"id": author.get("id"),
 								"name": author.get("profile").get("real_name") or author.get("name")
 							}
+
+						new["keywords"] = tags
+						new["summary"] = new.get("summary").split("\n\n")
 
 						links.append(new)
 			return links
