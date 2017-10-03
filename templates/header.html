@@ -1,12 +1,14 @@
 {% block header %}
 	<div class="header">
-		<a class="title" href="{{ url_for("newsletter") }}">
-			<img src="/static/avatar.png">
-			<h1>Reverte Bot</h1>
-		</a>
-		<div class="menu">
-			<span class="user">Bienvenido {{ data.user.name }}!</span>
-			<a class="logout" href="{{ url_for("logout") }}">Salir <i class="fa fa-sign-out"></i></a>
+		<div class="inner">
+			<a class="title" href="{{ url_for("newsletter") }}">
+				<img src="/static/avatar.png">
+				<h1>Reverte Bot</h1>
+			</a>
+			<div class="menu">
+				<span class="user">Bienvenido {{ data.user.name }}!</span>
+				<a class="logout" href="{{ url_for("logout") }}">Salir <i class="fa fa-sign-out"></i></a>
+			</div>
 		</div>
 	</div>
 {% endblock %}
