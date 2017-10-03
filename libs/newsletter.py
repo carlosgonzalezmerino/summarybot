@@ -10,28 +10,25 @@ class Newsletter(object):
 		self.db = DB()
 
 	def __getchannel(self, id):
-		client = SlackClient(self.access_token)
-		try:
+		if id:
+			client = SlackClient(self.access_token)
+
 			response = client.api_call("channels.info", channel=id)
 
 			if response.get("ok"):
 				return response.get("channel")
-		except Exception as e:
-			print(e)
 
-		return None
+			return None
 
 	def __getauthor(self, id):
-		client = SlackClient(self.access_token)
-		try:
+		if id:
+			client = SlackClient(self.access_token)
 			response = client.api_call("users.info", user=id)
 			print(response.get("user"))
 			if response.get("ok"):
 				return response.get("user")
-		except Exception as e:
-			print(e)
 
-		return None
+			return None
 
 	def __getchannels(self):
 		channels = []
