@@ -1,23 +1,13 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>Reverte Bot - El bot resumidor que te habla de usted.</title>
-		<meta name="description" content="">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="/static/style.css"/>
-	</head>
-	<body>
-		<div class="main">
-			<img class="face" src="/static/avatar.png"/>
-			<div class="info">
-				<h1>Gracias!</h1>
-				<h3>Reverte Bot se ha instalado correctamente</h3>
-				<p>"Gracias por la compañía y por las cañas."</p>
-				<span class="credits">Crafted with <span class="hearth">♥</span> for Labs | BEEVA.</span>
-			</div>
-		</div>
-	</body>
-</html>
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="main">
+	<img class="face" src="/static/avatar.png"/>
+	<div class="info">
+		<h1>Gracias!</h1>
+		<h3>Reverte Bot se ha instalado correctamente</h3>
+		<p>"Gracias por la compañía y por las cañas."</p>
+		<span class="credits">Crafted with <span class="hearth">♥</span> for Labs | BEEVA.</span>
+	</div>
+</div>
+{% endblock %}

@@ -74,7 +74,7 @@ body {
 	font-size: 16px;
 }
 
-#newsletter {
+.content {
 	display: block;
     margin: 60px auto;
     width: 90%;
@@ -85,7 +85,7 @@ body {
     justify-content: space-between;
 }
 
-#newsletter .header {
+.content .header {
     display: inline-block;
     vertical-align: top;
     width: 100%;
@@ -95,7 +95,7 @@ body {
     justify-content: space-between;
 }
 
-#newsletter .header .title {
+.content .header .title {
 	display: inline-block;
 	vertical-align: top;
     width: auto;
@@ -105,20 +105,20 @@ body {
     font-size: 20px;
 }
 
-#newsletter .header .title img {
+.content .header .title img {
     display: inline-block;
     vertical-align: top;
 	height: 70px;
     margin: 0 10px;
 }
 
-#newsletter .header .title h1 {
+.content .header .title h1 {
 	display: inline-block;
 	vertical-align: top;
 	line-height: 70px;
 }
 
-#newsletter .menu {
+.content .menu {
 	display: inline-block;
     vertical-align: top;
     width: auto;
@@ -126,7 +126,7 @@ body {
     line-height: 70px;
 }
 
-#newsletter .menu .logout {
+.content .menu .logout {
 	display: inline-block;
 	vertical-align: top;
 	width: auto;
@@ -140,7 +140,7 @@ body {
 	text-decoration: none;
 }
 
-#newsletter #topics {
+.content #topics {
 	display: inline-block;
     vertical-align: top;
     width: 100%;
@@ -150,7 +150,7 @@ body {
     flex-wrap: wrap;
 }
 
-#newsletter #topics .topic {
+.content #topics .topic {
 	display: inline-block;
     vertical-align: top;
     width: 46%;
@@ -166,19 +166,19 @@ body {
 	text-transform: none;
 }
 
-#newsletter #topics .topic:hover,
-#newsletter #topics .topic:active {
+.content #topics .topic:hover,
+.content #topics .topic:active {
 	border-color: #fff;
 }
 
-#newsletter #topics .topic h3 {padding: 10px 0;}
+.content #topics .topic h3 {padding: 10px 0;}
 
-#newsletter #topics .topic p {
+.content #topics .topic p {
 	font-size: 14px;
 	color: #ddd;
 }
 
-#newsletter #topics .topic .links {
+.content #topics .topic .links {
 	display: inline-block;
     vertical-align: top;
     width: 100%;
@@ -187,14 +187,14 @@ body {
 	font-size: 12px;
 }
 
-#newsletter #topic {
+.content #topic {
 	display: inline-block;
     vertical-align: top;
     width: 100%;
 	padding: 50px 0;
 }
 
-#newsletter #topic h2 {
+.content #topic h2 {
 	display: inline-block;
 	vertical-align: top;
 	width: 100%;
@@ -202,7 +202,7 @@ body {
 	text-align: center;
 }
 
-#newsletter #topic .link {
+.content #topic .link {
 	display: inline-block;
     vertical-align: top;
     width: 100%;
@@ -214,13 +214,13 @@ body {
     border-radius: 10px;
 }
 
-#newsletter #topic .link h4 a {
+.content #topic .link h4 a {
 	font-size: 1.1em;
     color: #444;
 	margin: 10px 0;
 }
 
-#newsletter #topic .link .tags {
+.content #topic .link .tags {
     display: inline-block;
     vertical-align: top;
     width: 100%;
@@ -229,7 +229,7 @@ body {
 	text-align: right;
 }
 
-#newsletter #topic .link .tags li {
+.content #topic .link .tags li {
 	display: inline-block;
     vertical-align: top;
     width: auto;
@@ -241,18 +241,18 @@ body {
     font-size: 14px;
 }
 
-#newsletter #topic .link .tags li a {
+.content #topic .link .tags li a {
 	color: black;
 	text-transform: none;
 	text-decoration: none;
 	cursor: pointer;
 }
 
-#newsletter #topic .link p {
+.content #topic .link p {
 	margin: 10px 0;
 	font-size: 14px;
 }
 
 @media screen and (max-width: 768px) {
-	#newsletter #topics .topic {width: 96%;}
+	.content #topics .topic {width: 96%;}
 }
