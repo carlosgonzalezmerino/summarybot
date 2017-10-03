@@ -124,5 +124,13 @@ def topic(data, tag):
 	return render_template("newsletter/topic.html", data=data, topic=tag, links=links)
 
 
+@api.route("/newsletter/read/<int:id>")
+@loginrequired
+def read(data, id):
+	nw = Newsletter(data.get("access_token"))
+	link = nw.getlink(id)
+	return render_template("newsletter/link.html", data=data, link=link)
+
+
 if __name__ == "__main__":
 	api.run(host="0.0.0.0", debug=True)
