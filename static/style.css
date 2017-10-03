@@ -122,7 +122,7 @@ body {
     margin-right: 20px; }
     .content .topics h3 {
       margin: 20px 0;
-      color: #757575; }
+      color: #9E9E9E; }
     .content .topics .topic-list {
       display: inline-block;
       vertical-align: top;
@@ -143,6 +143,10 @@ body {
           padding: 5px 20px;
           text-decoration: none;
           text-transform: none;
-          color: white; }
+          color: white;
+          border-radius: 5px;
+          transition: all .2s ease-in-out; }
+          .content .topics .topic-list li a:hover, .content .topics .topic-list li a:active {
+            background: #424242; }
 
 /*# sourceMappingURL=style.css.map */
