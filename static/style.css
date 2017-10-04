@@ -232,11 +232,19 @@ body {
     max-width: 700px;
     font-family: 'Source Serif Pro', serif;
     color: white; }
-    .content .read-link .link-author,
-    .content .read-link .link-tags {
-      color: #FF80AB;
-      font-size: 14px;
-      opacity: .6; }
+    .content .read-link .link-header {
+      display: inline-block;
+      vertical-align: top;
+      width: 100%;
+      padding: 10px 0;
+      margin-bottom: 10px; }
+      .content .read-link .link-header .link-title {
+        margin-bottom: 20px; }
+      .content .read-link .link-header .link-author,
+      .content .read-link .link-header .link-tags {
+        color: #FF80AB;
+        font-size: 14px;
+        opacity: .6; }
     .content .read-link p {
       font-size: 16px;
       margin: 10px 0; }

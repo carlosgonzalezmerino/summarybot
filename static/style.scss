@@ -285,17 +285,30 @@ body {
 		font-family: 'Source Serif Pro', serif;
 		color: white;
 
-		.link-author,
-		.link-tags {
-			color: $accent-secondary;
-			font-size: 14px;
-			opacity: .6;
+		.link-header {
+			display: inline-block;
+			vertical-align: top;
+			width: 100%;
+			padding: 10px 0;
+			margin-bottom: 10px;
+			.link-title {
+				margin-bottom: 20px;
+			}
+
+			.link-author,
+			.link-tags {
+				color: $accent-secondary;
+				font-size: 14px;
+				opacity: .6;
+			}
 		}
 
 		p {
 			font-size: 16px;
 			margin: 10px 0;
 		}
+
+		.link-footer {}
 	}
 }
 
