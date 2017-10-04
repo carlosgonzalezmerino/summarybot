@@ -120,7 +120,9 @@ body {
     width: 20%;
     min-width: 200px;
     margin-right: 20px; }
-    .content .topics .title {
+    .content .topics .section-title {
+      display: block;
+      width: 100%;
       margin: 20px 0;
       color: #FF4081; }
     .content .topics .topic-list {
@@ -159,7 +161,9 @@ body {
     justify-content: flex-start;
     align-content: flex-start;
     align-items: stretch; }
-    .content .links .title {
+    .content .links .section-title {
+      display: block;
+      width: 100%;
       margin: 20px 0;
       color: #FF4081; }
     .content .links .link {

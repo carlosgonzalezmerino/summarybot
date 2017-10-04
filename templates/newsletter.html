@@ -5,7 +5,7 @@
 	<div class="content">
 		<div class="topics">
 			{% if topics %}
-				<h3 class="title">Tags</h3>
+				<h3 class="section-title">Tags</h3>
 				<ul class="topic-list">
 				{% for topic in topics %}
 					<li><a class="topic" href="{{ url_for("topic", tag=topic) }}">{{ topic }}</a></li>
@@ -16,7 +16,7 @@
 
 		<div class="links">
 			{% if links %}
-				<h3 class="title">Recent links</h3>
+				<h3 class="section-title">Recent links</h3>
 				{% for link in links %}
 					<a class="link" href="{{ url_for("read", id=link.id) }}">
 						<h3 class="title">{{ link.title }}</h3>

@@ -152,7 +152,9 @@ body {
 		min-width: 200px;
 		margin-right: 20px;
 
-		.title {
+		.section-title {
+			display: block;
+			width: 100%;
 			margin: 20px 0;
 			color: $accent-primary;
 		}
@@ -199,7 +201,9 @@ body {
 		align-content: flex-start;
 		align-items: stretch;
 
-		.title {
+		.section-title {
+			display: block;
+			width: 100%;
 			margin: 20px 0;
 			color: $accent-primary;
 		}
