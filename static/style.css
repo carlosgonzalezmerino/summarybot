@@ -269,6 +269,8 @@ body {
   .header .inner {
     flex-wrap: wrap;
     text-align: center;
-    justify-content: center; } }
+    justify-content: center; }
+    .header .inner + * {
+      width: 100%; } }
 
 /*# sourceMappingURL=style.css.map */
