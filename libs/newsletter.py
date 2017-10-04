@@ -151,7 +151,8 @@ class Newsletter(object):
 			links = []
 			news = self.db.getAll("news")
 			for new in news:
-				if new.get("channel_id") in channels_ids:
+				keywords = new.get("keywords")
+				if keywords and topic in keywords.split(",") and new.get("channel_id") in channels_ids:
 					link = self.__formatlink(new)
 					links.append(link)
 
