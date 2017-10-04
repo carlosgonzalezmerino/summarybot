@@ -10,6 +10,7 @@
 				{% for topic in topics %}
 					<li><a class="topic" href="{{ url_for("topic", tag=topic) }}">{{ topic }}</a></li>
 				{% endfor %}
+				<small class="disclaimer">Scroll down</small>
 				</ul>
 			{% endif %}
 		</div>
