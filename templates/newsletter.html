@@ -20,12 +20,10 @@
 					<a class="link" href="{{ url_for("read", id=link.id) }}">
 						<h3 class="title">{{ link.title }}</h3>
 						<span class="metadata">{{ link.date | strftime }} en {{ link.channel.name }} | {{ link.readtime }} min de lectura.</span>
-						<div class="bottombar">
-							<div class="author">
-								<img class="avatar" src="{{ link.author.avatar }}"/>
-								<b>{{ link.author.name }}</b>
-							</div>
-							<span class="tags"><i class="fa fa-tags" aria-hidden="true"></i> {{ ", ".join(link.keywords) }}</span>
+						<div class="metadata"><i class="fa fa-tags" aria-hidden="true"></i> {{ ", ".join(link.keywords) }}</div>
+						<div class="author">
+							<img class="avatar" src="{{ link.author.avatar }}"/>
+							<b>{{ link.author.name }}</b>
 						</div>
 					</a>
 				{% endfor %}

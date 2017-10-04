@@ -229,15 +229,25 @@ body {
 			}
 			.metadata {
 				font-size: 12px;
-				margin: 0 0 10px;
+				margin: 5px 0;
 				padding: 5px 0;
 			}
 
-			p {
-				font-size: 14px;
-				margin: 0 0 10px;
+			.author {
+				display: inline-block;
+				vertical-align: top;
+				align-self: flex-end;
+				width: 100%;
+				height: auto;
+				line-height: 32px;
+				.avatar {
+					display: inline-block;
+					vertical-align: top;
+					width: 32px;
+					border-radius: 50%;
+					height: 32px;
+				}
 			}
-
 		}
 	}
 }
