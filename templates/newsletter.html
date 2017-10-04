@@ -16,7 +16,7 @@
 
 		<div class="links">
 			{% if links %}
-				<h3 class="section-title">Recent links</h3>
+				<h3 class="section-title">{{ tag or "Recent links" }}</h3>
 				{% for link in links %}
 					<a class="link" href="{{ url_for("read", id=link.id) }}">
 						<h3 class="title">{{ link.title }}</h3>

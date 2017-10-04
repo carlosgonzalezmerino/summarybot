@@ -145,18 +145,17 @@ class Newsletter(object):
 
 	def getlinks(self, topic):
 		try:
+			channels = self.__getchannels()
+			channels_ids = [channel.get("id") for channel in channels]
+
 			links = []
 			news = self.db.getAll("news")
 			for new in news:
-				keywords = new.get("keywords")
-				if keywords:
-					tags = keywords.split(",")
-					if topic in tags:
-						new["keywords"] = tags
-						new["summary"] = new.get("summary").split("\n\n")
-						links.append(new)
+				if new.get("channel_id") in channels_ids:
+					link = self.__formatlink(new)
+					links.append(link)
 
-			return links or None
+			return links
 		except Exception as e:
 			print(e)
 

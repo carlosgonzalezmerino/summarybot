@@ -122,8 +122,9 @@ def newsletter(data):
 @loginrequired
 def topic(data, tag):
 	nw = Newsletter(data.get("access_token"))
+	topics = nw.gettopics()
 	links = nw.getlinks(tag)
-	return render_template("newsletter/topic.html", data=data, topic=tag, links=links)
+	return render_template("newsletter.html", data=data, tag=tag, topics=topics, links=links)
 
 
 @api.route("/newsletter/read/<int:id>")
