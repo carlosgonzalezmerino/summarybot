@@ -185,8 +185,11 @@ body {
         padding: 5px 0;
         font-weight: 400; }
       .content .links .link .metadata {
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
         font-size: 12px;
-        margin: 5px 0;
+        margin: 0;
         padding: 5px 0; }
       .content .links .link .author {
         display: inline-block;
