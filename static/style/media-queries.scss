@@ -1,0 +1,39 @@
+@media screen and (max-width: 1200px) {
+	.content .links .link {width: 48%;}
+}
+
+@media screen and (max-width: 900px) {
+	.content .topics {
+		position: absolute;
+		width: auto;
+		max-width: 300px;
+		padding: 10px 30px;
+		overflow: hidden;
+		z-index: 1;
+		background: #263238;
+		box-shadow: 0 1px 10px rgba(0, 0, 0, 0.12), 0 1px 10px rgba(0, 0, 0, 0.24);
+		opacity: 0;
+		visibility: hidden;
+
+		.topic-list {border: none;}
+
+		&.showed {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.header .inner {
+		flex-wrap: wrap;
+		text-align: center;
+		justify-content: center;
+
+		& > * {width: 100% !important;}
+	}
+}
+
+@media screen and (max-width: 680px) {
+	.content .links .link {width: 98%;}
+}

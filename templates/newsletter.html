@@ -2,44 +2,42 @@
 {% block content %}
 	{% include "header.html" %}
 
-	<div class="expand-tags">
+	<div class="home">
 		<span id="toggleTags"><i class="fa fa-tags" aria-hidden="true"></i> Tags</span>
-	</div>
-
-	<div class="content">
-		<div id="tagsMenu" class="topics">
-			{% if topics %}
-				<h3 class="section-title">Tags</h3>
-				<ul class="topic-list">
-				{% for topic in topics %}
-					<li><a class="topic" href="{{ url_for("topic", tag=topic) }}">{{ topic }}</a></li>
-				{% endfor %}
-				</ul>
-				<small class="disclaimer">Scroll down</small>
-			{% endif %}
-		</div>
-
-		<div class="links">
-			{% if links %}
-				{% if tag %}
-					<h3 class="section-title">Filter: {{ tag }}</h3>
-				{% else %}
-					<h3 class="section-title">Recent links</h3>
+		<div class="content"></div>
+			<div id="tagsMenu" class="topics">
+				{% if topics %}
+					<h3 class="section-title">Tags</h3>
+					<ul class="topic-list">
+					{% for topic in topics %}
+						<li><a class="topic" href="{{ url_for("topic", tag=topic) }}">{{ topic }}</a></li>
+					{% endfor %}
+					</ul>
+					<small class="disclaimer">Scroll down</small>
 				{% endif %}
-				{% for link in links %}
-					<a class="link" href="{{ url_for("read", id=link.id) }}">
-						<h3 class="title">{{ link.title }}</h3>
-						<span class="metadata"><i class="fa fa-tags" aria-hidden="true"></i> {{ ", ".join(link.keywords) }}</span>
-						<span class="metadata"><i class="fa fa-calendar" aria-hidden="true"></i> {{ link.date | strftime }} en {{ link.channel.name }}</span>
-						<span class="metadata"><i class="fa fa-clock" aria-hidden="true"></i> {{ link.readtime }} min de lectura.</span>
-						<div class="author">
-							<img class="avatar" src="{{ link.author.avatar }}"/>
-							<b>{{ link.author.name }}</b>
-						</div>
-					</a>
-				{% endfor %}
-			{% endif %}
-		</div>
+			</div>
+
+			<div class="links">
+				{% if links %}
+					{% if tag %}
+						<h3 class="section-title">Filter: {{ tag }}</h3>
+					{% else %}
+						<h3 class="section-title">Recent links</h3>
+					{% endif %}
+					{% for link in links %}
+						<a class="link" href="{{ url_for("read", id=link.id) }}">
+							<h3 class="title">{{ link.title }}</h3>
+							<span class="metadata"><i class="fa fa-tags" aria-hidden="true"></i> {{ ", ".join(link.keywords) }}</span>
+							<span class="metadata"><i class="fa fa-calendar" aria-hidden="true"></i> {{ link.date | strftime }} en {{ link.channel.name }}</span>
+							<span class="metadata"><i class="fa fa-clock" aria-hidden="true"></i> {{ link.readtime }} min de lectura.</span>
+							<div class="author">
+								<img class="avatar" src="{{ link.author.avatar }}"/>
+								<b>{{ link.author.name }}</b>
+							</div>
+						</a>
+					{% endfor %}
+				{% endif %}
+			</div>
 	</div>
 
 	<script>

@@ -1,0 +1,48 @@
+.read-link {
+	display: block;
+	margin: 60px auto;
+	width: 90%;
+	max-width: 700px;
+	font-family: 'Source Serif Pro', serif;
+	color: white;
+
+	.link-header {
+		display: inline-block;
+		vertical-align: top;
+		width: 100%;
+		padding: 10px 0;
+		margin-bottom: 10px;
+		.link-title {
+			margin-bottom: 30px;
+			font-size: 30px;
+		}
+
+		.link-author,
+		.link-tags {
+			display: block;
+			color: $accent-secondary;
+			font-size: 18px;
+		}
+	}
+
+	p {
+		font-size: 18px;
+		margin: 20px 0;
+	}
+
+	.link-footer {
+		display: inline-block;
+		vertical-align: top;
+		width: 100%;
+		text-align: center;
+		margin-top: 30px;
+
+		.link-original {
+			font-size: 16px;
+			color: white;
+			text-decoration: underline;
+			text-transform: none;
+			opacity: .8;
+		}
+	}
+}
