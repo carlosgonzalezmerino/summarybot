@@ -120,6 +120,20 @@ body {
     margin: 20px 0;
     color: #FF4081;
     text-transform: capitalize; }
+  .content .expand-tags {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%; }
+    .content .expand-tags .toggleTags {
+      display: inline-block;
+      vertical-align: top;
+      width: auto;
+      height: auto;
+      padding: 7px 20px;
+      color: white;
+      background: #FF4081;
+      border-radius: 4px;
+      margin: 10px 0; }
   .content .topics {
     display: inline-block;
     vertical-align: top;

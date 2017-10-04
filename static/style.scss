@@ -153,8 +153,22 @@ body {
 		text-transform: capitalize;
 	}
 
-	.expand-topics {
+	.expand-tags {
+		display: inline-block;
+		vertical-align: top;
+		width: 100%;
 
+		.toggleTags {
+			display: inline-block;
+			vertical-align: top;
+			width: auto;
+			height: auto;
+			padding: 7px 20px;
+			color: white;
+			background: $accent-primary;
+			border-radius: 4px;
+			margin: 10px 0;
+		}
 	}
 
 	.topics {
