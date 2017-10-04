@@ -6,7 +6,7 @@
 			<header class="link-header">
 				<h1 class="link-title">{{ link.title }}</h1>
 				<span class="link-tags"><i class="fa fa-tags" aria-hidden="true"></i> {{ ", ".join(link.keywords) }}</span>
-				<span class="link-author"><i class="fa fa-user" aria-hidden="true"></i> {{ link.author.name }} en {{ link.channel.name }}</span>
+				<span class="link-author"><i class="fa fa-user" aria-hidden="true"></i> {{ link.author.name | capitalize }} en {{ link.channel.name }}</span>
 			</header>
 			{% for paragraph in link.summary %}
 			<p>{{ paragraph }}</p>
