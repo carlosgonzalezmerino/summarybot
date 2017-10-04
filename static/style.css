@@ -139,15 +139,6 @@ body {
       overflow-y: auto; }
       .content .topics .topic-list::-webkit-scrollbar {
         display: none; }
-      .content .topics .topic-list .disclaimer {
-        display: inline-block;
-        vertical-align: top;
-        width: 100%;
-        height: 15px;
-        line-height: 15px;
-        text-align: center;
-        color: #FF80AB;
-        font-size: 12px; }
       .content .topics .topic-list li {
         display: inline-block;
         vertical-align: top;
@@ -167,6 +158,15 @@ body {
           .content .topics .topic-list li a:hover, .content .topics .topic-list li a:active {
             background: #FF80AB;
             color: #263238; }
+    .content .topics .disclaimer {
+      display: inline-block;
+      vertical-align: top;
+      width: 100%;
+      height: 15px;
+      line-height: 15px;
+      text-align: center;
+      color: #FF80AB;
+      font-size: 12px; }
   .content .links {
     display: flex;
     flex-wrap: wrap;
