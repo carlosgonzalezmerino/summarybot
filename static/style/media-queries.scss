@@ -39,5 +39,10 @@
 }
 
 @media screen and (max-width: 680px) {
+	.main {
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
 	.home .content .links .link {width: 98%;}
 }
