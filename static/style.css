@@ -265,5 +265,10 @@ body {
 @media screen and (max-width: 1200px) {
   .content .links .link {
     width: 48%; } }
+@media screen and (max-width: 768px) {
+  .header .inner {
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center; } }
 
 /*# sourceMappingURL=style.css.map */
