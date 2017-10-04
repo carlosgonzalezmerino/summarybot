@@ -195,8 +195,9 @@ body {
         display: inline-block;
         vertical-align: top;
         position: absolute;
-        bottom: 0;
-        width: 100%;
+        bottom: 10px;
+        left: 15px;
+        width: calc(100% - 30px);
         height: auto;
         line-height: 32px; }
         .content .links .link .author .avatar {
