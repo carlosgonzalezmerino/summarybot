@@ -112,7 +112,7 @@ body {
   width: 90%;
   max-width: 1200px; }
   .home #toggleTags {
-    display: inline-block;
+    display: none;
     vertical-align: top;
     width: auto;
     height: auto;
@@ -136,7 +136,8 @@ body {
       vertical-align: top;
       width: 20%;
       min-width: 200px;
-      margin-right: 20px; }
+      margin-right: 20px;
+      transition: all .2s ease-in-out; }
       .home .content .topics .topic-list {
         display: inline-block;
         vertical-align: top;
@@ -277,6 +278,8 @@ body {
   .home .content .links .link {
     width: 48%; } }
 @media screen and (max-width: 900px) {
+  .home #toggleTags {
+    display: inline-block; }
   .home .content .topics {
     position: absolute;
     width: auto;
