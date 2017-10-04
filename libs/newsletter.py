@@ -96,7 +96,6 @@ class Newsletter(object):
 				new["keywords"] = tags
 				new["readtime"] = self.__readtime(new.get("summary"))
 				new["summary"] = new.get("summary").split("\n\n")
-				new["keywords"] = new.get("keywords").join(", ")
 		return new
 
 	def __getkeywords(self, channels):
