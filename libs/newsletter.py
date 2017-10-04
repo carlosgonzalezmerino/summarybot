@@ -1,13 +1,22 @@
+import re
+from math import ceil
 from datetime import datetime
 from datetime import timedelta
 from slackclient import SlackClient
 from libs.database import DB
+
+WORDSPERMIN=220
 
 
 class Newsletter(object):
 	def __init__(self, access_token):
 		self.access_token = access_token
 		self.db = DB()
+
+	def __readtime(self, text):
+		splitter = re.compile("\s")
+		words = splitter.split(text)
+		return ceil(len(words)/WORDSPERMIN)
 
 	def __getchannel(self, id):
 		channels = self.__getchannels()
@@ -85,6 +94,7 @@ class Newsletter(object):
 				new["channel"] = channel
 				new["author"] = author
 				new["keywords"] = tags
+				new["readtime"] = self.__readtime(new.get("summary"))
 				new["summary"] = new.get("summary").split("\n\n")
 		return new
 

@@ -19,8 +19,14 @@
 				{% for link in links %}
 					<a class="link" href="{{ url_for("read", id=link.id) }}">
 						<h3 class="title">{{ link.title }}</h3>
-						<span class="metadata">Publicado por <b>{{ link.author.name }}</b> en <b>{{ link.channel.name }} el {{ link.date | strftime }}</b></span>
-						{% if link.summary %}<p>{{ link.summary[0] }}</p>{% endif %}
+						<span class="metadata">{{ link.date | strftime }} en {{ link.channel.name }} | {{ link.readtime }} min de lectura.</span>
+						<div class="bottombar">
+							<div class="author">
+								<img class="avatar" src="{{ link.author.avatar }}"/>
+								<b>{{ link.author.name }}</b>
+							</div>
+							<span class="tags"><i class="fa fa-tags" aria-hidden="true"></i> {{ link.keywords.join(",") }}</span>
+						</div>
 					</a>
 				{% endfor %}
 			{% endif %}
