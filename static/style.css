@@ -135,16 +135,19 @@ body {
       list-style: none;
       padding-right: 20px;
       border-right: 1px solid #37474F;
-      max-height: 315px;
+      max-height: 300px;
       overflow-y: auto; }
       .content .topics .topic-list::-webkit-scrollbar {
         display: none; }
       .content .topics .topic-list::after {
         content: 'Scroll down';
         position: absolute;
-        top: 100%;
+        bottom: 0;
         left: 0;
         width: 100%;
+        height: 15px;
+        background: #263238;
+        line-height: 15px;
         text-align: center;
         color: #FF80AB;
         font-size: 12px; }
