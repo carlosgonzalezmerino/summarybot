@@ -163,14 +163,27 @@ body {
 		.topic-list {
 			display: inline-block;
 			vertical-align: top;
+			position: relative;
 			width: 100%;
 			height: auto;
 			list-style: none;
 			padding-right: 20px;
 			border-right: 1px solid $primary-color;
-			max-height: 300px;
-			overflow-y: hidden;
+			max-height: 315px;
+			overflow-y: auto;
 			&::-webkit-scrollbar {display: none;}
+
+			&::after {
+				content: 'Scroll down';
+				position: absolute;
+				top: 100%;
+				left: 0;
+				width: 100%;
+				text-align: center;
+				color: $accent-secondary;
+				font-size: 12px;
+			}
+
 			li {
 				display: inline-block;
 				vertical-align: top;
