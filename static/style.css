@@ -239,7 +239,8 @@ body {
       padding: 10px 0;
       margin-bottom: 10px; }
       .content .read-link .link-header .link-title {
-        margin-bottom: 20px; }
+        margin-bottom: 30px;
+        font-size: 30px; }
       .content .read-link .link-header .link-author,
       .content .read-link .link-header .link-tags {
         color: #FF80AB;
@@ -247,7 +248,7 @@ body {
         opacity: .6; }
     .content .read-link p {
       font-size: 16px;
-      margin: 10px 0; }
+      margin: 20px 0; }
 
 @media screen and (max-width: 1200px) {
   .content .links .link {

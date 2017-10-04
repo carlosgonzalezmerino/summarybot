@@ -5,8 +5,8 @@
 		<article class="read-link">
 			<header class="link-header">
 				<h1 class="link-title">{{ link.title }}</h1>
-				<span class="author">{{ link.author.name }} en {{ link.channel.name }}</span>
-				<span class="tags">{{ ", ".join(link.keywords) }}</span>
+				<span class="link-author">{{ link.author.name }} en {{ link.channel.name }}</span>
+				<span class="link-tags">{{ ", ".join(link.keywords) }}</span>
 			</header>
 			{% for paragraph in link.summary %}
 			<p>{{ paragraph }}</p>
