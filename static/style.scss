@@ -207,10 +207,10 @@ body {
 			padding: 10px 20px;
 			border: 1px solid $primary-color;
 			border-radius: 5px;
-			background: $dark;
+			background: $accent-secondary;
 			box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 			transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-			color: white;
+			color: black;
 			text-decoration: none;
 
 			&:hover {box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);}
@@ -221,13 +221,12 @@ body {
 
 			.title {
 				font-size: 16px;
-				color: $accent-primary;
 				margin: 10px 0 5px;
 				padding: 5px 0;
+				font-weight: 400;
 			}
 			.metadata {
 				font-size: 12px;
-				color: $accent-secondary;
 				margin: 0 0 10px;
 				padding: 5px 0;
 			}

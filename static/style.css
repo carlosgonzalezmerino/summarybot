@@ -166,10 +166,10 @@ body {
       padding: 10px 20px;
       border: 1px solid #37474F;
       border-radius: 5px;
-      background: #263238;
+      background: #FF80AB;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      color: white;
+      color: black;
       text-decoration: none;
       display: flex;
       flex-wrap: wrap;
@@ -178,12 +178,11 @@ body {
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
       .content .links .link .title {
         font-size: 16px;
-        color: #FF4081;
         margin: 10px 0 5px;
-        padding: 5px 0; }
+        padding: 5px 0;
+        font-weight: 400; }
       .content .links .link .metadata {
         font-size: 12px;
-        color: #FF80AB;
         margin: 0 0 10px;
         padding: 5px 0; }
       .content .links .link p {
