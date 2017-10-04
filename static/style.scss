@@ -135,9 +135,29 @@ body {
 	}
 }
 
+.expand-tags {
+	display: inline-block;
+	vertical-align: top;
+	width: 100%;
+	margin: 60px auto 0;
+
+	#toggleTags {
+		display: inline-block;
+		vertical-align: top;
+		width: auto;
+		height: auto;
+		padding: 7px 20px;
+		color: white;
+		background: $accent-primary;
+		border-radius: 4px;
+		margin: 10px 0;
+	}
+}
+
+
 .content {
 	display: block;
-    margin: 60px auto;
+    margin: auto 60px;
     width: 90%;
     max-width: 1200px;
 
@@ -151,24 +171,6 @@ body {
 		margin: 20px 0;
 		color: $accent-primary;
 		text-transform: capitalize;
-	}
-
-	.expand-tags {
-		display: inline-block;
-		vertical-align: top;
-		width: 100%;
-
-		.toggleTags {
-			display: inline-block;
-			vertical-align: top;
-			width: auto;
-			height: auto;
-			padding: 7px 20px;
-			color: white;
-			background: $accent-primary;
-			border-radius: 4px;
-			margin: 10px 0;
-		}
 	}
 
 	.topics {
@@ -294,53 +296,53 @@ body {
 		}
 	}
 
-	.read-link {
+}
+.read-link {
+	display: inline-block;
+	vertical-align: top;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 700px;
+	font-family: 'Source Serif Pro', serif;
+	color: white;
+
+	.link-header {
 		display: inline-block;
 		vertical-align: top;
-		margin: 0 auto;
 		width: 100%;
-		max-width: 700px;
-		font-family: 'Source Serif Pro', serif;
-		color: white;
-
-		.link-header {
-			display: inline-block;
-			vertical-align: top;
-			width: 100%;
-			padding: 10px 0;
-			margin-bottom: 10px;
-			.link-title {
-				margin-bottom: 30px;
-				font-size: 30px;
-			}
-
-			.link-author,
-			.link-tags {
-				display: block;
-				color: $accent-secondary;
-				font-size: 18px;
-			}
+		padding: 10px 0;
+		margin-bottom: 10px;
+		.link-title {
+			margin-bottom: 30px;
+			font-size: 30px;
 		}
 
-		p {
+		.link-author,
+		.link-tags {
+			display: block;
+			color: $accent-secondary;
 			font-size: 18px;
-			margin: 20px 0;
 		}
+	}
 
-		.link-footer {
-			display: inline-block;
-			vertical-align: top;
-			width: 100%;
-			text-align: center;
-			margin-top: 30px;
+	p {
+		font-size: 18px;
+		margin: 20px 0;
+	}
 
-			.link-original {
-				font-size: 16px;
-				color: white;
-				text-decoration: underline;
-				text-transform: none;
-				opacity: .8;
-			}
+	.link-footer {
+		display: inline-block;
+		vertical-align: top;
+		width: 100%;
+		text-align: center;
+		margin-top: 30px;
+
+		.link-original {
+			font-size: 16px;
+			color: white;
+			text-decoration: underline;
+			text-transform: none;
+			opacity: .8;
 		}
 	}
 }
