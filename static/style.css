@@ -277,6 +277,8 @@ body {
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.12), 0 1px 10px rgba(0, 0, 0, 0.24);
     opacity: 0;
     visibility: hidden; }
+    .content .topics .topic-list {
+      border: none; }
     .content .topics.showed {
       opacity: 1;
       visibility: visible; } }

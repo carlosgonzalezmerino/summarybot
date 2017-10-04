@@ -348,6 +348,8 @@ body {
 		opacity: 0;
 		visibility: hidden;
 
+		.topic-list {border: none;}
+
 		&.showed {
 			opacity: 1;
 			visibility: visible;

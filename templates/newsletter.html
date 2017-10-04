@@ -3,7 +3,9 @@
 	{% include "header.html" %}
 
 	<div class="content">
-		<div class="topics">
+		<span id="toggleTags"><i class="fa fa-tags" aria-hidden="true"></i> Tags</span>
+
+		<div class="topics" id="tagsMenu">
 			{% if topics %}
 				<h3 class="section-title">Tags</h3>
 				<ul class="topic-list">
@@ -37,4 +39,22 @@
 			{% endif %}
 		</div>
 	</div>
+
+	<script>
+		(function () {
+			var toggleTagsButton = document.getElementById("toggleTags"),
+				tagsMenu = document.getElementById("tagsMenu");
+
+
+			toggleTagsButton.addEventListener("click", function () {
+				var cl = tagsMenu.classList;
+
+				if (cl.contains("showed")) {
+					cl.remove("showed");
+				} else {
+					cl.add("showed");
+				}
+			})
+		})();
+	</script>
 {% endblock %}
