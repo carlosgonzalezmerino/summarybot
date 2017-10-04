@@ -244,13 +244,15 @@ body {
 				left: 15px;
 				width: calc(100% - 30px);
 				height: auto;
-				line-height: 32px;
+				line-height: 28px;
+				font-size: 14px;
 				.avatar {
 					display: inline-block;
 					vertical-align: top;
-					width: 32px;
+					width: 28px;
 					border-radius: 50%;
-					height: 32px;
+					height: 28px;
+					margin-right: 10px;
 				}
 			}
 		}
