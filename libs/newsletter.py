@@ -161,3 +161,16 @@ class Newsletter(object):
 			print(e)
 
 		return None
+
+	def getlink(self, id):
+		try:
+			channels = self.__getchannels()
+			channels_ids = [channel.get("id") for channel in channels]
+
+			new = self.db.get("news", {"id": id})
+			if new.get("channel_id") in channels_ids:
+				return self.__formatlink(new)
+		except Exception as e:
+			print(e)
+
+		return None
