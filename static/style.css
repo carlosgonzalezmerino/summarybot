@@ -243,12 +243,23 @@ body {
         font-size: 30px; }
       .content .read-link .link-header .link-author,
       .content .read-link .link-header .link-tags {
+        display: block;
         color: #FF80AB;
-        font-size: 14px;
-        opacity: .6; }
+        font-size: 18px; }
     .content .read-link p {
-      font-size: 16px;
+      font-size: 18px;
       margin: 20px 0; }
+    .content .read-link .link-footer {
+      display: inline-block;
+      vertical-align: top;
+      width: 100%;
+      text-align: center; }
+      .content .read-link .link-footer .link-original {
+        font-size: 16px;
+        color: white;
+        text-decoration: underline;
+        text-transform: none;
+        opacity: .8; }
 
 @media screen and (max-width: 1200px) {
   .content .links .link {

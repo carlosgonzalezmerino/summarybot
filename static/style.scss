@@ -298,18 +298,31 @@ body {
 
 			.link-author,
 			.link-tags {
+				display: block;
 				color: $accent-secondary;
-				font-size: 14px;
-				opacity: .6;
+				font-size: 18px;
 			}
 		}
 
 		p {
-			font-size: 16px;
+			font-size: 18px;
 			margin: 20px 0;
 		}
 
-		.link-footer {}
+		.link-footer {
+			display: inline-block;
+			vertical-align: top;
+			width: 100%;
+			text-align: center;
+
+			.link-original {
+				font-size: 16px;
+				color: white;
+				text-decoration: underline;
+				text-transform: none;
+				opacity: .8;
+			}
+		}
 	}
 }
 
