@@ -145,20 +145,20 @@ body {
     flex-wrap: nowrap;
     justify-content: space-between;
 
+	.section-title {
+		display: block;
+		width: 100%;
+		margin: 20px 0;
+		color: $accent-primary;
+		text-transform: capitalize;
+	}
+
 	.topics {
 		display: inline-block;
 		vertical-align: top;
 		width: 20%;
 		min-width: 200px;
 		margin-right: 20px;
-
-		.section-title {
-			display: block;
-			width: 100%;
-			margin: 20px 0;
-			color: $accent-primary;
-			text-transform: capitalize;
-		}
 
 		.topic-list {
 			display: inline-block;
@@ -202,14 +202,6 @@ body {
 		justify-content: flex-start;
 		align-content: flex-start;
 		align-items: stretch;
-
-		.section-title {
-			display: block;
-			width: 100%;
-			margin: 20px 0;
-			color: $accent-primary;
-			text-transform: capitalize;
-		}
 
 		.link {
 			display: inline-block;
