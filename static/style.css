@@ -119,11 +119,8 @@ body {
     vertical-align: top;
     width: 20%;
     min-width: 200px;
-    margin-right: 20px;
-    max-height: 300px; }
-    .content .topics::-webkit-scrollbar {
-      display: none; }
-    .content .topics h3 {
+    margin-right: 20px; }
+    .content .topics .title {
       margin: 20px 0;
       color: #FF4081; }
     .content .topics .topic-list {
@@ -133,7 +130,10 @@ body {
       height: auto;
       list-style: none;
       padding-right: 20px;
-      border-right: 1px solid #37474F; }
+      border-right: 1px solid #37474F;
+      max-height: 300px; }
+      .content .topics .topic-list::-webkit-scrollbar {
+        display: none; }
       .content .topics .topic-list li {
         display: inline-block;
         vertical-align: top;
@@ -159,6 +159,9 @@ body {
     justify-content: flex-start;
     align-content: flex-start;
     align-items: stretch; }
+    .content .links .title {
+      margin: 20px 0;
+      color: #FF4081; }
     .content .links .link {
       display: inline-block;
       vertical-align: top;
@@ -190,7 +193,8 @@ body {
         width: 100%;
         font-size: 12px;
         margin: 0;
-        padding: 5px 0; }
+        padding: 5px 0;
+        color: #263238; }
       .content .links .link .author {
         display: inline-block;
         vertical-align: top;

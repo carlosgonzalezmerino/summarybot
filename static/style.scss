@@ -151,10 +151,8 @@ body {
 		width: 20%;
 		min-width: 200px;
 		margin-right: 20px;
-		max-height: 300px;
-		&::-webkit-scrollbar {display: none;}
 
-		h3 {
+		.title {
 			margin: 20px 0;
 			color: $accent-primary;
 		}
@@ -167,6 +165,8 @@ body {
 			list-style: none;
 			padding-right: 20px;
 			border-right: 1px solid $primary-color;
+			max-height: 300px;
+			&::-webkit-scrollbar {display: none;}
 			li {
 				display: inline-block;
 				vertical-align: top;
@@ -198,6 +198,11 @@ body {
 		justify-content: flex-start;
 		align-content: flex-start;
 		align-items: stretch;
+
+		.title {
+			margin: 20px 0;
+			color: $accent-primary;
+		}
 
 		.link {
 			display: inline-block;
@@ -234,6 +239,7 @@ body {
 				font-size: 12px;
 				margin: 0;
 				padding: 5px 0;
+				color: $dark;
 			}
 
 			.author {
