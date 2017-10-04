@@ -20,7 +20,7 @@
 				{% if tag %}
 					<h3 class="section-title">Filter: {{ tag }}</h3>
 				{% else %}
-					<h3 class="section-title">"Recent links</h3>
+					<h3 class="section-title">Recent links</h3>
 				{% endif %}
 				{% for link in links %}
 					<a class="link" href="{{ url_for("read", id=link.id) }}">

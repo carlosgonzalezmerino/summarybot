@@ -132,7 +132,7 @@ def topic(data, tag):
 def read(data, id):
 	nw = Newsletter(data.get("access_token"))
 	link = nw.getlink(id)
-	return render_template("newsletter/link.html", data=data, link=link)
+	return render_template("read.html", data=data, link=link)
 
 
 if __name__ == "__main__":

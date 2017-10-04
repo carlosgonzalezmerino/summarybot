@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Dancing+Script|Raleway');
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script|Raleway|Source+Serif+Pro');
 
 $dark: #263238;
 $primary-color: #37474F;
@@ -205,6 +205,7 @@ body {
 			text-align: center;
 			color: $accent-secondary;
 			font-size: 12px;
+			opacity: .6;
 		}
 	}
 
@@ -272,6 +273,28 @@ body {
 					margin-right: 10px;
 				}
 			}
+		}
+	}
+
+	.read-link {
+		display: inline-block;
+		vertical-align: top;
+		margin: 0 auto;
+		width: 100%;
+		max-width: 700px;
+		font-family: 'Source Serif Pro', serif;
+		color: white;
+
+		.link-author,
+		.link-tags {
+			color: $accent-secondary;
+			font-size: 14px;
+			opacity: .6;
+		}
+
+		p {
+			font-size: 16px;
+			margin: 10px 0;
 		}
 	}
 }

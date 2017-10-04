@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+	{% include "header.html" %}
+	<div class="content">
+		<article class="read-link">
+			<header class="link-header">
+				<h1 class="link-title">{{ link.title }}</h1>
+				<span class="author">{{ link.author.name }} en {{ link.channel.name }}</span>
+				<span class="tags">{{ ", ".join(link.keywords) }}</span>
+			</header>
+			{% for paragraph in link.summary %}
+			<p>{{ paragraph }}</p>
+			{% endfor %}
+
+			<footer class="link-footer">
+				<a class="link-original" href="{{ link.url }}" target="_blank">Ver original</a>
+			</footer>
+		</article>
+	</div>
+{% endblock %}
