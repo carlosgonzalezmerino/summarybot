@@ -168,6 +168,7 @@ body {
 			padding-right: 20px;
 			border-right: 1px solid $primary-color;
 			max-height: 300px;
+			overflow-y: hidden;
 			&::-webkit-scrollbar {display: none;}
 			li {
 				display: inline-block;

@@ -133,7 +133,8 @@ body {
       list-style: none;
       padding-right: 20px;
       border-right: 1px solid #37474F;
-      max-height: 300px; }
+      max-height: 300px;
+      overflow-y: hidden; }
       .content .topics .topic-list::-webkit-scrollbar {
         display: none; }
       .content .topics .topic-list li {
