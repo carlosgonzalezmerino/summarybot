@@ -46,6 +46,8 @@ def index():
 	client_id = bot.oauth.get("client_id")
 	scope = bot.oauth.get("scope")
 	url = quote_plus("https://bot.myshortreport.com/auth/bot")
+	if os.environ.get("PRODUCTION") == "0":
+		url = quote_plus("https://dccf4abe.ngrok.io/auth/bot")
 	return render_template("index.html", client_id=client_id, scope=scope, redirect=url)
 
 
@@ -85,6 +87,8 @@ def thanks():
 	code = request.args.get("code")
 	if code:
 		uri = "https://bot.myshortreport.com/auth/bot"
+		if os.environ.get("PRODUCTION") == "0":
+			uri = "https://dccf4abe.ngrok.io/auth/bot"
 		if bot.auth(code, uri):
 			return render_template("thanks.html")
 

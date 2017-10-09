@@ -1,14 +1,16 @@
 import os
+import sys
 import sqlite3
 
 
 class DB(object):
 	def __init__(self):
-		self.database = os.environ.get("DATABASE")
+		base = os.path.dirname(os.path.realpath(sys.argv[0]))
 
-		self.connection	= None
-		self.cursor		= None
-		self.lastid		= -1
+		self.database = os.path.join(base, os.environ.get("DATABASE"))
+		self.connection = None
+		self.cursor = None
+		self.lastid = -1
 
 	def __dictfactory(self, cursor, row):
 		d = {}
