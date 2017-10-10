@@ -23,6 +23,20 @@ else:
 	print("No secret provided")
 
 
+def gethostname(path=None, encoded=False):
+	url = "https://bot.myshortreport.com"
+	if os.environ.get("PRODUCTION") == "0" and os.environ.get("DEV_HOSTNAME"):
+		url = os.environ.get("DEV_HOSTNAME")
+
+	if path:
+		url = "{hostname}{path}".format(hostname=url, path=path)
+
+	if encoded:
+		url = quote_plus(url)
+
+	return url
+
+
 def loginrequired(func):
 	@wraps(func)
 	def core(*args, **kwargs):
@@ -40,14 +54,14 @@ def loginrequired(func):
 def filter_datetime(date, fmt=None):
 	return date.strftime(fmt or "%d de %b, %Y") or date
 
+
 @api.route("/")
 def index():
 	bot = SlackBot()
 	client_id = bot.oauth.get("client_id")
 	scope = bot.oauth.get("scope")
-	url = quote_plus("https://bot.myshortreport.com/auth/bot")
-	if os.environ.get("PRODUCTION") == "0":
-		url = quote_plus("https://dccf4abe.ngrok.io/auth/bot")
+	url = gethostname(path="/auth/bot", encoded=True)
+
 	return render_template("index.html", client_id=client_id, scope=scope, redirect=url)
 
 
@@ -61,6 +75,10 @@ def listen():
 	bot = SlackBot()
 	if bot.verification == slack_event.get("token"):
 		event = slack_event.get("event")
+		if os.environ.get("PRODUCTION") == "0":
+			import pprint
+			pprint.pprint(event, indent=4)
+
 		if event and event.get("type") == "message":
 			team_id = slack_event.get("team_id")
 			bot.connect(team_id)
@@ -86,9 +104,7 @@ def thanks():
 	bot = SlackBot()
 	code = request.args.get("code")
 	if code:
-		uri = "https://bot.myshortreport.com/auth/bot"
-		if os.environ.get("PRODUCTION") == "0":
-			uri = "https://dccf4abe.ngrok.io/auth/bot"
+		uri = gethostname("/auth/bot")
 		if bot.auth(code, uri):
 			return render_template("thanks.html")
 

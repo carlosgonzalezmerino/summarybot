@@ -9,6 +9,7 @@ os.environ["SLACK_CLIENT_SECRET"] = "f6a00ebab0d708643dec0328fb5ae112"
 os.environ["SLACK_VERIFICATION_TOKEN"] = "EpMyFd45hPDhPe3Gj8QNTS9u"
 os.environ["SERVER_SECRET"] = "GyeMtnazpTFbnVknMm4sUn4p7GgpmSZfyYnDHRqZ"
 os.environ["PRODUCTION"] = "1"
+os.environ["DEV_HOSTNAME"] = ""
 
 base_path       = '/srv/summarybot'
 packages        = '%s/venv/lib/python3.5/dist-packages' % base_path
