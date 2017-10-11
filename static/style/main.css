@@ -124,7 +124,7 @@ body {
   .home .content {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-between; }
+    justify-content: flex-start; }
     .home .content .section-title {
       display: block;
       width: 100%;
