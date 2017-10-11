@@ -20,7 +20,7 @@
 		.link-author,
 		.link-tags {
 			display: block;
-			color: $accent-secondary;
+			color: white;
 			font-size: 18px;
 		}
 	}
@@ -39,7 +39,7 @@
 
 		.link-original {
 			font-size: 16px;
-			color: white;
+			color: $accent-primary;
 			text-decoration: underline;
 			text-transform: none;
 			opacity: .8;

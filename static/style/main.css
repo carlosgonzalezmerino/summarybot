@@ -129,8 +129,9 @@ body {
       display: block;
       width: 100%;
       margin: 20px 0;
-      color: #FF4081;
-      text-transform: capitalize; }
+      color: white;
+      text-transform: capitalize;
+      font-size: 24px; }
     .home .content .topics {
       display: inline-block;
       vertical-align: top;
@@ -196,7 +197,7 @@ body {
         padding: 10px 20px 52px;
         border: 1px solid #37474F;
         border-radius: 5px;
-        background: #FF4081;
+        background: white;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         color: black;
@@ -210,7 +211,8 @@ body {
           font-size: 16px;
           margin: 10px 0 5px;
           padding: 5px 0;
-          font-weight: 400; }
+          font-weight: 400;
+          color: #FF4081; }
         .home .content .links .link .metadata {
           display: inline-block;
           vertical-align: top;
@@ -256,7 +258,7 @@ body {
     .read-link .link-header .link-author,
     .read-link .link-header .link-tags {
       display: block;
-      color: #FF80AB;
+      color: white;
       font-size: 18px; }
   .read-link p {
     font-size: 18px;
@@ -269,7 +271,7 @@ body {
     margin-top: 30px; }
     .read-link .link-footer .link-original {
       font-size: 16px;
-      color: white;
+      color: #FF4081;
       text-decoration: underline;
       text-transform: none;
       opacity: .8; }
