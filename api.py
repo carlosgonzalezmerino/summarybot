@@ -14,8 +14,10 @@ from flask import render_template
 
 from libs.auth import Auth
 from libs.slackbot import SlackBot
+from libs.slackqueue import SlackQueue
 from libs.newsletter import Newsletter
 
+sq = SlackQueue(5)
 api = Flask(__name__)
 if os.environ.get("SERVER_SECRET"):
 	api.secret_key = os.environ.get("SERVER_SECRET")
@@ -75,14 +77,20 @@ def listen():
 	bot = SlackBot()
 	if bot.verification == slack_event.get("token"):
 		event = slack_event.get("event")
-		if os.environ.get("PRODUCTION") == "0":
-			import pprint
-			pprint.pprint(event, indent=4)
-
 		if event and event.get("type") == "message":
+			filters = ["channel", "user", "text"]
+			if sq.check(event, filters) and sq.contains(event, filters) == 0:
+				print(sq.append(event))
+
 			team_id = slack_event.get("team_id")
 			bot.connect(team_id)
 			bot.event_handler(event, team_id)
+
+		if os.environ.get("PRODUCTION") == "0":
+			import pprint
+			pprint.pprint(event, indent=4)
+			pprint.pprint(sq.queue, indent=4)
+			
 		return "Ok", 200
 	else:
 		return make_response("Invalid Slack verification code", 403)
