@@ -1,5 +1,6 @@
 import os
 import json
+import time
 
 from functools import wraps
 from urllib.parse import quote_plus
@@ -85,12 +86,13 @@ def listen():
 			team_id = slack_event.get("team_id")
 			bot.connect(team_id)
 			bot.event_handler(event, team_id)
+			time.sleep(3)
 
 		if os.environ.get("PRODUCTION") == "0":
 			import pprint
 			pprint.pprint(event, indent=4)
 			pprint.pprint(sq.queue, indent=4)
-			
+
 		return "Ok", 200
 	else:
 		return make_response("Invalid Slack verification code", 403)

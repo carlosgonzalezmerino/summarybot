@@ -256,71 +256,71 @@ class SlackBot(object):
 		url = self.__parseurl(text)
 		response = {"channel": channel}
 
-		#exists = self.__eventeanswered(user, channel, url)
-		#if not exists:
-		itsforme = self.__itsforme(event)
-		iamnew = itsforme and event.get("subtype") == "channel_join"
-		itsbot = event.get("subtype") == "bot_message"
-		nosubtype = event.get("subtype") is None
+		exists = self.__eventeanswered(user, channel, url)
+		if not exists:
+			itsforme = self.__itsforme(event)
+			iamnew = itsforme and event.get("subtype") == "channel_join"
+			itsbot = event.get("subtype") == "bot_message"
+			nosubtype = event.get("subtype") is None
 
-		if not itsbot:
-			if iamnew:
-				response["text"] = messages.INTRO
-			elif nosubtype and url and itsforme:
-				content = self.__geturlcontent(url)
-				if content:
-					title = content.get("title")
-					summary, keywords = self.__getsummary(content)
-					if summary and keywords:
-						response["text"] = messages.CONTENT_MSG
-						response["attachments"] = self.__parseattachments(title, summary, url)
-						try:
-							article = {
-								"title": title,
-								"summary": "\n\n".join(summary),
-								"keywords": ",".join(keywords),
-								"url": url,
-								"user_id": user,
-								"channel_id": channel,
-								"workspace": workspace,
-								"date": datetime.now()
-							}
-							self.__save(article)
-						except Exception as e:
-							print(e)
+			if not itsbot:
+				if iamnew:
+					response["text"] = messages.INTRO
+				elif nosubtype and url and itsforme:
+					content = self.__geturlcontent(url)
+					if content:
+						title = content.get("title")
+						summary, keywords = self.__getsummary(content)
+						if summary and keywords:
+							response["text"] = messages.CONTENT_MSG
+							response["attachments"] = self.__parseattachments(title, summary, url)
+							try:
+								article = {
+									"title": title,
+									"summary": "\n\n".join(summary),
+									"keywords": ",".join(keywords),
+									"url": url,
+									"user_id": user,
+									"channel_id": channel,
+									"workspace": workspace,
+									"date": datetime.now()
+								}
+								self.__save(article)
+							except Exception as e:
+								print(e)
+						else:
+							response["text"] = messages.NO_SUMMARY
+							response["thread_ts"] = ts
 					else:
-						response["text"] = messages.NO_SUMMARY
-						response["thread_ts"] = ts
-				else:
-					response["text"] = messages.EXTERNAL_ERROR
-			elif nosubtype and url and not itsforme:
-				content = self.__geturlcontent(url)
-				if content:
-					title = content.get("title")
-					summary, keywords = self.__getsummary(content)
-					if summary and keywords:
-						response["text"] = messages.CONTENT_MSG
-						response["thread_ts"] = ts
-						response["attachments"] = self.__parseattachments(title, summary, url)
+						response["text"] = messages.EXTERNAL_ERROR
+				elif nosubtype and url and not itsforme:
+					content = self.__geturlcontent(url)
+					if content:
+						title = content.get("title")
+						summary, keywords = self.__getsummary(content)
+						if summary and keywords:
+							response["text"] = messages.CONTENT_MSG
+							response["thread_ts"] = ts
+							response["attachments"] = self.__parseattachments(title, summary, url)
 
-						try:
-							article = {
-								"title": title,
-								"summary": "\n\n".join(summary),
-								"keywords": ",".join(keywords),
-								"url": url,
-								"user_id": user,
-								"channel_id": channel,
-								"workspace": workspace,
-								"date": datetime.now()
-							}
-							self.__save(article)
-						except Exception as e:
-							print(e)
-			elif nosubtype and itsforme and not url:
-				response["text"] = messages.NO_URL
-				response["thread_ts"] = ts
-			else:
-				response = None
-			self.__sendresponse(response)
+							try:
+								article = {
+									"title": title,
+									"summary": "\n\n".join(summary),
+									"keywords": ",".join(keywords),
+									"url": url,
+									"user_id": user,
+									"channel_id": channel,
+									"workspace": workspace,
+									"date": datetime.now()
+								}
+								self.__save(article)
+							except Exception as e:
+								print(e)
+				elif nosubtype and itsforme and not url:
+					response["text"] = messages.NO_URL
+					response["thread_ts"] = ts
+				else:
+					response = None
+				self.__sendresponse(response)
 		return
