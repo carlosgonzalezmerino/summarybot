@@ -2,7 +2,7 @@
 	<div class="header">
 		<div class="inner">
 			<a class="title" href="{{ url_for("newsletter") }}" onClick="ga('send', 'event', 'inicio', 'click', 'header');">
-				<img src="/static/images/avatar.png">
+				<img src="{{ url_for('static', filename='images/avatar.png') }}">
 				<h1>Reverte Bot</h1>
 			</a>
 			<div class="menu">
