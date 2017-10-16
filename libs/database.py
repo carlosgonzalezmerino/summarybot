@@ -135,7 +135,7 @@ class DB(object):
 		self.close()
 		return result
 
-	def getAll(self, table, key=None, value=None):
+	def getAll(self, table, key=None, value=None, orderby=None, desc=False):
 		if not self.__verify(table):
 			raise Exception("Bad input.")
 
@@ -147,6 +147,10 @@ class DB(object):
 				raise Exception("Bad input params.")
 
 			query = "%s WHERE %s=?" % (query, key)
+
+		if orderby is not None:
+			order = "DESC" if desc else "ASC"
+			query = "%s ORDERBY %s %s" % (query, orderby, order)
 
 		try:
 			if key and value:

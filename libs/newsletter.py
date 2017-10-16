@@ -121,7 +121,7 @@ class Newsletter(object):
 			channels_ids = [channel.get("id") for channel in channels]
 
 			links = []
-			news = self.db.getByDate("news", "date", start, end)
+			news = self.db.getAll("news", orderby="date", desc=True)
 			for new in news:
 				if new.get("channel_id") in channels_ids:
 					link = self.__formatlink(new)
