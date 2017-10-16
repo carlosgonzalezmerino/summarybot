@@ -83,10 +83,10 @@ def listen():
 			if sq.check(event, filters) and sq.contains(event, filters) == 0:
 				print(sq.append(event))
 
-			team_id = slack_event.get("team_id")
-			bot.connect(team_id)
-			bot.event_handler(event, team_id)
-			time.sleep(3)
+				team_id = slack_event.get("team_id")
+				bot.connect(team_id)
+				bot.event_handler(event, team_id)
+				time.sleep(3)
 
 		if os.environ.get("PRODUCTION") == "0":
 			import pprint
