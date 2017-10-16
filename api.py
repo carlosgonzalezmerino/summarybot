@@ -18,7 +18,7 @@ from libs.slackbot import SlackBot
 from libs.slackqueue import SlackQueue
 from libs.newsletter import Newsletter
 
-sq = SlackQueue(5)
+sq = SlackQueue(10)
 api = Flask(__name__)
 if os.environ.get("SERVER_SECRET"):
 	api.secret_key = os.environ.get("SERVER_SECRET")

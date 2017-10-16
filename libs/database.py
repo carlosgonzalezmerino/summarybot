@@ -165,7 +165,7 @@ class DB(object):
 			raise Exception("Bad input.")
 
 		self.connect()
-		query, results = "SELECT * FROM %s WHERE %s > ?" % (table, key), []
+		query, results = "SELECT * FROM %s WHERE %s > ? ORDER BY %s DESC" % (table, key, key), []
 
 		try:
 			if not end:
