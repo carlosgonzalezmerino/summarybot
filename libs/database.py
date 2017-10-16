@@ -150,7 +150,7 @@ class DB(object):
 
 		if orderby is not None:
 			order = "DESC" if desc else "ASC"
-			query = "%s ORDERBY %s %s" % (query, orderby, order)
+			query = "%s ORDER BY %s %s" % (query, orderby, order)
 
 		try:
 			if key and value:
