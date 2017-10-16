@@ -3,6 +3,7 @@
 	{% include "header.html" %}
 	<article class="read-link">
 		<header class="link-header">
+			<a href="{{ url_for("newsletter") }}" class="link-original" onClick="ga('send', 'event', 'inicio', 'click', 'top');">Inicio</a>
 			<h1 class="link-title">{{ link.title }}</h1>
 			<span class="link-tags"><i class="fa fa-tags" aria-hidden="true"></i> {{ ", ".join(link.keywords) }}</span>
 			<span class="link-author"><i class="fa fa-user" aria-hidden="true"></i> {{ link.author.name | capitalize }} en {{ link.channel.name }}</span>
@@ -12,7 +13,7 @@
 		{% endfor %}
 
 		<footer class="link-footer">
-			<a class="link-original" href="{{ link.url }}" target="_blank">Ver original</a>
+			<a class="link-original" href="{{ link.url }}" target="_blank" onClick="ga('send', 'event', 'verOrigen', 'click', 'pie');">Ver original</a>
 		</footer>
 	</article>
 {% endblock %}

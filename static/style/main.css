@@ -132,6 +132,11 @@ body {
       color: white;
       text-transform: capitalize;
       font-size: 24px; }
+      .home .content .section-title .close {
+        border: 1px solid #fff;
+        padding: 0 10px;
+        margin-left: 10px;
+        font-size: 20px; }
     .home .content .topics {
       display: inline-block;
       vertical-align: top;

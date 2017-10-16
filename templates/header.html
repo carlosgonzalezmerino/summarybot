@@ -1,13 +1,13 @@
 {% block header %}
 	<div class="header">
 		<div class="inner">
-			<a class="title" href="{{ url_for("newsletter") }}">
+			<a class="title" href="{{ url_for("newsletter") }}" onClick="ga('send', 'event', 'inicio', 'click', 'header');">
 				<img src="/static/images/avatar.png">
 				<h1>Reverte Bot</h1>
 			</a>
 			<div class="menu">
 				<span class="user">Bienvenido {{ data.user.name }}!</span>
-				<a class="logout" href="{{ url_for("logout") }}">Salir <i class="fa fa-sign-out"></i></a>
+				<a class="logout" href="{{ url_for("logout") }}" onClick="ga('send', 'event', 'logout', 'click', 'header');">Salir <i class="fa fa-sign-out"></i></a>
 			</div>
 		</div>
 	</div>

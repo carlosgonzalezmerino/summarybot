@@ -10,7 +10,7 @@
 					<h3 class="section-title">Tags</h3>
 					<ul class="topic-list">
 					{% for topic in topics %}
-						<li><a class="topic" href="{{ url_for("topic", tag=topic) }}">{{ topic }}</a></li>
+						<li><a class="topic" href="{{ url_for("topic", tag=topic) }}" onClick="ga('send', 'event', '{{ topic }}', 'click', 'tags');">{{ topic }}</a></li>
 					{% endfor %}
 					</ul>
 					<small class="disclaimer">Scroll down</small>
@@ -19,13 +19,13 @@
 
 			<div class="links">
 				{% if links %}
-					{% if tag %}
-						<h3 class="section-title">Filter: {{ tag }}</h3>
+					{% if tag %}<
+						<h3 class="section-title">Filter: <a href="{{ url_for("newsletter") }}" class"close">{{ tag }} x</a></h3>
 					{% else %}
 						<h3 class="section-title">Recent links</h3>
 					{% endif %}
 					{% for link in links %}
-						<a class="link" href="{{ url_for("read", id=link.id) }}">
+						<a class="link" href="{{ url_for("read", id=link.id) }}" onClick="ga('send', 'event', '{{ link.title }}', 'click', 'caja');">
 							<h3 class="title">{{ link.title }}</h3>
 							<span class="metadata"><i class="fa fa-tags" aria-hidden="true"></i> {{ ", ".join(link.keywords) }}</span>
 							<span class="metadata"><i class="fa fa-calendar" aria-hidden="true"></i> {{ link.date | strftime }} en {{ link.channel.name }}</span>
