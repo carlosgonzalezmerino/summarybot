@@ -19,8 +19,8 @@
 
 			<div class="links">
 				{% if links %}
-					{% if tag %}<
-						<h3 class="section-title">Filter: <a href="{{ url_for("newsletter") }}" class"close">{{ tag }} x</a></h3>
+					{% if tag %}
+						<h3 class="section-title">Filter: <a href="{{ url_for("newsletter") }}" class="close">{{ tag }} x</a></h3>
 					{% else %}
 						<h3 class="section-title">Recent links</h3>
 					{% endif %}
