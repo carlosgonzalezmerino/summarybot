@@ -26,8 +26,7 @@ create table categories_news (
 	category INT not null
 	constraint categories_news_categories_id_fk references categories (id) on delete cascade,
 	new INT not null constraint categories_news_news_id_fk references news (id) on delete cascade,
-	constraint categories_news_category_new_pk
-	  primary key (category, new)
+	constraint categories_news_category_new_pk primary key (category, new)
 );
 
 
