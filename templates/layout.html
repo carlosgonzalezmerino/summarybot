@@ -39,8 +39,8 @@
 
 			{% if data %}
 			ga('set', {
-				'user': '{{ data.user.id }}',
-				'team': '{{ data.team.id }}'
+				'dimension2': '{{ data.user.id }}',
+				'dimension3': '{{ data.team.id }}'
 			});
 			{% endif %}
 		</script>
