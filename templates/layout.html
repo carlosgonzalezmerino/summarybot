@@ -37,10 +37,12 @@
 			ga('create', 'UA-108194127-1', 'auto');
 			ga('send', 'pageview');
 
+			{% if data %}
 			ga('set', {
 				'user': '{{ data.user.id }}',
 				'team': '{{ data.team.id }}'
 			});
+			{% endif %}
 		</script>
 	</head>
 	<body>
