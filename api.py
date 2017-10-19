@@ -134,8 +134,7 @@ def login():
 def logout(data=None):
 	auth = Auth()
 	auth.revoke()
-	print(session.__dict__)
-	if "user" in session:
+	if "data" in session:
 		session.pop("data", None)
 	return redirect(url_for("newsletter"))
 
