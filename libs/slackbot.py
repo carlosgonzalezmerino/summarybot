@@ -104,7 +104,10 @@ class SlackBot(object):
 
 			body = response.text
 			soup = BeautifulSoup(body, 'lxml')
+			#if "bbva.com" not in url:
 			article = self.__parsecontent(soup)
+			#else:
+			#	article = soup.find("section", class_="article-body")
 
 			title = soup.title.getText()
 			paragraphs = []
@@ -156,9 +159,9 @@ class SlackBot(object):
 		prop = re.compile("articleBody", re.IGNORECASE)
 		tag = re.compile("article|article-.+", re.IGNORECASE)
 		id = re.compile("(content|post).*", re.IGNORECASE)
-		_class = re.compile("(post|article|blog|article-*).*", re.IGNORECASE)
+		_class = re.compile("(post|article|blog).*", re.IGNORECASE)
 
-		return soup.find(itemprop=prop) or soup.find(_class=_class) or soup.find(tag) or soup.find(id=id)
+		return soup.find(itemprop=prop) or soup.find(tag) or soup.find(id=id) or soup.find(class_=_class)
 
 
 	def __parseattachments(self, raw_title, summary, url):
