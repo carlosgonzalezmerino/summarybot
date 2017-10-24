@@ -108,8 +108,8 @@ class SlackBot(object):
 				article = self.__parsecontent(soup)
 			else:
 				article = soup.find("section", class_="article-body")
-				print(article.encode('utf-8'))
 
+			article = article.encode('utf-8')
 			title = soup.title.getText()
 			paragraphs = []
 			for p in article.find_all('p', recursive=True):
