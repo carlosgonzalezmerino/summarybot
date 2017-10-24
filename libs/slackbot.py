@@ -102,14 +102,13 @@ class SlackBot(object):
 			response = requests.get(url)
 			response.raise_for_status()
 
-			body = response.text
+			body = response.text.encode('utf-8')
 			soup = BeautifulSoup(body, 'lxml')
 			if "bbva.com" not in url:
 				article = self.__parsecontent(soup)
 			else:
 				article = soup.find("section", class_="article-body")
 
-			article = article.encode('utf-8')
 			title = soup.title.getText()
 			paragraphs = []
 			for p in article.find_all('p', recursive=True):
