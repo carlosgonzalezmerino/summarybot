@@ -156,9 +156,9 @@ class SlackBot(object):
 		prop = re.compile("articleBody", re.IGNORECASE)
 		tag = re.compile("article|article-.+", re.IGNORECASE)
 		id = re.compile("(content|post).*", re.IGNORECASE)
-		_class = re.compile("(post|article|blog).*", re.IGNORECASE)
+		_class = re.compile("(post|article|blog|article-*).*", re.IGNORECASE)
 
-		return soup.find(itemprop=prop) or soup.find(tag) or soup.find(id=id) or soup.find(_class=_class)
+		return soup.find(itemprop=prop) or soup.find(_class=_class) or soup.find(tag) or soup.find(id=id)
 
 
 	def __parseattachments(self, raw_title, summary, url):
