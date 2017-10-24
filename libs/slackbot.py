@@ -104,10 +104,11 @@ class SlackBot(object):
 
 			body = response.text
 			soup = BeautifulSoup(body, 'lxml')
-			#if "bbva.com" not in url:
-			article = self.__parsecontent(soup)
-			#else:
-			#	article = soup.find("section", class_="article-body")
+			if "bbva.com" not in url:
+				article = self.__parsecontent(soup)
+			else:
+				article = soup.find("section", class_="article-body")
+				print(article)
 
 			title = soup.title.getText()
 			paragraphs = []
