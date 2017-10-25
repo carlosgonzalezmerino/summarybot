@@ -18,7 +18,7 @@ create table news (
 );
 
 create table categories (
-  id INT primary key autoincrement,
+  id INTEGER primary key autoincrement,
   alias TEXT, language TEXT
 );
 
@@ -28,6 +28,3 @@ create table categories_news (
 	new INT not null constraint categories_news_news_id_fk references news (id) on delete cascade,
 	constraint categories_news_category_new_pk primary key (category, new)
 );
-
-
-
