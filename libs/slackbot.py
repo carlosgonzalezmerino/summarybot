@@ -8,9 +8,11 @@ from bs4 import BeautifulSoup
 from langdetect import detect
 from slackclient import SlackClient
 
-from libs import messages
+from libs.messages import Messages
 from libs.database import DB
 
+
+msg = Messages("spanish")
 API_ENDPOINT="http://api-atomo-news.herokuapp.com/summary"
 
 
@@ -287,7 +289,7 @@ class SlackBot(object):
 
 			if not itsbot:
 				if iamnew:
-					response["text"] = messages.INTRO
+					response["text"] = msg.INTRO
 				elif nosubtype and url and itsforme:
 					content = self.__geturlcontent(url)
 					if content:
@@ -296,9 +298,9 @@ class SlackBot(object):
 						if summary and keywords:
 							if old_answer is not None:
 								date_of_new = old_answer.get('date').strftime('%d de %B')
-								response["text"] = messages.CONTENT_ALREADY_SENT.format(date_of_new)
+								response["text"] = msg.CONTENT_ALREADY_SENT.format(date_of_new)
 							else:
-								response["text"] = messages.CONTENT_MSG
+								response["text"] = msg.CONTENT_MSG
 							response["attachments"] = self.__parseattachments(title, summary, url)
 							try:
 								article = {
@@ -315,10 +317,10 @@ class SlackBot(object):
 							except Exception as e:
 								print(e)
 						else:
-							response["text"] = messages.NO_SUMMARY
+							response["text"] = msg.NO_SUMMARY
 							response["thread_ts"] = ts
 					else:
-						response["text"] = messages.EXTERNAL_ERROR
+						response["text"] = msg.EXTERNAL_ERROR
 				elif nosubtype and url and not itsforme:
 					content = self.__geturlcontent(url)
 					if content:
@@ -327,9 +329,9 @@ class SlackBot(object):
 						if summary and keywords:
 							if old_answer is not None:
 								date_of_new = old_answer.get('date').strftime('%d/%m')
-								response["text"] = messages.CONTENT_ALREADY_SENT.format(date_of_new)
+								response["text"] = msg.CONTENT_ALREADY_SENT.format(date_of_new)
 							else:
-								response["text"] = messages.CONTENT_MSG
+								response["text"] = msg.CONTENT_MSG
 							response["thread_ts"] = ts
 							response["attachments"] = self.__parseattachments(title, summary, url)
 
@@ -348,7 +350,7 @@ class SlackBot(object):
 							except Exception as e:
 								print(e)
 				elif nosubtype and itsforme and not url:
-					response["text"] = messages.NO_URL
+					response["text"] = msg.NO_URL
 					response["thread_ts"] = ts
 				else:
 					response = None
