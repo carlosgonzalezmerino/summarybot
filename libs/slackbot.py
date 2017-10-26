@@ -214,7 +214,7 @@ class SlackBot(object):
 				print(e)
 		return
 
-	def auth(self, code, uri=None):
+	def auth(self, code, uri=None, language='spanish'):
 		auth_response = self.auth_call(code, uri)
 
 		if auth_response:
@@ -225,9 +225,11 @@ class SlackBot(object):
 					try:
 						count = self.db.count("auths", "team_id", team_id)
 						if count:
-							self.db.update("auths", {"bot_token": bot.get("bot_access_token")}, "team_id", team_id)
+							self.db.update("auths", {"bot_token": bot.get("bot_access_token"), "language": language},
+										   "team_id", team_id)
 						else:
-							self.db.add("auths", {"team_id": team_id, "bot_token": bot.get("bot_access_token")})
+							self.db.add("auths", {"team_id": team_id, "bot_token": bot.get("bot_access_token"),
+												  "language": language})
 						return True
 					except Exception as e:
 						print(e)

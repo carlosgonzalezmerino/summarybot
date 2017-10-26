@@ -113,9 +113,10 @@ def auth():
 def thanks():
 	bot = SlackBot()
 	code = request.args.get("code")
+	language = request.args.get("state")
 	if code:
 		uri = gethostname("/auth/bot")
-		if bot.auth(code, uri):
+		if bot.auth(code, uri, language):
 			return render_template("thanks.html")
 
 	return render_template("error.html")
