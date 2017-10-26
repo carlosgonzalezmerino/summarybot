@@ -88,6 +88,18 @@ class SlackBot(object):
 
 		return False
 
+	def __newalreadyresumed(self, user, url):
+		try:
+			news = self.db.getAll("news", "url", url, "date")
+			for new in news:
+				if user != new.get('user_id'):
+					return new
+
+			return None
+		except Exception as e:
+			print(e)
+		return None
+
 	def __parseurl(self, text):
 		if text:
 			urlmatcher = re.compile(r"<(?P<url>http[s]?\:\/\/[^\s]+)>")
@@ -265,6 +277,8 @@ class SlackBot(object):
 		response = {"channel": channel}
 
 		exists = self.__eventeanswered(user, channel, url)
+		old_answer = self.__newalreadyresumed(user, url)
+
 		if not exists:
 			itsforme = self.__itsforme(event)
 			iamnew = itsforme and event.get("subtype") == "channel_join"
@@ -280,7 +294,11 @@ class SlackBot(object):
 						title = content.get("title")
 						summary, keywords = self.__getsummary(content)
 						if summary and keywords:
-							response["text"] = messages.CONTENT_MSG
+							if old_answer is not None:
+								date_of_new = old_answer.get('date').strftime('%d de %B')
+								response["text"] = messages.CONTENT_ALREADY_SENT.format(date_of_new)
+							else:
+								response["text"] = messages.CONTENT_MSG
 							response["attachments"] = self.__parseattachments(title, summary, url)
 							try:
 								article = {
@@ -307,7 +325,11 @@ class SlackBot(object):
 						title = content.get("title")
 						summary, keywords = self.__getsummary(content)
 						if summary and keywords:
-							response["text"] = messages.CONTENT_MSG
+							if old_answer is not None:
+								date_of_new = old_answer.get('date').strftime('%d/%m')
+								response["text"] = messages.CONTENT_ALREADY_SENT.format(date_of_new)
+							else:
+								response["text"] = messages.CONTENT_MSG
 							response["thread_ts"] = ts
 							response["attachments"] = self.__parseattachments(title, summary, url)
 
