@@ -34,7 +34,7 @@
 			function setSlackLang(lang) {
                 var slack_auth_button = document.getElementById("slack-auth-button"),
 	                uri = slack_auth_button.getAttribute("href"),
-	                lang_uri = uri + "&lang=" + lang;
+	                lang_uri = uri + "&state=" + lang;
 
                 slack_auth_button.setAttribute("href", lang_uri);
             }
